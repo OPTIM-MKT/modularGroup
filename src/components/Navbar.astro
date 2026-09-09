@@ -1,11 +1,10 @@
 ---
-import { FiArrowRight, FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 
-import BrandMark from "@/components/shared/BrandMark.astro";
 import GroupMark from "@/components/shared/GroupMark.astro";
 import LangToggle from "@/components/shared/LangToggle.astro";
 import ThemeToggle from "@/components/shared/ThemeToggle.astro";
-import { BRANDS } from "@/config/brands";
+import { brandsOn, BRANDS } from "@/config/brands";
 import { getI18N, getLang } from "@/i18n/i18n";
 import { localePath, stripLocale } from "@/i18n/utils";
 
@@ -15,6 +14,9 @@ const t = getI18N(Astro.currentLocale);
 const path = stripLocale(Astro.url.pathname);
 const href = (to: string) => localePath(lang, to);
 const isActive = (to: string) => path === to;
+
+const left = brandsOn("left");
+const right = brandsOn("right");
 ---
 
 <a
@@ -28,90 +30,154 @@ const isActive = (to: string) => path === to;
   data-header
   class="glass-chrome sticky top-0 z-50 border-b border-line/80 shadow-xs"
 >
-  <div class="container-x flex h-16 items-center justify-between gap-4 lg:h-[4.75rem]">
-    {/* Left: Mobile hamburger (mobile only) & Group Mark (desktop & mobile) */}
-    <div class="flex items-center gap-3">
-      <button
-        type="button"
-        data-menu-toggle
-        data-label-open={t.nav.openMenu}
-        data-label-close={t.nav.closeMenu}
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-        aria-label={t.nav.openMenu}
-        class="icon-btn lg:hidden"
-      >
-        <FiMenu
-          data-menu-icon
-          className="h-[18px] w-[18px]"
-          aria-hidden="true"
-        />
-        <FiX
-          data-close-icon
-          className="hidden h-[18px] w-[18px]"
-          aria-hidden="true"
-        />
-      </button>
+  <div class="container-x relative flex h-16 items-center justify-between lg:h-20">
+    {/* Mobile Left: Hamburger Toggle */}
+    <button
+      type="button"
+      data-menu-toggle
+      data-label-open={t.nav.openMenu}
+      data-label-close={t.nav.closeMenu}
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label={t.nav.openMenu}
+      class="icon-btn lg:hidden"
+    >
+      <FiMenu
+        data-menu-icon
+        className="h-[18px] w-[18px]"
+        aria-hidden="true"
+      />
+      <FiX
+        data-close-icon
+        className="hidden h-[18px] w-[18px]"
+        aria-hidden="true"
+      />
+    </button>
 
+    {/* Mobile Center: Modular Group Wordmark */}
+    <a
+      href={href("/")}
+      aria-label={t.nav.groupHome}
+      aria-current={isActive("/") ? "page" : undefined}
+      class="press flex items-center rounded-xl px-3 py-1.5 transition-colors lg:hidden"
+    >
+      <GroupMark size="md" />
+    </a>
+
+    {/* Desktop: Perfectly Symmetrical 2-Left — Center Modular Group — 2-Right */}
+    <nav
+      class="hidden lg:flex w-full items-center justify-center gap-6 xl:gap-10"
+      aria-label={t.nav.companies}
+    >
+      {/* 2 Brands Left (Shower Walls, Modul Woods) */}
+      <div class="flex items-center gap-4 xl:gap-8">
+        {
+          left.map((brand) => {
+            const active = isActive(`/${brand.slug}`);
+            return (
+              <a
+                href={href(`/${brand.slug}`)}
+                aria-current={active ? "page" : undefined}
+                class="press group relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold tracking-tight transition-all duration-200"
+                style={active ? { color: brand.swatch } : undefined}
+              >
+                <span
+                  class="h-2 w-2 shrink-0 rounded-full transition-all duration-300 group-hover:scale-125"
+                  style={{
+                    backgroundColor: brand.swatch,
+                    opacity: active ? 1 : 0.65,
+                  }}
+                  aria-hidden="true"
+                />
+                <span class:list={[!active && "text-muted group-hover:text-ink transition-colors"]}>
+                  {brand.name}
+                </span>
+                {/* Active / hover underline */}
+                <span
+                  class:list={[
+                    "absolute bottom-0 left-2 right-2 h-[2px] rounded-full transition-all duration-300",
+                    active
+                      ? "opacity-100 scale-x-100"
+                      : "opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-100",
+                  ]}
+                  style={{ backgroundColor: brand.swatch }}
+                  aria-hidden="true"
+                />
+              </a>
+            );
+          })
+        }
+      </div>
+
+      {/* Center Modular Group Logo */}
       <a
         href={href("/")}
         aria-label={t.nav.groupHome}
         aria-current={isActive("/") ? "page" : undefined}
-        class="press flex items-center rounded-xl px-2 py-1.5 hover:bg-panelAlt/80 transition-colors"
+        class="press relative mx-4 flex flex-col items-center rounded-xl px-4 py-2 transition-all hover:bg-panelAlt/60"
       >
-        <GroupMark size="md" class="lg:hidden" />
-        <GroupMark size="lg" class="max-lg:hidden" />
-      </a>
-    </div>
-
-    {/* Center: The 4 Brand Logos — larger, elegant, crisp */}
-    <nav
-      class="hidden lg:flex items-center justify-center gap-1.5 xl:gap-3"
-      aria-label={t.nav.companies}
-    >
-      {
-        BRANDS.map((brand) => (
-          <a
-            href={href(`/${brand.slug}`)}
-            aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
-            class="press group relative flex items-center gap-2.5 rounded-full px-3.5 py-2 transition-all duration-200 hover:bg-panelAlt/80 aria-[current=page]:bg-panelAlt aria-[current=page]:shadow-xs"
-          >
+        <GroupMark size="lg" />
+        {
+          isActive("/") && (
             <span
-              class="h-2 w-2 shrink-0 rounded-full opacity-75 transition-transform duration-300 group-hover:scale-125 group-hover:opacity-100 group-aria-[current=page]:opacity-100"
-              style={`background-color:${brand.swatch}`}
+              class="absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-ink opacity-80"
               aria-hidden="true"
             />
-            <BrandMark brand={brand} size={32} />
-          </a>
-        ))
-      }
+          )
+        }
+      </a>
+
+      {/* 2 Brands Right (Küartz Surfaces, Modular Vanity Tops) */}
+      <div class="flex items-center gap-4 xl:gap-8">
+        {
+          right.map((brand) => {
+            const active = isActive(`/${brand.slug}`);
+            return (
+              <a
+                href={href(`/${brand.slug}`)}
+                aria-current={active ? "page" : undefined}
+                class="press group relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold tracking-tight transition-all duration-200"
+                style={active ? { color: brand.swatch } : undefined}
+              >
+                <span
+                  class="h-2 w-2 shrink-0 rounded-full transition-all duration-300 group-hover:scale-125"
+                  style={{
+                    backgroundColor: brand.swatch,
+                    opacity: active ? 1 : 0.65,
+                  }}
+                  aria-hidden="true"
+                />
+                <span class:list={[!active && "text-muted group-hover:text-ink transition-colors"]}>
+                  {brand.name}
+                </span>
+                {/* Active / hover underline */}
+                <span
+                  class:list={[
+                    "absolute bottom-0 left-2 right-2 h-[2px] rounded-full transition-all duration-300",
+                    active
+                      ? "opacity-100 scale-x-100"
+                      : "opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-100",
+                  ]}
+                  style={{ backgroundColor: brand.swatch }}
+                  aria-hidden="true"
+                />
+              </a>
+            );
+          })
+        }
+      </div>
     </nav>
 
-    {/* Right: Controls & Contact CTA button */}
-    <div class="flex items-center gap-2 sm:gap-2.5">
-      <div class="hidden sm:flex items-center gap-2">
+    {/* Discreet Right Utility Controls (Lang + Theme) — docked cleanly */}
+    <div class="flex items-center gap-1.5 lg:absolute lg:right-6 xl:lg:right-10">
+      <div class="hidden sm:block">
         <LangToggle label={t.nav.language} />
-        <ThemeToggle label={t.nav.theme} />
       </div>
-
-      <div class="sm:hidden">
-        <ThemeToggle label={t.nav.theme} />
-      </div>
-
-      <a
-        href={href("/contact")}
-        class="btn btn-primary group px-4 py-2 text-xs font-semibold"
-      >
-        {t.nav.contact}
-        <FiArrowRight
-          className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
-          aria-hidden="true"
-        />
-      </a>
+      <ThemeToggle label={t.nav.theme} />
     </div>
   </div>
 
-  {/* Mobile sheet */}
+  {/* Mobile Sheet */}
   <div
     id="mobile-nav"
     data-mobile-nav
@@ -131,34 +197,40 @@ const isActive = (to: string) => path === to;
         </li>
 
         {
-          BRANDS.map((brand) => (
-            <li>
-              <a
-                href={href(`/${brand.slug}`)}
-                aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
-                class="press flex items-center gap-3.5 rounded-2xl px-4 py-3.5 hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
-              >
-                <span
-                  class="h-2.5 w-2.5 shrink-0 rounded-full"
-                  style={`background-color:${brand.swatch}`}
-                  aria-hidden="true"
-                />
-                <BrandMark brand={brand} size={30} />
-              </a>
-            </li>
-          ))
+          BRANDS.map((brand) => {
+            const active = isActive(`/${brand.slug}`);
+            return (
+              <li>
+                <a
+                  href={href(`/${brand.slug}`)}
+                  aria-current={active ? "page" : undefined}
+                  class="press flex items-center justify-between rounded-2xl px-4 py-3.5 text-base font-semibold transition-colors hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
+                  style={active ? { color: brand.swatch } : undefined}
+                >
+                  <div class="flex items-center gap-3">
+                    <span
+                      class="h-2.5 w-2.5 shrink-0 rounded-full"
+                      style={{ backgroundColor: brand.swatch }}
+                      aria-hidden="true"
+                    />
+                    <span>{brand.name}</span>
+                  </div>
+                  {active && (
+                    <span
+                      class="h-2 w-2 rounded-full"
+                      style={{ backgroundColor: brand.swatch }}
+                      aria-hidden="true"
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
 
-      <div class="mt-6 flex items-center justify-between gap-3 border-t border-line pt-5">
+      <div class="mt-6 flex items-center justify-center gap-3 border-t border-line pt-5">
         <LangToggle label={t.nav.language} />
-        <a href={href("/contact")} class="btn btn-primary group">
-          {t.nav.contact}
-          <FiArrowRight
-            className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
-            aria-hidden="true"
-          />
-        </a>
       </div>
     </div>
   </div>
