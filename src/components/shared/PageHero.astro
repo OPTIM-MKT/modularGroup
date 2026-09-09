@@ -61,8 +61,19 @@ const onImage = Boolean(image);
     <div class="max-w-3xl">
       {
         eyebrow && (
-          <p class="type-eyebrow flex items-center gap-3 text-secondary">
-            <span class="h-px w-8 bg-secondary/60" aria-hidden="true" />
+          <p
+            class:list={[
+              "type-eyebrow flex items-center gap-3",
+              onImage ? "text-secondary" : "text-accent",
+            ]}
+          >
+            <span
+              class:list={[
+                "h-px w-8",
+                onImage ? "bg-secondary/60" : "bg-accent/45",
+              ]}
+              aria-hidden="true"
+            />
             {eyebrow}
           </p>
         )

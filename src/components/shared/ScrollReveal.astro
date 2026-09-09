@@ -1,0 +1,64 @@
+---
+/**
+ * Drives every `.reveal` element on the page.
+ *
+ * The `js` class is added by the blocking script in Layout.astro, so elements
+ * are hidden before first paint rather than flashing in and out. Without JS
+ * they simply stay visible — the reveal is decoration, never a gate on content.
+ */
+interface Props {
+  /** Fraction of the element that must be on screen before it reveals. */
+  threshold?: number;
+  /** Reveal slightly before the element reaches the fold. */
+  rootMargin?: string;
+}
+
+const { threshold = 0.12, rootMargin = "0px 0px -8% 0px" } = Astro.props;
+---
+
+<script is:inline define:vars={{ threshold, rootMargin }}>
+  (() => {
+    let observer = null;
+
+    const revealAll = () => {
+      document
+        .querySelectorAll("[class~='reveal']")
+        .forEach((el) => el.setAttribute("data-revealed", ""));
+    };
+
+    const init = () => {
+      observer?.disconnect();
+
+      if (!("IntersectionObserver" in window)) {
+        revealAll();
+        return;
+      }
+
+      observer = new IntersectionObserver(
+        (entries, obs) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.setAttribute("data-revealed", "");
+            // One-shot: content that has arrived stays arrived, so scrolling
+            // back up never replays the animation.
+            obs.unobserve(entry.target);
+          }
+        },
+        { threshold, rootMargin },
+      );
+
+      document.querySelectorAll("[class~='reveal']").forEach((el) => {
+        // Anything already in view on load reveals immediately, without waiting
+        // for the first scroll event.
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.setAttribute("data-revealed", "");
+          return;
+        }
+        observer.observe(el);
+      });
+    };
+
+    document.addEventListener("astro:page-load", init);
+    document.addEventListener("astro:before-swap", () => observer?.disconnect());
+  })();
+</script>

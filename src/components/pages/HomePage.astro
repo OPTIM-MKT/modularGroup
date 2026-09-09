@@ -1,0 +1,166 @@
+---
+import { Image } from "astro:assets";
+import { FiArrowDown, FiArrowRight } from "react-icons/fi";
+
+import template from "@/assets/template.png";
+import BrandBlock from "@/components/sections/BrandBlock.astro";
+import ContactSection from "@/components/sections/ContactSection.astro";
+import CtaSection from "@/components/shared/CtaSection.astro";
+import PillarGrid from "@/components/shared/PillarGrid.astro";
+import SectionHeader from "@/components/shared/SectionHeader.astro";
+import StatGrid from "@/components/shared/StatGrid.astro";
+import { BRANDS } from "@/config/brands";
+import { getI18N, getLang } from "@/i18n/i18n";
+import { localePath } from "@/i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = getI18N(Astro.currentLocale);
+const href = (to: string) => localePath(lang, to);
+---
+
+{/* --- Hero ------------------------------------------------------------- */}
+<section class="relative isolate overflow-hidden bg-canvas hairline-b">
+  <Image
+    src={template}
+    alt=""
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 -z-20 h-full w-full object-cover opacity-[0.14] dark:opacity-[0.07]"
+  />
+  <div
+    class="absolute inset-0 -z-10 bg-linear-to-b from-canvas/40 via-canvas/80 to-canvas"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-x pb-20 pt-16 lg:pb-28 lg:pt-24">
+    <div class="max-w-3xl">
+      <p class="reveal type-eyebrow flex items-center gap-3 text-accent">
+        <span class="h-px w-8 bg-accent/45" aria-hidden="true" />
+        {t.home.hero.eyebrow}
+      </p>
+
+      <h1 class="reveal type-display mt-6 text-ink" style="transition-delay:60ms">
+        {t.home.hero.title}
+      </h1>
+
+      <p
+        class="reveal type-subheading mt-6 max-w-2xl text-ink/85"
+        style="transition-delay:120ms"
+      >
+        {t.home.hero.subtitle}
+      </p>
+
+      <p class="reveal type-body mt-5 max-w-2xl text-muted" style="transition-delay:180ms">
+        {t.home.hero.description}
+      </p>
+
+      <div
+        class="reveal mt-10 flex flex-wrap items-center gap-3"
+        style="transition-delay:240ms"
+      >
+        <a href={href("/contact")} class="btn btn-primary group px-6 py-3">
+          {t.home.hero.primaryCta}
+          <FiArrowRight
+            className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+            aria-hidden="true"
+          />
+        </a>
+        <a href="#companies" class="btn btn-outline group px-6 py-3">
+          {t.home.hero.secondaryCta}
+          <FiArrowDown
+            className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-y-0.5"
+            aria-hidden="true"
+          />
+        </a>
+      </div>
+    </div>
+
+    {/* The four marks as a single row: the group's whole proposition at a
+        glance, before a word of body copy. */}
+    <ul
+      class="reveal mt-16 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-line pt-8 sm:grid-cols-4"
+      style="transition-delay:300ms"
+    >
+      {
+        BRANDS.map((brand) => (
+          <li class="flex items-center gap-2.5">
+            <span
+              class="h-1.5 w-1.5 shrink-0 rounded-full"
+              style={`background-color:${brand.swatch}`}
+              aria-hidden="true"
+            />
+            <span class="text-sm font-semibold text-ink">{brand.name}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+{/* --- Group intro ------------------------------------------------------ */}
+<section class="section-y bg-canvas">
+  <div class="container-x">
+    <SectionHeader
+      eyebrow={t.home.intro.eyebrow}
+      title={t.home.intro.title}
+      description={t.home.intro.description}
+    />
+    <StatGrid stats={t.home.stats} class="mt-12" />
+  </div>
+</section>
+
+{/* --- The four companies ----------------------------------------------- */}
+<section id="companies" class="section-y-sm bg-canvasAlt hairline-t">
+  <div class="container-x">
+    <SectionHeader
+      eyebrow={t.home.companies.eyebrow}
+      title={t.home.companies.title}
+      description={t.home.companies.description}
+    />
+  </div>
+</section>
+
+{
+  BRANDS.map((brand, index) => (
+    <BrandBlock
+      brand={brand}
+      index={index}
+      tagline={t.brands[brand.key].tagline}
+      summary={t.brands[brand.key].home.summary}
+      points={t.brands[brand.key].home.points}
+      href={href(`/${brand.slug}`)}
+      ctaLabel={t.common.visitCompany}
+    />
+  ))
+}
+
+{/* --- Why the group ---------------------------------------------------- */}
+<section class="section-y bg-canvasAlt hairline-t">
+  <div class="container-x">
+    <SectionHeader
+      eyebrow={t.home.advantages.eyebrow}
+      title={t.home.advantages.title}
+    />
+    <PillarGrid items={t.home.advantages.items} columns={4} class="mt-12" />
+  </div>
+</section>
+
+<ContactSection
+  eyebrow={t.home.contact.eyebrow}
+  title={t.home.contact.title}
+  description={t.home.contact.description}
+  class="bg-canvas"
+/>
+
+<CtaSection
+  eyebrow={t.home.cta.eyebrow}
+  title={t.home.cta.title}
+  description={t.home.cta.description}
+  primaryLabel={t.home.cta.primaryLabel}
+  primaryHref={href("/contact")}
+  secondaryLabel={t.home.cta.secondaryLabel}
+  secondaryHref="#companies"
+/>

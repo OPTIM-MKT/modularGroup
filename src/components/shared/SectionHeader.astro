@@ -6,7 +6,7 @@ interface Props {
   /** `start` for editorial sections, `center` for full-width breaks. */
   align?: "start" | "center";
   /** Renders as `h1` on page heroes, `h2` inside a page. */
-  as?: "h1" | "h2";
+  headingLevel?: "h1" | "h2";
   size?: "display" | "title" | "heading";
   class?: string;
 }
@@ -16,17 +16,18 @@ const {
   title,
   description,
   align = "start",
-  as: Tag = "h2",
+  headingLevel: Tag = "h2",
   size = "title",
   class: className = "",
 } = Astro.props;
 
-const SIZE_CLASS: Record<"display" | "title" | "heading", string> = {
+const SIZE_CLASS = {
   display: "type-display",
   title: "type-title",
   heading: "type-heading",
-};
-const titleClass = SIZE_CLASS[size as "display" | "title" | "heading"];
+} as const;
+
+const titleClass = SIZE_CLASS[size];
 ---
 
 <header
@@ -40,11 +41,11 @@ const titleClass = SIZE_CLASS[size as "display" | "title" | "heading"];
     eyebrow && (
       <p
         class:list={[
-          "type-eyebrow flex items-center gap-3 text-secondary",
+          "type-eyebrow flex items-center gap-3 text-accent",
           align === "center" && "justify-center",
         ]}
       >
-        <span class="h-px w-8 bg-secondary/60" aria-hidden="true" />
+        <span class="h-px w-8 bg-accent/45" aria-hidden="true" />
         {eyebrow}
       </p>
     )

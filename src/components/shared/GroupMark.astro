@@ -1,0 +1,41 @@
+---
+interface Props {
+  /** `lg` for the header centrepiece, `sm` for the footer. */
+  size?: "sm" | "md" | "lg";
+  class?: string;
+}
+
+const { size = "md", class: className = "" } = Astro.props;
+
+const SIZE = {
+  sm: { word: "text-[0.95rem]", sub: "text-[0.55rem]", gap: "gap-1.5" },
+  md: { word: "text-[1.1rem]", sub: "text-[0.58rem]", gap: "gap-1.5" },
+  lg: { word: "text-[1.35rem]", sub: "text-[0.62rem]", gap: "gap-2" },
+} as const;
+
+const s = SIZE[size];
+---
+
+{/* Placeholder wordmark until the group artwork exists. It is deliberately
+    typographic and achromatic: the four companies carry the colour. */}
+<span
+  class:list={["inline-flex flex-col items-center leading-none", s.gap, className]}
+>
+  <span
+    class:list={[
+      "font-bold tracking-[-0.03em] text-ink whitespace-nowrap",
+      s.word,
+    ]}
+  >
+    Modular <span class="font-light">Group</span>
+  </span>
+  <span
+    class:list={[
+      "font-semibold uppercase tracking-[0.3em] text-muted whitespace-nowrap",
+      s.sub,
+    ]}
+    aria-hidden="true"
+  >
+    Est. 2004
+  </span>
+</span>

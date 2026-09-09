@@ -1,0 +1,87 @@
+---
+import { FiDownload, FiFileText } from "react-icons/fi";
+
+import type { ResolvedDownload } from "@/config/downloads";
+
+interface Props {
+  items: readonly ResolvedDownload[];
+  title: string;
+  description?: string;
+  /** Shown instead of the list while a company has no files yet. */
+  emptyLabel: string;
+  downloadLabel: string;
+  newTabLabel: string;
+  class?: string;
+}
+
+const {
+  items,
+  title,
+  description,
+  emptyLabel,
+  downloadLabel,
+  newTabLabel,
+  class: className = "",
+} = Astro.props;
+---
+
+<section class:list={["section-y bg-canvasAlt", className]} id="downloads">
+  <div class="container-x">
+    <header class="reveal max-w-2xl">
+      <h2 class="type-title text-ink">{title}</h2>
+      {description && <p class="type-body mt-4 text-muted">{description}</p>}
+    </header>
+
+    {
+      items.length === 0 ? (
+        <p class="reveal card mt-10 px-6 py-8 text-muted">{emptyLabel}</p>
+      ) : (
+        <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+          {items.map((item, i) => (
+            <li class="reveal" style={`transition-delay:${i * 70}ms`}>
+              <a
+                href={item.href}
+                download={item.fileName}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="press-soft card group flex h-full items-start gap-4 p-5 shadow-e1 hover:shadow-e2 sm:p-6"
+              >
+                <span
+                  class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent"
+                  aria-hidden="true"
+                >
+                  <FiFileText className="h-5 w-5" />
+                </span>
+
+                <span class="min-w-0 flex-1">
+                  <span class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                    <span class="font-semibold text-ink">{item.label}</span>
+                    <span class="type-label rounded-full border border-line px-2 py-0.5 text-[0.62rem] text-muted">
+                      {item.kind}
+                      {item.size && ` · ${item.size}`}
+                    </span>
+                  </span>
+
+                  {item.description && (
+                    <span class="mt-1.5 block text-sm leading-relaxed text-muted">
+                      {item.description}
+                    </span>
+                  )}
+
+                  <span class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+                    {downloadLabel}
+                    <FiDownload
+                      className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-y-0.5"
+                      aria-hidden="true"
+                    />
+                    <span class="sr-only">— {newTabLabel}</span>
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,68 @@
+---
+import ContactForm from "@/components/forms/ContactForm";
+import { getI18N, getLang } from "@/i18n/i18n";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  defaultInterest?:
+    | "group"
+    | "showerWalls"
+    | "modulWoods"
+    | "kuartzSurfaces"
+    | "modularVanityTops";
+  class?: string;
+  id?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  defaultInterest = "group",
+  class: className = "",
+  id = "contact",
+} = Astro.props;
+
+const lang = getLang(Astro.currentLocale);
+const t = getI18N(Astro.currentLocale);
+---
+
+<section id={id} class:list={["section-y bg-canvasAlt", className]}>
+  <div class="container-x">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+      <div class="reveal">
+        {
+          eyebrow && (
+            <p class="type-eyebrow flex items-center gap-3 text-accent">
+              <span class="h-px w-8 bg-accent/45" aria-hidden="true" />
+              {eyebrow}
+            </p>
+          )
+        }
+        <h2 class="type-title mt-4 text-ink">{title}</h2>
+        {description && <p class="type-body mt-5 text-muted">{description}</p>}
+
+        <dl class="mt-10 grid gap-6 border-t border-line pt-8">
+          {
+            t.contact.info.items.map((item) => (
+              <div>
+                <dt class="type-label text-muted">{item.label}</dt>
+                <dd class="mt-1.5 text-[0.95rem] text-ink">{item.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <p class="mt-6 text-sm text-muted">{t.contact.info.note}</p>
+      </div>
+
+      <div class="reveal card p-6 shadow-e2 sm:p-8" style="transition-delay:120ms">
+        <h3 class="type-heading text-ink">{t.contact.form.title}</h3>
+        <div class="mt-6">
+          <ContactForm client:visible lang={lang} defaultInterest={defaultInterest} />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

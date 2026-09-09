@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  /** One paragraph per entry. */
+  body?: readonly string[];
+  image: ImageMetadata;
+  imageAlt?: string;
+  /** Which side the image sits on. Alternate it down a page for rhythm. */
+  imageSide?: "left" | "right";
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  body = [],
+  image,
+  imageAlt = "",
+  imageSide = "right",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "grid items-center gap-10 lg:grid-cols-2 lg:gap-16",
+    className,
+  ]}
+>
+  <div class:list={["reveal", imageSide === "left" && "lg:order-2"]}>
+    {
+      eyebrow && (
+        <p class="type-eyebrow flex items-center gap-3 text-accent">
+          <span class="h-px w-8 bg-accent/45" aria-hidden="true" />
+          {eyebrow}
+        </p>
+      )
+    }
+    <h2 class="type-title mt-4 text-ink">{title}</h2>
+
+    {
+      body.map((paragraph) => (
+        <p class="type-body mt-5 text-muted">{paragraph}</p>
+      ))
+    }
+
+    <slot />
+  </div>
+
+  <div
+    class:list={[
+      "reveal relative",
+      imageSide === "left" && "lg:order-1",
+    ]}
+    style="transition-delay:120ms"
+  >
+    <div class="overflow-hidden rounded-panel bg-panelAlt shadow-e2">
+      <Image
+        src={image}
+        alt={imageAlt}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 1024px) 46vw, 92vw"
+        loading="lazy"
+        class="aspect-4/3 h-full w-full object-cover"
+      />
+    </div>
+    {/* A tinted plate behind the frame gives the image somewhere to sit
+        instead of floating on the page. */}
+    <div
+      class:list={[
+        "pointer-events-none absolute -bottom-4 -z-10 h-24 w-2/3 rounded-panel bg-accent/12 blur-2xl",
+        imageSide === "left" ? "-left-4" : "-right-4",
+      ]}
+      aria-hidden="true"
+    >
+    </div>
+  </div>
+</div>

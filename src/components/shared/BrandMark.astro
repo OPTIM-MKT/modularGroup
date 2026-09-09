@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+
+import type { Brand } from "@/config/brands";
+
+interface Props {
+  brand: Brand;
+  /**
+   * Nominal optical size in px. It is *not* the rendered height: the four
+   * lockups have aspect ratios from 1.9:1 to 6:1, so matching their heights
+   * would make the wide ones tower over the tall ones. Each mark is scaled to
+   * the same *area* instead, which is what the eye actually compares.
+   */
+  size?: number;
+  class?: string;
+}
+
+const { brand, size = 28, class: className = "" } = Astro.props;
+
+/** Aspect ratio the nominal size is calibrated against. */
+const REFERENCE_RATIO = 2.8;
+
+const ratio = brand.logo.width / brand.logo.height;
+const height = Math.round(
+  size * Math.sqrt(REFERENCE_RATIO / ratio) * brand.logoScale,
+);
+const width = Math.round(height * ratio);
+
+const isBadge = brand.logoStyle === "badge";
+---
+
+<span
+  class:list={[
+    "inline-flex shrink-0 items-center",
+    // A badge carries its own ground; on a light page it needs a plate so the
+    // artwork's semi-transparent black does not wash out against the canvas.
+    isBadge && "overflow-hidden rounded-md bg-baseBlack dark:bg-transparent",
+    className,
+  ]}
+>
+  <Image
+    src={brand.logo}
+    alt={brand.name}
+    width={width * 2}
+    height={height * 2}
+    densities={[1, 2]}
+    loading="lazy"
+    class:list={[
+      "block h-auto w-auto max-w-none object-contain",
+      // Flattening a wordmark to white keeps its silhouette readable on a dark
+      // ground; a badge would lose its own foreground/background contrast, so
+      // it is left exactly as drawn.
+      !isBadge && "dark:brightness-0 dark:invert",
+    ]}
+    style={`height:${height}px;width:${width}px`}
+  />
+</span>

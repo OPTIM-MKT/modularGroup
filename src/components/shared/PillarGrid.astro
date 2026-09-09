@@ -1,0 +1,54 @@
+---
+interface Pillar {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  items: readonly Pillar[];
+  /** `card` for standalone panels, `bare` for a lighter editorial column. */
+  variant?: "card" | "bare";
+  columns?: 2 | 3 | 4;
+  class?: string;
+}
+
+const {
+  items,
+  variant = "card",
+  columns = 3,
+  class: className = "",
+} = Astro.props;
+
+const COLUMN_CLASS = {
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-2 lg:grid-cols-3",
+  4: "sm:grid-cols-2 lg:grid-cols-4",
+} as const;
+---
+
+<ul class:list={["grid gap-5", COLUMN_CLASS[columns], className]}>
+  {
+    items.map((item, i) => (
+      <li
+        class:list={[
+          "reveal h-full",
+          variant === "card"
+            ? "card p-6 shadow-e1 lg:p-7"
+            : "border-t border-line pt-6",
+        ]}
+        style={`transition-delay:${i * 80}ms`}
+      >
+        <span
+          class="type-label text-accent tabular-nums"
+          aria-hidden="true"
+        >
+          {String(i + 1).padStart(2, "0")}
+        </span>
+        <h3 class="type-heading mt-3 text-ink">{item.title}</h3>
+        <p class="mt-3 text-[0.95rem] leading-relaxed text-muted">
+          {item.body}
+        </p>
+      </li>
+    ))
+  }
+</ul>

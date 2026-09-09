@@ -1,0 +1,300 @@
+---
+import { FiArrowRight, FiMenu, FiX } from "react-icons/fi";
+
+import BrandMark from "@/components/shared/BrandMark.astro";
+import GroupMark from "@/components/shared/GroupMark.astro";
+import LangToggle from "@/components/shared/LangToggle.astro";
+import ThemeToggle from "@/components/shared/ThemeToggle.astro";
+import { brandsOn, BRANDS } from "@/config/brands";
+import { getI18N, getLang } from "@/i18n/i18n";
+import { localePath, stripLocale } from "@/i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = getI18N(Astro.currentLocale);
+
+const path = stripLocale(Astro.url.pathname);
+const href = (to: string) => localePath(lang, to);
+const isActive = (to: string) => path === to;
+
+const left = brandsOn("left");
+const right = brandsOn("right");
+---
+
+<a
+  href="#main"
+  class="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[60] focus-visible:rounded-full focus-visible:bg-primary focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-semibold focus-visible:text-onPrimary"
+>
+  {t.nav.skipToContent}
+</a>
+
+<header
+  data-header
+  class="glass-chrome sticky top-0 z-50 border-b border-line/80"
+>
+  {/* Utility row — collapses on scroll so the companies row becomes the header.
+      Animating grid-template-rows keeps the collapse continuous instead of a
+      jump between two fixed heights. */}
+  <div
+    data-utility-row
+    class="grid grid-rows-[1fr] transition-[grid-template-rows,opacity] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] max-lg:hidden"
+  >
+    <div class="overflow-hidden">
+      <div
+        class="container-x flex h-11 items-center justify-between border-b border-line/70"
+      >
+        <p class="text-xs text-muted">{t.site.tagline}</p>
+
+        <div class="flex items-center gap-2">
+          <LangToggle label={t.nav.language} />
+          <ThemeToggle label={t.nav.theme} />
+          <a href={href("/contact")} class="btn btn-primary group ml-1 px-4 py-2 text-xs">
+            {t.nav.contact}
+            <FiArrowRight
+              className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Companies row — two marks, the group, two marks. */}
+  <nav
+    class="container-x flex h-16 items-center gap-3 lg:h-[4.5rem]"
+    aria-label={t.nav.companies}
+  >
+    <button
+      type="button"
+      data-menu-toggle
+      data-label-open={t.nav.openMenu}
+      data-label-close={t.nav.closeMenu}
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label={t.nav.openMenu}
+      class="icon-btn lg:hidden"
+    >
+      <FiMenu
+        data-menu-icon
+        className="h-[18px] w-[18px]"
+        aria-hidden="true"
+      />
+      <FiX
+        data-close-icon
+        className="hidden h-[18px] w-[18px]"
+        aria-hidden="true"
+      />
+    </button>
+
+    <ul class="hidden flex-1 items-center justify-start gap-1 lg:flex">
+      {
+        left.map((brand) => (
+          <li>
+            <a
+              href={href(`/${brand.slug}`)}
+              aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
+              class="press group relative flex items-center gap-2.5 rounded-full px-3 py-2 hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
+            >
+              <span
+                class="h-1.5 w-1.5 shrink-0 rounded-full opacity-60 transition-opacity duration-300 group-hover:opacity-100 group-aria-[current=page]:opacity-100"
+                style={`background-color:${brand.swatch}`}
+                aria-hidden="true"
+              />
+              <BrandMark brand={brand} size={26} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href={href("/")}
+      aria-label={t.nav.groupHome}
+      aria-current={isActive("/") ? "page" : undefined}
+      class="press mx-auto shrink-0 rounded-xl px-3 py-1.5 hover:bg-panelAlt lg:mx-0"
+    >
+      <GroupMark size="md" class="lg:hidden" />
+      <GroupMark size="lg" class="max-lg:hidden" />
+    </a>
+
+    <ul class="hidden flex-1 items-center justify-end gap-1 lg:flex">
+      {
+        right.map((brand) => (
+          <li>
+            <a
+              href={href(`/${brand.slug}`)}
+              aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
+              class="press group relative flex items-center gap-2.5 rounded-full px-3 py-2 hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
+            >
+              <span
+                class="h-1.5 w-1.5 shrink-0 rounded-full opacity-60 transition-opacity duration-300 group-hover:opacity-100 group-aria-[current=page]:opacity-100"
+                style={`background-color:${brand.swatch}`}
+                aria-hidden="true"
+              />
+              <BrandMark brand={brand} size={26} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ThemeToggle label={t.nav.theme} class="lg:hidden" />
+  </nav>
+
+  {/* Mobile sheet. It materialises — blur and scale together — from the header
+      it belongs to, and dismisses back along the same path. */}
+  <div
+    id="mobile-nav"
+    data-mobile-nav
+    hidden
+    class="origin-top border-t border-line bg-canvas/95 backdrop-blur-xl lg:hidden"
+  >
+    <div class="container-x py-6">
+      <ul class="grid gap-1">
+        <li>
+          <a
+            href={href("/")}
+            aria-current={isActive("/") ? "page" : undefined}
+            class="press flex items-center justify-between rounded-2xl px-4 py-3.5 font-semibold text-ink hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
+          >
+            {t.nav.home}
+          </a>
+        </li>
+
+        {
+          BRANDS.map((brand) => (
+            <li>
+              <a
+                href={href(`/${brand.slug}`)}
+                aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
+                class="press flex items-center gap-3 rounded-2xl px-4 py-3.5 hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
+              >
+                <span
+                  class="h-2 w-2 shrink-0 rounded-full"
+                  style={`background-color:${brand.swatch}`}
+                  aria-hidden="true"
+                />
+                <BrandMark brand={brand} size={28} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-6 flex items-center justify-between gap-3 border-t border-line pt-5">
+        <LangToggle label={t.nav.language} />
+        <a href={href("/contact")} class="btn btn-primary group">
+          {t.nav.contact}
+          <FiArrowRight
+            className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+            aria-hidden="true"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const COMPACT_AT = 64;
+
+  let cleanup: (() => void) | null = null;
+
+  function initHeader() {
+    cleanup?.();
+
+    const header = document.querySelector<HTMLElement>("[data-header]");
+    const utility = document.querySelector<HTMLElement>("[data-utility-row]");
+    const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+    const panel = document.querySelector<HTMLElement>("[data-mobile-nav]");
+    if (!header) return;
+
+    /* --- compact on scroll --- */
+    let ticking = false;
+    const applyCompact = () => {
+      const compact = window.scrollY > COMPACT_AT;
+      header.toggleAttribute("data-compact", compact);
+      utility?.classList.toggle("grid-rows-[0fr]", compact);
+      utility?.classList.toggle("grid-rows-[1fr]", !compact);
+      utility?.classList.toggle("opacity-0", compact);
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(applyCompact);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    applyCompact();
+
+    /* --- mobile sheet --- */
+    const setOpen = (open: boolean) => {
+      if (!toggle || !panel) return;
+      toggle.setAttribute("aria-expanded", String(open));
+
+      if (open) {
+        panel.hidden = false;
+        // Read back a frame before animating so the transition has a start
+        // value to move from rather than snapping to the end state.
+        requestAnimationFrame(() => {
+          panel.style.opacity = "1";
+          panel.style.transform = "none";
+        });
+      } else {
+        panel.style.opacity = "0";
+        panel.style.transform = "translateY(-8px) scale(0.99)";
+        window.setTimeout(() => {
+          if (toggle.getAttribute("aria-expanded") === "false") panel.hidden = true;
+        }, 220);
+      }
+
+      document.documentElement.classList.toggle("overflow-hidden", open);
+      toggle.setAttribute(
+        "aria-label",
+        (open ? toggle.dataset.labelClose : toggle.dataset.labelOpen) ??
+          toggle.getAttribute("aria-label") ??
+          "",
+      );
+      toggle.querySelector("[data-menu-icon]")?.classList.toggle("hidden", open);
+      toggle.querySelector("[data-close-icon]")?.classList.toggle("hidden", !open);
+    };
+
+    if (panel) {
+      panel.style.transition =
+        "opacity 240ms cubic-bezier(0.22,1,0.36,1), transform 240ms cubic-bezier(0.22,1,0.36,1)";
+      panel.style.opacity = "0";
+      panel.style.transform = "translateY(-8px) scale(0.99)";
+    }
+
+    const onToggleClick = () =>
+      setOpen(toggle?.getAttribute("aria-expanded") !== "true");
+    toggle?.addEventListener("click", onToggleClick);
+
+    const onKeydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && toggle?.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        toggle.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeydown);
+
+    // Navigating away must never leave the sheet — or the scroll lock — behind.
+    const onNavigate = () => {
+      document.documentElement.classList.remove("overflow-hidden");
+      setOpen(false);
+    };
+    panel?.addEventListener("click", (event) => {
+      if ((event.target as Element).closest("a")) onNavigate();
+    });
+
+    cleanup = () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("keydown", onKeydown);
+      toggle?.removeEventListener("click", onToggleClick);
+      document.documentElement.classList.remove("overflow-hidden");
+    };
+  }
+
+  document.addEventListener("astro:page-load", initHeader);
+  document.addEventListener("astro:before-swap", () => cleanup?.());
+</script>

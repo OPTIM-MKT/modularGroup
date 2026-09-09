@@ -1,0 +1,66 @@
+---
+import { FiArrowRight } from "react-icons/fi";
+
+import BrandMark from "@/components/shared/BrandMark.astro";
+import { BRANDS } from "@/config/brands";
+import { getI18N, getLang } from "@/i18n/i18n";
+import { localePath } from "@/i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = getI18N(Astro.currentLocale);
+const href = (to: string) => localePath(lang, to);
+---
+
+<section class="flex min-h-[70dvh] items-center bg-canvas">
+  <div class="container-x py-20">
+    <div class="max-w-2xl">
+      <p
+        class="type-eyebrow tabular-nums text-accent"
+        aria-hidden="true"
+      >
+        {t.notFound.code}
+      </p>
+
+      <h1 class="type-display mt-5 text-ink">{t.notFound.title}</h1>
+      <p class="type-body mt-5 text-muted">{t.notFound.description}</p>
+
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href={href("/")} class="btn btn-primary group px-6 py-3">
+          {t.notFound.backHome}
+          <FiArrowRight
+            className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+            aria-hidden="true"
+          />
+        </a>
+        <a href={href("/contact")} class="btn btn-outline px-6 py-3">
+          {t.notFound.contact}
+        </a>
+      </div>
+
+      {/* A dead end is the one place wayfinding matters most: every door out
+          of the group is on this screen. */}
+      <div class="mt-14 border-t border-line pt-8">
+        <h2 class="type-label text-muted">{t.notFound.companies}</h2>
+        <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+          {
+            BRANDS.map((brand) => (
+              <li>
+                <a
+                  href={href(`/${brand.slug}`)}
+                  class="press group flex items-center gap-3 rounded-2xl px-3 py-2.5 hover:bg-panelAlt"
+                >
+                  <span
+                    class="h-1.5 w-1.5 shrink-0 rounded-full opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                    style={`background-color:${brand.swatch}`}
+                    aria-hidden="true"
+                  />
+                  <BrandMark brand={brand} size={24} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

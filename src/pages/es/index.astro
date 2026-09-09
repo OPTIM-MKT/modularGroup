@@ -1,8 +1,13 @@
 ---
-import Welcome from "@/components/Welcome.astro";
+import HomePage from "@/components/pages/HomePage.astro";
 import Layout from "@/layouts/Layout.astro";
+import { getI18N } from "@/i18n/i18n";
+
+export const prerender = true;
+
+const t = getI18N(Astro.currentLocale);
 ---
 
-<Layout>
-  <Welcome />
+<Layout title={t.home.seo.title} description={t.home.seo.description}>
+  <HomePage />
 </Layout>

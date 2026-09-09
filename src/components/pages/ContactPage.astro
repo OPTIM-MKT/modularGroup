@@ -1,0 +1,16 @@
+---
+import ContactSection from "@/components/sections/ContactSection.astro";
+import PageHero from "@/components/shared/PageHero.astro";
+import { getI18N } from "@/i18n/i18n";
+
+const t = getI18N(Astro.currentLocale);
+---
+
+<PageHero
+  eyebrow={t.contact.hero.eyebrow}
+  title={t.contact.hero.title}
+  subtitle={t.contact.hero.subtitle}
+  description={t.contact.hero.description}
+/>
+
+<ContactSection title={t.contact.info.title} class="bg-canvas" />

@@ -1,5 +1,5 @@
 {
-  "name": "basic",
+  "name": "modular-group",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -36,6 +36,8 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19"
+    "@astrojs/check": "^0.9.10",
+    "@tailwindcss/typography": "^0.5.19",
+    "typescript": "^6.0.3"
   }
 }

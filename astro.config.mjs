@@ -14,7 +14,7 @@ import robotsTxt from "astro-robots-txt";
 import icon from "astro-icon";
 
 export default defineConfig({
-  site: "https://basic.com",
+  site: "https://modulargroup.com",
   output: "server",
   adapter: netlify({
     imageCDN: false,

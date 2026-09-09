@@ -1,0 +1,225 @@
+---
+import template from "@/assets/template.png";
+import ContactSection from "@/components/sections/ContactSection.astro";
+import BrandMark from "@/components/shared/BrandMark.astro";
+import CtaSection from "@/components/shared/CtaSection.astro";
+import DownloadList from "@/components/shared/DownloadList.astro";
+import FeatureList from "@/components/shared/FeatureList.astro";
+import Gallery from "@/components/shared/Gallery.astro";
+import PillarGrid from "@/components/shared/PillarGrid.astro";
+import SectionHeader from "@/components/shared/SectionHeader.astro";
+import SplitFeature from "@/components/shared/SplitFeature.astro";
+import StatGrid from "@/components/shared/StatGrid.astro";
+import { getBrand, type BrandKey } from "@/config/brands";
+import { getDownloads } from "@/config/downloads";
+import { getI18N, getLang } from "@/i18n/i18n";
+import { localePath } from "@/i18n/utils";
+
+interface Props {
+  brandKey: BrandKey;
+}
+
+const { brandKey } = Astro.props;
+
+const lang = getLang(Astro.currentLocale);
+const t = getI18N(Astro.currentLocale);
+const href = (to: string) => localePath(lang, to);
+
+const brand = getBrand(brandKey);
+const downloads = getDownloads(brandKey, brand.assetDir, lang);
+
+/**
+ * Not every company tells the same story: Shower Walls has a mission/vision
+ * pair and a case against tile, the others carry a stat line. The dictionary
+ * decides which sections exist, so a company can gain or lose one without a
+ * change here.
+ */
+type Section = { eyebrow?: string; title: string; items: readonly unknown[] };
+const copy = t.brands[brandKey] as unknown as {
+  name: string;
+  tagline: string;
+  hero: { eyebrow: string; title: string; subtitle: string; description: string };
+  about: { eyebrow: string; title: string; body: readonly string[] };
+  stats?: readonly { value: string; label: string }[];
+  pillars?: Section & { items: readonly { title: string; body: string }[] };
+  advantages?: Section & { items: readonly { title: string; body: string }[] };
+  products: Section & { items: readonly string[] };
+  markets: { title: string; items: readonly string[] };
+  gallery: { eyebrow: string; title: string };
+  cta: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    primaryLabel: string;
+    secondaryLabel: string;
+  };
+};
+
+const firstDownload = downloads[0];
+---
+
+{/* --- Hero ------------------------------------------------------------- */}
+<section class="relative isolate overflow-hidden bg-canvas hairline-b">
+  <div
+    class="pointer-events-none absolute -right-40 -top-48 -z-10 h-[28rem] w-[28rem] rounded-full bg-accent/10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-x pb-16 pt-14 lg:pb-24 lg:pt-20">
+    <div class="max-w-3xl">
+      <p class="reveal type-eyebrow flex items-center gap-3 text-accent">
+        <span class="h-px w-8 bg-accent/45" aria-hidden="true" />
+        {copy.hero.eyebrow}
+      </p>
+
+      <div class="reveal mt-6" style="transition-delay:60ms">
+        <BrandMark brand={brand} size={56} />
+      </div>
+
+      <h1 class="reveal type-display mt-7 text-ink" style="transition-delay:120ms">
+        {copy.hero.title}
+      </h1>
+
+      <p
+        class="reveal type-subheading mt-6 max-w-2xl text-ink/85"
+        style="transition-delay:180ms"
+      >
+        {copy.hero.subtitle}
+      </p>
+
+      <p class="reveal type-body mt-4 max-w-2xl text-muted" style="transition-delay:220ms">
+        {copy.hero.description}
+      </p>
+
+      <div class="reveal mt-9 flex flex-wrap gap-3" style="transition-delay:280ms">
+        <a href={href("/contact")} class="btn btn-primary px-6 py-3">
+          {t.common.requestQuote}
+        </a>
+        {
+          firstDownload && (
+            <a href="#downloads" class="btn btn-outline px-6 py-3">
+              {t.common.downloads}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+{copy.stats && <StatGrid stats={copy.stats} />}
+
+{/* --- About ------------------------------------------------------------ */}
+<section class="section-y bg-canvas">
+  <div class="container-x">
+    <SplitFeature
+      eyebrow={copy.about.eyebrow}
+      title={copy.about.title}
+      body={copy.about.body}
+      image={template}
+      imageAlt=""
+    />
+  </div>
+</section>
+
+{/* --- Mission & vision (Shower Walls) ---------------------------------- */}
+{
+  copy.pillars && (
+    <section class="section-y bg-canvasAlt hairline-t">
+      <div class="container-x">
+        <SectionHeader eyebrow={copy.pillars.eyebrow} title={copy.pillars.title} />
+        <PillarGrid items={copy.pillars.items} columns={2} class="mt-12" />
+      </div>
+    </section>
+  )
+}
+
+{/* --- Advantages (Shower Walls) ---------------------------------------- */}
+{
+  copy.advantages && (
+    <section class="section-y bg-canvas hairline-t">
+      <div class="container-x">
+        <SectionHeader
+          eyebrow={copy.advantages.eyebrow}
+          title={copy.advantages.title}
+        />
+        <PillarGrid
+          items={copy.advantages.items}
+          columns={3}
+          variant="bare"
+          class="mt-12"
+        />
+      </div>
+    </section>
+  )
+}
+
+{/* --- Products & markets ----------------------------------------------- */}
+<section class="section-y bg-canvasAlt hairline-t">
+  <div class="container-x">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+      <div>
+        <SectionHeader
+          eyebrow={copy.products.eyebrow}
+          title={copy.products.title}
+        />
+        <FeatureList items={copy.products.items} class="mt-8" />
+      </div>
+
+      <div class="reveal" style="transition-delay:100ms">
+        <h2 class="type-heading text-ink">{copy.markets.title}</h2>
+        <FeatureList items={copy.markets.items} variant="pills" class="mt-6" />
+
+        <div class="card mt-8 p-6">
+          <p class="type-body text-muted">{copy.about.body[0]}</p>
+          <a
+            href={href("/contact")}
+            class="btn btn-primary mt-6 px-5 py-2.5 text-[0.8rem]"
+          >
+            {t.common.talkToUs}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* Renders nothing until photos are added to `src/assets/<assetDir>/`. */}
+<section class="section-y bg-canvas">
+  <div class="container-x">
+    <Gallery
+      name={brand.assetDir}
+      eyebrow={copy.gallery.eyebrow}
+      title={copy.gallery.title}
+    />
+  </div>
+</section>
+
+<DownloadList
+  items={downloads}
+  title={t.downloads.title}
+  description={t.downloads.description}
+  emptyLabel={t.downloads.empty}
+  downloadLabel={t.common.download}
+  newTabLabel={t.downloads.openInNewTab}
+/>
+
+<ContactSection
+  eyebrow={t.home.contact.eyebrow}
+  title={t.home.contact.title}
+  description={t.home.contact.description}
+  defaultInterest={brandKey}
+  class="bg-canvas"
+/>
+
+<CtaSection
+  eyebrow={copy.cta.eyebrow}
+  title={copy.cta.title}
+  description={copy.cta.description}
+  primaryLabel={copy.cta.primaryLabel}
+  primaryHref={href("/contact")}
+  secondaryLabel={firstDownload ? copy.cta.secondaryLabel : undefined}
+  secondaryHref={firstDownload?.href}
+  secondaryExternal={Boolean(firstDownload)}
+/>

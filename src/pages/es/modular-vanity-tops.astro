@@ -1,0 +1,14 @@
+---
+import BrandPage from "@/components/pages/BrandPage.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getI18N } from "@/i18n/i18n";
+
+export const prerender = true;
+
+const t = getI18N(Astro.currentLocale);
+const seo = t.brands.modularVanityTops.seo;
+---
+
+<Layout title={seo.title} description={seo.description} brand="modularVanityTops">
+  <BrandPage brandKey="modularVanityTops" />
+</Layout>

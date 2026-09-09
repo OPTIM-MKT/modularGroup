@@ -1,0 +1,13 @@
+---
+import ContactPage from "@/components/pages/ContactPage.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getI18N } from "@/i18n/i18n";
+
+export const prerender = true;
+
+const t = getI18N(Astro.currentLocale);
+---
+
+<Layout title={t.contact.seo.title} description={t.contact.seo.description}>
+  <ContactPage />
+</Layout>

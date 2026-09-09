@@ -3,11 +3,664 @@
 
 @custom-variant dark (&:where(.dark,.dark *));
 
+/* ===========================================================================
+   TOKENS
+   Every surface, text and accent in the site resolves through the `--c-*`
+   variables below. `data-brand` re-points the whole palette — on <html> for a
+   company page, or on a <section> for a company block inside the group home
+   page. One component tree, four identities, light and dark for each.
 
-@theme inline {
-    --color-primary: #013383;
-    --color-secondary: #233060;
-    --color-accent: #fab702;
+   --c-primary      solid brand surface (CTA blocks, filled buttons)
+   --c-onPrimary    text that sits on --c-primary
+   --c-accent       accent legible on --c-canvas (eyebrows, links, icons)
+   --c-secondary    the bright brand hue, for dark surfaces + decoration
+   --c-support      an occasional second brand hue (only some brands)
+   =========================================================================== */
+
+/* --- Modular Group · light -------------------------------------------------
+   The parent brand is deliberately achromatic: the four companies supply the
+   colour, the group supplies the frame. */
+:root {
+  color-scheme: light;
+
+  --c-canvas: #ffffff;
+  --c-canvasAlt: #f5f6f7;
+  --c-panel: #fbfbfc;
+  --c-panelAlt: #eef0f2;
+  --c-ink: #15171c;
+  --c-muted: #5f646d;
+  --c-line: #e3e5e9;
+
+  --c-primary: #15171c;
+  --c-primaryDark: #000000;
+  --c-onPrimary: #ffffff;
+  --c-accent: #4d5563;
+  --c-secondary: #9aa3b0;
+  --c-support: #4d5563;
+
+  --c-baseBlack: #1c1d1a;
+  --c-baseGray: #848080;
+  --c-strongGray: #444442;
+
+  --c-shadow: 220 18% 12%;
 }
-    
 
+/* --- Modular Group · dark --- */
+:root.dark {
+  color-scheme: dark;
+
+  --c-canvas: #0c0d10;
+  --c-canvasAlt: #121419;
+  --c-panel: #14161b;
+  --c-panelAlt: #1b1e25;
+  --c-ink: #eceef2;
+  --c-muted: #9aa0ab;
+  --c-line: #262a33;
+
+  --c-primary: #eceef2;
+  --c-primaryDark: #ffffff;
+  --c-onPrimary: #0c0d10;
+  --c-accent: #b3bcc9;
+  --c-secondary: #9aa3b0;
+  --c-support: #b3bcc9;
+
+  --c-shadow: 220 40% 2%;
+}
+
+/* --- Shower Walls · light --- */
+[data-brand="showerWalls"] {
+  --c-canvas: #ffffff;
+  --c-canvasAlt: #f2f7fa;
+  --c-panel: #fafcfe;
+  --c-panelAlt: #e8f2f8;
+  --c-ink: #1c1d1a;
+  --c-muted: #5c5f5c;
+  --c-line: #dde6ec;
+
+  --c-primary: #006da6;
+  --c-primaryDark: #005481;
+  --c-onPrimary: #ffffff;
+  --c-accent: #006da6;
+  --c-secondary: #7fd8ff;
+  --c-support: #444442;
+
+  --c-shadow: 202 60% 14%;
+}
+
+/* --- Shower Walls · dark --- */
+.dark [data-brand="showerWalls"],
+[data-brand="showerWalls"].dark {
+  --c-canvas: #0b0f12;
+  --c-canvasAlt: #101619;
+  --c-panel: #12191d;
+  --c-panelAlt: #182229;
+  --c-ink: #edf3f6;
+  --c-muted: #96a2a8;
+  --c-line: #222e35;
+
+  --c-primary: #0e86c4;
+  --c-primaryDark: #006da6;
+  --c-onPrimary: #ffffff;
+  --c-accent: #7fd8ff;
+  --c-secondary: #7fd8ff;
+  --c-support: #848080;
+
+  --c-shadow: 202 70% 2%;
+}
+
+/* --- Modul Woods · light (cream ground, coffee ink, amber accent) --- */
+[data-brand="modulWoods"] {
+  --c-canvas: #f8f3ec;
+  --c-canvasAlt: #f1e9dd;
+  --c-panel: #fdfaf5;
+  --c-panelAlt: #ece1d2;
+  --c-ink: #24160f;
+  --c-muted: #6b5647;
+  --c-line: #e2d5c4;
+
+  --c-primary: #24160f;
+  --c-primaryDark: #150b06;
+  --c-onPrimary: #f8f3ec;
+  --c-accent: #b0570a;
+  --c-secondary: #f48220;
+  --c-support: #8a6f5c;
+
+  --c-shadow: 24 40% 16%;
+}
+
+/* --- Modul Woods · dark --- */
+.dark [data-brand="modulWoods"],
+[data-brand="modulWoods"].dark {
+  --c-canvas: #140d08;
+  --c-canvasAlt: #1c120b;
+  --c-panel: #1e140d;
+  --c-panelAlt: #281a11;
+  --c-ink: #f8f3ec;
+  --c-muted: #b8a494;
+  --c-line: #33241a;
+
+  --c-primary: #f48220;
+  --c-primaryDark: #d96a0c;
+  --c-onPrimary: #1a0f08;
+  --c-accent: #f9a35a;
+  --c-secondary: #f48220;
+  --c-support: #b8a494;
+
+  --c-shadow: 24 60% 2%;
+}
+
+/* --- Küartz Surfaces · light (matte white / matte black / quartz green) --- */
+[data-brand="kuartzSurfaces"] {
+  --c-canvas: #f7f7f5;
+  --c-canvasAlt: #eeeeeb;
+  --c-panel: #fdfdfc;
+  --c-panelAlt: #e6e7e3;
+  --c-ink: #101110;
+  --c-muted: #5b5f5b;
+  --c-line: #dededa;
+
+  --c-primary: #101110;
+  --c-primaryDark: #000000;
+  --c-onPrimary: #f7f7f5;
+  --c-accent: #2e6b3d;
+  --c-secondary: #6fbe85;
+  --c-support: #2e6b3d;
+
+  --c-shadow: 140 20% 12%;
+}
+
+/* --- Küartz Surfaces · dark --- */
+.dark [data-brand="kuartzSurfaces"],
+[data-brand="kuartzSurfaces"].dark {
+  --c-canvas: #0a0b0a;
+  --c-canvasAlt: #101210;
+  --c-panel: #121412;
+  --c-panelAlt: #1a1d1a;
+  --c-ink: #f1f2f0;
+  --c-muted: #9aa09a;
+  --c-line: #232722;
+
+  --c-primary: #2e6b3d;
+  --c-primaryDark: #23542f;
+  --c-onPrimary: #ffffff;
+  --c-accent: #6fbe85;
+  --c-secondary: #6fbe85;
+  --c-support: #6fbe85;
+
+  --c-shadow: 140 40% 2%;
+}
+
+/* --- Modular Vanity Tops · light (gold / black / white, green support) --- */
+[data-brand="modularVanityTops"] {
+  --c-canvas: #fdfcf8;
+  --c-canvasAlt: #f5f2e9;
+  --c-panel: #fffffd;
+  --c-panelAlt: #ede8da;
+  --c-ink: #14150f;
+  --c-muted: #5f5c4e;
+  --c-line: #e5e0d1;
+
+  --c-primary: #14150f;
+  --c-primaryDark: #000000;
+  --c-onPrimary: #f8f4e8;
+  --c-accent: #8a6b1f;
+  --c-secondary: #d4af58;
+  --c-support: #16511a;
+
+  --c-shadow: 45 30% 14%;
+}
+
+/* --- Modular Vanity Tops · dark --- */
+.dark [data-brand="modularVanityTops"],
+[data-brand="modularVanityTops"].dark {
+  --c-canvas: #0b0c08;
+  --c-canvasAlt: #11120c;
+  --c-panel: #131409;
+  --c-panelAlt: #1c1d12;
+  --c-ink: #f4f1e7;
+  --c-muted: #a8a394;
+  --c-line: #262718;
+
+  --c-primary: #d4af58;
+  --c-primaryDark: #c09a42;
+  --c-onPrimary: #14150f;
+  --c-accent: #dcbd74;
+  --c-secondary: #d4af58;
+  --c-support: #4f8a53;
+
+  --c-shadow: 45 50% 2%;
+}
+
+/* ===========================================================================
+   THEME MAP
+   `inline` matters here: it makes every utility emit `var(--c-…)` directly, so
+   the palette swaps live when `data-brand` or `.dark` changes — no rebuild, no
+   duplicated utility classes.
+   =========================================================================== */
+@theme inline {
+  --color-canvas: var(--c-canvas);
+  --color-canvasAlt: var(--c-canvasAlt);
+  --color-panel: var(--c-panel);
+  --color-panelAlt: var(--c-panelAlt);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-line);
+
+  --color-primary: var(--c-primary);
+  --color-primaryDark: var(--c-primaryDark);
+  --color-onPrimary: var(--c-onPrimary);
+  --color-accent: var(--c-accent);
+  --color-secondary: var(--c-secondary);
+  --color-support: var(--c-support);
+
+  --color-baseBlack: #1c1d1a;
+  --color-baseGray: #848080;
+  --color-strongGray: #444442;
+
+  --radius-card: 1.25rem;
+  --radius-panel: 1.75rem;
+
+  /* Elevation is a single hue ramp so shadows tint with the brand instead of
+     dropping neutral gray onto a cream or coffee ground. */
+  --shadow-e1: 0 1px 2px hsl(var(--c-shadow) / 0.06),
+    0 2px 8px -2px hsl(var(--c-shadow) / 0.08);
+  --shadow-e2: 0 2px 4px hsl(var(--c-shadow) / 0.06),
+    0 12px 28px -8px hsl(var(--c-shadow) / 0.14);
+  --shadow-e3: 0 4px 8px hsl(var(--c-shadow) / 0.07),
+    0 28px 60px -16px hsl(var(--c-shadow) / 0.2);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "SF Pro Text",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+/* ===========================================================================
+   BASE
+   =========================================================================== */
+@layer base {
+  * {
+    border-color: var(--c-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* The sticky header must not cover the heading an in-page link lands on. */
+    scroll-padding-top: 6rem;
+    background-color: var(--c-canvas);
+  }
+
+  body {
+    background-color: var(--c-canvas);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* A theme flip is a full-viewport brightness change: ease it (§14). */
+    transition:
+      background-color 320ms var(--ease-out-quint),
+      color 320ms var(--ease-out-quint);
+  }
+
+  ::selection {
+    background-color: var(--c-accent);
+    color: var(--c-canvas);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Firefox keeps a scrollbar gutter; reserving it stops layout shift between
+     a short page (404) and a long one. */
+  @supports (scrollbar-gutter: stable) {
+    html {
+      scrollbar-gutter: stable;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ===========================================================================
+   LAYOUT
+   =========================================================================== */
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility container-narrow {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 48rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 4.5rem;
+
+  @media (width >= 64rem) {
+    padding-block: 7rem;
+  }
+}
+
+@utility section-y-sm {
+  padding-block: 3rem;
+
+  @media (width >= 64rem) {
+    padding-block: 4.5rem;
+  }
+}
+
+@utility hairline-b {
+  border-bottom: 1px solid var(--c-line);
+}
+
+@utility hairline-t {
+  border-top: 1px solid var(--c-line);
+}
+
+/* ===========================================================================
+   TYPOGRAPHY
+   Tracking and leading are set per size, never once globally: display sizes
+   tighten as they grow, body copy stays near zero and breathes (§15).
+   =========================================================================== */
+@utility type-display {
+  font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+@utility type-title {
+  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+@utility type-heading {
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.85rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-weight: 650;
+  text-wrap: balance;
+}
+
+@utility type-subheading {
+  font-size: clamp(1.05rem, 0.98rem + 0.42vw, 1.3rem);
+  line-height: 1.45;
+  letter-spacing: -0.008em;
+  font-weight: 500;
+  text-wrap: pretty;
+}
+
+@utility type-body {
+  font-size: 1rem;
+  line-height: 1.68;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+@utility type-eyebrow {
+  font-size: 0.72rem;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+@utility type-label {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ===========================================================================
+   CONTROLS
+   Press feedback fires on pointer-down and is short enough to feel like the
+   surface itself moving rather than an animation playing (§1).
+   =========================================================================== */
+@utility press {
+  transition:
+    transform 140ms var(--ease-out-quint),
+    background-color 200ms var(--ease-out-quint),
+    color 200ms var(--ease-out-quint),
+    border-color 200ms var(--ease-out-quint),
+    box-shadow 240ms var(--ease-out-quint);
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+@utility press-soft {
+  transition:
+    transform 220ms var(--ease-out-quint),
+    box-shadow 260ms var(--ease-out-quint);
+
+  &:active {
+    transform: scale(0.988);
+  }
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 9999px;
+  padding: 0.7rem 1.35rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    transform 140ms var(--ease-out-quint),
+    background-color 200ms var(--ease-out-quint),
+    color 200ms var(--ease-out-quint),
+    border-color 200ms var(--ease-out-quint),
+    box-shadow 240ms var(--ease-out-quint);
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@utility btn-primary {
+  background-color: var(--c-primary);
+  color: var(--c-onPrimary);
+  box-shadow: var(--shadow-e1);
+
+  &:hover:not(:disabled) {
+    background-color: var(--c-primaryDark);
+    box-shadow: var(--shadow-e2);
+  }
+}
+
+/* On a --c-primary block the filled button would vanish; invert it. */
+@utility btn-onPrimary {
+  background-color: var(--c-onPrimary);
+  color: var(--c-primary);
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}
+
+@utility btn-outline {
+  border: 1px solid var(--c-line);
+  background-color: transparent;
+  color: var(--c-ink);
+
+  &:hover:not(:disabled) {
+    background-color: var(--c-panelAlt);
+    border-color: color-mix(in oklab, var(--c-ink) 22%, transparent);
+  }
+}
+
+@utility btn-ghost {
+  background-color: transparent;
+  color: var(--c-ink);
+
+  &:hover:not(:disabled) {
+    background-color: var(--c-panelAlt);
+  }
+}
+
+/* Translucent control for use over imagery or a filled brand block (§12). */
+@utility btn-glass {
+  border: 1px solid color-mix(in oklab, currentColor 28%, transparent);
+  background-color: color-mix(in oklab, currentColor 10%, transparent);
+  color: inherit;
+  backdrop-filter: blur(12px) saturate(160%);
+
+  &:hover:not(:disabled) {
+    background-color: color-mix(in oklab, currentColor 18%, transparent);
+    border-color: color-mix(in oklab, currentColor 45%, transparent);
+  }
+}
+
+@utility icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.375rem;
+  width: 2.375rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1px solid var(--c-line);
+  color: var(--c-ink);
+  cursor: pointer;
+  transition:
+    transform 140ms var(--ease-out-quint),
+    background-color 200ms var(--ease-out-quint),
+    border-color 200ms var(--ease-out-quint);
+
+  &:hover {
+    background-color: var(--c-panelAlt);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+}
+
+/* ===========================================================================
+   SURFACES
+   =========================================================================== */
+@utility card {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--c-line);
+  background-color: var(--c-panel);
+}
+
+/* Sticky chrome: a real material with content passing beneath it, not an
+   opaque strip that eats the top of the viewport (§12). */
+@utility glass-chrome {
+  background-color: color-mix(in oklab, var(--c-canvas) 72%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: var(--c-canvas);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  @media (prefers-contrast: more) {
+    background-color: var(--c-canvas);
+    backdrop-filter: none;
+  }
+}
+
+/* ===========================================================================
+   SCROLL REVEAL
+   Opt-in via `.reveal`; ScrollReveal.astro flips `data-revealed`. Elements
+   stay visible when JS never runs, and reduce to a plain fade when the user
+   asks for less motion.
+   =========================================================================== */
+@layer components {
+  .reveal {
+    opacity: 1;
+  }
+
+  html.js .reveal {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition:
+      opacity 700ms var(--ease-out-quint),
+      transform 700ms var(--ease-out-quint);
+    will-change: opacity, transform;
+  }
+
+  html.js .reveal[data-revealed] {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js .reveal {
+      transform: none;
+      transition: opacity 240ms linear;
+    }
+  }
+}
+
+/* Prose defaults so long-form copy inherits the brand palette. */
+@layer components {
+  .prose-brand {
+    --tw-prose-body: var(--c-muted);
+    --tw-prose-headings: var(--c-ink);
+    --tw-prose-bold: var(--c-ink);
+    --tw-prose-links: var(--c-accent);
+    --tw-prose-bullets: var(--c-accent);
+    --tw-prose-hr: var(--c-line);
+    --tw-prose-quotes: var(--c-ink);
+    --tw-prose-quote-borders: var(--c-accent);
+  }
+}

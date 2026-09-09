@@ -1,34 +1,18 @@
-export const languages: Record<string, { code: string; name: string }> = {
-  es: { code: "es", name: "Español" },
-  en: { code: "en", name: "English" },
-};
-
-export const defaultLang = "es";
-export const showDefaultLang = false;
-
-export const ui = {
-  es: {
-    "nav.index": "Inicio",
-    "nav.about": "Acerca de",
-    "nav.contact": "Contacto",
-    
-  },
-  en: {
-    "nav.index": "Home",
-    "nav.about": "About",
-    "nav.contact": "Contact",
-  },
+/**
+ * English is the default locale and is served without a prefix (`/contact`);
+ * Spanish lives under `/es/`. Keep this in sync with `i18n` in astro.config.mjs.
+ */
+export const LANGUAGES = {
+  en: { code: "en", short: "EN", name: "English", htmlLang: "en-US" },
+  es: { code: "es", short: "ES", name: "Español", htmlLang: "es-MX" },
 } as const;
 
-export const routes = {
-  en: {
-    index: "home",
-    about: "about",
-    contact: "contact",
-  },
-  es: {
-    index: "inicio",
-    about: "acerca de",
-    contact: "contacto",
-  },
-};
+export type Lang = keyof typeof LANGUAGES;
+
+export const LANG_CODES = Object.keys(LANGUAGES) as Lang[];
+
+export const defaultLang: Lang = "en";
+export const showDefaultLang = false;
+
+export const isLang = (value: unknown): value is Lang =>
+  typeof value === "string" && value in LANGUAGES;

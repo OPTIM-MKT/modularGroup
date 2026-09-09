@@ -1,30 +1,129 @@
 ---
-import "../styles/global.css";
+import "@/styles/global.css";
+
 import { ClientRouter } from "astro:transitions";
 import { SEO } from "astro-seo";
+
+import Footer from "@/components/Footer.astro";
+import Navbar from "@/components/Navbar.astro";
+import ScrollReveal from "@/components/shared/ScrollReveal.astro";
+import ScrollTop from "@/components/shared/ScrollTop.astro";
+import type { BrandKey } from "@/config/brands";
+import { getI18N, getLang } from "@/i18n/i18n";
+import { LANG_CODES, LANGUAGES } from "@/i18n/ui";
+import { localePath, stripLocale } from "@/i18n/utils";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Re-points the whole palette. Omit for group-level pages. */
+  brand?: BrandKey;
+  /** Keeps a page out of search results (the 404). */
+  noindex?: boolean;
+  ogImage?: string;
+}
+
+const { title, description, brand, noindex = false, ogImage } = Astro.props;
+
+const lang = getLang(Astro.currentLocale);
+const t = getI18N(Astro.currentLocale);
+
+const canonicalPath = stripLocale(Astro.url.pathname);
+const canonical = new URL(localePath(lang, canonicalPath), Astro.site ?? Astro.url)
+  .toString();
+
+const alternates = LANG_CODES.map((code) => ({
+  hreflang: LANGUAGES[code].htmlLang,
+  href: new URL(localePath(code, canonicalPath), Astro.site ?? Astro.url).toString(),
+}));
+
+const ogImageUrl = new URL(ogImage ?? "/favicon.svg", Astro.site ?? Astro.url)
+  .toString();
 ---
 
 <!doctype html>
-<html lang="en">
+<html
+  lang={LANGUAGES[lang].htmlLang}
+  data-brand={brand}
+  class="scroll-smooth"
+>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <ClientRouter />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>Modular Group</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+
+    {/* Runs before first paint: without it the page renders light, then flips,
+        and every reveal element flashes in before being hidden. */}
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+
+        const apply = () => {
+          root.classList.add("js");
+          let theme = null;
+          try {
+            theme = localStorage.getItem("theme");
+          } catch {
+            /* Storage can be blocked; fall back to the OS preference. */
+          }
+          const dark =
+            theme === "dark" ||
+            (theme === null &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          root.classList.toggle("dark", dark);
+        };
+
+        apply();
+        // View transitions replace the root attributes with the server's, which
+        // has neither class — re-apply before the new page is painted.
+        document.addEventListener("astro:after-swap", apply);
+      })();
+    </script>
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      noindex={noindex}
+      nofollow={noindex}
+      openGraph={{
+        basic: {
+          title,
+          type: "website",
+          image: ogImageUrl,
+          url: canonical,
+        },
+        optional: {
+          description,
+          siteName: t.site.name,
+          locale: LANGUAGES[lang].htmlLang,
+        },
+      }}
+      twitter={{ card: "summary_large_image", title, description }}
+    />
+
+    {
+      alternates.map(({ hreflang, href }) => (
+        <link rel="alternate" hreflang={hreflang} href={href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={alternates[0]?.href} />
+
+    <ClientRouter />
   </head>
-  <body>
-    <slot />
+
+  <body class="min-h-dvh bg-canvas text-ink antialiased">
+    <Navbar />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <ScrollTop label={t.common.backToTop} />
+    <ScrollReveal />
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

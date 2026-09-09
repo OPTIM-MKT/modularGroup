@@ -1,0 +1,100 @@
+---
+import BrandMark from "@/components/shared/BrandMark.astro";
+import GroupMark from "@/components/shared/GroupMark.astro";
+import LangToggle from "@/components/shared/LangToggle.astro";
+import ThemeToggle from "@/components/shared/ThemeToggle.astro";
+import { BRANDS } from "@/config/brands";
+import { getI18N, getLang } from "@/i18n/i18n";
+import { localePath } from "@/i18n/utils";
+
+const lang = getLang(Astro.currentLocale);
+const t = getI18N(Astro.currentLocale);
+const href = (to: string) => localePath(lang, to);
+
+const year = new Date().getFullYear();
+---
+
+<footer class="hairline-t bg-canvasAlt">
+  <div class="container-x py-14 lg:py-16">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2fr)]">
+      <div>
+        <a href={href("/")} class="press inline-flex">
+          <GroupMark size="md" />
+        </a>
+        <p class="type-body mt-5 max-w-sm text-muted">{t.footer.tagline}</p>
+
+        <div class="mt-7 flex items-center gap-2">
+          <LangToggle label={t.nav.language} />
+          <ThemeToggle label={t.nav.theme} />
+        </div>
+      </div>
+
+      <div class="grid gap-10 sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]">
+        <div>
+          <h2 class="type-label text-muted">{t.footer.companies}</h2>
+          <ul class="mt-5 grid gap-4">
+            {
+              BRANDS.map((brand) => (
+                <li>
+                  <a
+                    href={href(`/${brand.slug}`)}
+                    class="press group inline-flex items-center gap-3 rounded-lg py-0.5"
+                  >
+                    <span
+                      class="h-1.5 w-1.5 shrink-0 rounded-full opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                      style={`background-color:${brand.swatch}`}
+                      aria-hidden="true"
+                    />
+                    <BrandMark brand={brand} size={24} />
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="type-label text-muted">{t.footer.explore}</h2>
+          <ul class="mt-5 grid gap-3 text-[0.95rem]">
+            <li>
+              <a href={href("/")} class="text-ink transition-colors hover:text-accent">
+                {t.nav.home}
+              </a>
+            </li>
+            <li>
+              <a
+                href={href("/contact")}
+                class="text-ink transition-colors hover:text-accent"
+              >
+                {t.nav.contact}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="type-label text-muted">{t.footer.locations}</h2>
+          <ul class="mt-5 grid gap-3 text-[0.95rem] text-muted">
+            {
+              t.contact.info.items.map((item) => (
+                <li>
+                  <span class="block text-xs uppercase tracking-[0.12em] text-muted/70">
+                    {item.label}
+                  </span>
+                  <span class="text-ink">{item.value}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-3 border-t border-line pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {year} {t.footer.builtBy}. {t.footer.rights}</p>
+      <p lang={lang}>{t.site.description.split("—")[0].trim()}</p>
+    </div>
+  </div>
+</footer>
