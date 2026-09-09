@@ -1,6 +1,7 @@
 ---
-import template from "@/assets/template.png";
-import ContactSection from "@/components/sections/ContactSection.astro";
+import { Image } from "astro:assets";
+import { FiArrowRight, FiExternalLink } from "react-icons/fi";
+
 import BrandMark from "@/components/shared/BrandMark.astro";
 import CtaSection from "@/components/shared/CtaSection.astro";
 import DownloadList from "@/components/shared/DownloadList.astro";
@@ -93,12 +94,21 @@ const firstDownload = downloads[0];
       </p>
 
       <div class="reveal mt-9 flex flex-wrap gap-3" style="transition-delay:280ms">
-        <a href={href("/contact")} class="btn btn-primary px-6 py-3">
+        <a
+          href={brand.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary px-6 py-3 shadow-md hover:shadow-lg gap-2"
+        >
+          <span>{lang === "es" ? "Visitar Sitio Web" : "Visit Website"}</span>
+          <FiExternalLink className="h-4 w-4" aria-hidden="true" />
+        </a>
+        <a href={href("/contact")} class="btn btn-outline px-6 py-3">
           {t.common.requestQuote}
         </a>
         {
           firstDownload && (
-            <a href="#downloads" class="btn btn-outline px-6 py-3">
+            <a href="#downloads" class="btn btn-ghost px-6 py-3">
               {t.common.downloads}
             </a>
           )
@@ -117,8 +127,8 @@ const firstDownload = downloads[0];
       eyebrow={copy.about.eyebrow}
       title={copy.about.title}
       body={copy.about.body}
-      image={template}
-      imageAlt=""
+      image={brand.image}
+      imageAlt={brand.name}
     />
   </div>
 </section>
@@ -174,10 +184,13 @@ const firstDownload = downloads[0];
         <div class="card mt-8 p-6">
           <p class="type-body text-muted">{copy.about.body[0]}</p>
           <a
-            href={href("/contact")}
-            class="btn btn-primary mt-6 px-5 py-2.5 text-[0.8rem]"
+            href={brand.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary mt-6 px-5 py-2.5 text-[0.8rem] gap-2"
           >
-            {t.common.talkToUs}
+            <span>{lang === "es" ? "Explorar Catálogo en Web" : "Explore Web Catalog"}</span>
+            <FiExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
           </a>
         </div>
       </div>
@@ -205,13 +218,85 @@ const firstDownload = downloads[0];
   newTabLabel={t.downloads.openInNewTab}
 />
 
-<ContactSection
-  eyebrow={t.home.contact.eyebrow}
-  title={t.home.contact.title}
-  description={t.home.contact.description}
-  defaultInterest={brandKey}
-  class="bg-canvas"
-/>
+{/* --- Official Website Access Section --- */}
+<section class="section-y bg-canvasAlt hairline-t">
+  <div class="container-x">
+    <div class="relative overflow-hidden rounded-3xl border border-line bg-panel p-8 shadow-e2 sm:p-12 lg:p-16">
+      {/* Ambient brand glow */}
+      <div
+        class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full blur-3xl opacity-25"
+        style={`background-color:${brand.swatch}`}
+        aria-hidden="true"
+      >
+      </div>
+
+      <div class="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+        <div class="reveal">
+          <div class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3.5 py-1.5 border border-accent/25">
+            <span
+              class="h-2 w-2 rounded-full"
+              style={`background-color:${brand.swatch}`}
+              aria-hidden="true"
+            />
+            <span class="type-eyebrow text-accent font-semibold">
+              {lang === "es" ? "Sitio Web Oficial" : "Official Website"}
+            </span>
+          </div>
+
+          <h2 class="type-title mt-5 text-ink">
+            {lang === "es"
+              ? `Explora más sobre ${brand.name} en su sitio web`
+              : `Explore more about ${brand.name} on their official website`}
+          </h2>
+
+          <p class="type-body mt-4 max-w-xl text-muted">
+            {lang === "es"
+              ? `Conoce el catálogo completo de productos, acabados, certificaciones y herramientas interactivas directamente en el portal oficial de ${brand.name}.`
+              : `Discover the complete product catalog, finishes, technical specifications and interactive tools directly on the official ${brand.name} portal.`}
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href={brand.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary group px-6 py-3.5 text-sm shadow-md hover:shadow-lg"
+            >
+              <span>{lang === "es" ? "Visitar Sitio Web Oficial" : "Visit Official Website"}</span>
+              <FiExternalLink
+                className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+            </a>
+
+            <a
+              href={href("/contact")}
+              class="btn btn-outline group px-6 py-3.5 text-sm"
+            >
+              <span>{lang === "es" ? "Contactar a Modular Group" : "Contact Modular Group"}</span>
+              <FiArrowRight
+                className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal" style="transition-delay:120ms">
+          <div class="overflow-hidden rounded-2xl border border-line/70 bg-panelAlt shadow-e1 transition-transform duration-500 hover:scale-[1.02]">
+            <Image
+              src={brand.image}
+              alt={brand.name}
+              widths={[480, 800]}
+              sizes="(min-width: 1024px) 38vw, 88vw"
+              class="aspect-4/3 h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <CtaSection
   eyebrow={copy.cta.eyebrow}
@@ -219,7 +304,7 @@ const firstDownload = downloads[0];
   description={copy.cta.description}
   primaryLabel={copy.cta.primaryLabel}
   primaryHref={href("/contact")}
-  secondaryLabel={firstDownload ? copy.cta.secondaryLabel : undefined}
-  secondaryHref={firstDownload?.href}
-  secondaryExternal={Boolean(firstDownload)}
+  secondaryLabel={lang === "es" ? "Sitio Oficial" : "Official Website"}
+  secondaryHref={brand.website}
+  secondaryExternal={true}
 />

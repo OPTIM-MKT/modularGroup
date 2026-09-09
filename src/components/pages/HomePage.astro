@@ -5,6 +5,7 @@ import { FiArrowDown, FiArrowRight } from "react-icons/fi";
 import template from "@/assets/template.png";
 import BrandBlock from "@/components/sections/BrandBlock.astro";
 import ContactSection from "@/components/sections/ContactSection.astro";
+import BrandMark from "@/components/shared/BrandMark.astro";
 import CtaSection from "@/components/shared/CtaSection.astro";
 import PillarGrid from "@/components/shared/PillarGrid.astro";
 import SectionHeader from "@/components/shared/SectionHeader.astro";
@@ -61,7 +62,7 @@ const href = (to: string) => localePath(lang, to);
         class="reveal mt-10 flex flex-wrap items-center gap-3"
         style="transition-delay:240ms"
       >
-        <a href={href("/contact")} class="btn btn-primary group px-6 py-3">
+        <a href={href("/contact")} class="btn btn-primary group px-6 py-3 shadow-md hover:shadow-lg">
           {t.home.hero.primaryCta}
           <FiArrowRight
             className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
@@ -78,25 +79,65 @@ const href = (to: string) => localePath(lang, to);
       </div>
     </div>
 
-    {/* The four marks as a single row: the group's whole proposition at a
-        glance, before a word of body copy. */}
-    <ul
-      class="reveal mt-16 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-line pt-8 sm:grid-cols-4"
+    {/* The four brand cards with logo, representative color, name and specialty */}
+    <div
+      class="reveal mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 border-t border-line/80 pt-10"
       style="transition-delay:300ms"
     >
       {
         BRANDS.map((brand) => (
-          <li class="flex items-center gap-2.5">
-            <span
-              class="h-1.5 w-1.5 shrink-0 rounded-full"
+          <a
+            href={href(`/${brand.slug}`)}
+            class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-panel/75 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl dark:bg-panel/60"
+          >
+            {/* Ambient hover glow in brand color */}
+            <div
+              class="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              style={`background: radial-gradient(circle at 50% 0%, ${brand.swatch}22 0%, transparent 75%); border: 1.5px solid ${brand.swatch}66; border-radius: inherit;`}
+              aria-hidden="true"
+            />
+
+            <div>
+              {/* Brand Swatch Pill & Name */}
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="h-2.5 w-2.5 rounded-full shadow-xs ring-2 ring-white/20"
+                    style={`background-color:${brand.swatch}`}
+                    aria-hidden="true"
+                  />
+                  <span class="text-xs font-bold uppercase tracking-wider text-muted group-hover:text-ink transition-colors">
+                    {brand.name}
+                  </span>
+                </div>
+                <FiArrowRight
+                  className="h-3.5 w-3.5 opacity-60 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+                  style={{ color: brand.swatch }}
+                  aria-hidden="true"
+                />
+              </div>
+
+              {/* Brand Logo with authentic colors */}
+              <div class="mt-5 flex h-14 items-center">
+                <BrandMark brand={brand} size={38} />
+              </div>
+
+              {/* Brand Tagline */}
+              <p class="mt-3 text-xs leading-relaxed text-muted line-clamp-2">
+                {t.brands[brand.key].tagline}
+              </p>
+            </div>
+
+            {/* Bottom accent stripe */}
+            <div
+              class="mt-5 h-1 w-8 rounded-full transition-all duration-300 group-hover:w-full"
               style={`background-color:${brand.swatch}`}
               aria-hidden="true"
             />
-            <span class="text-sm font-semibold text-ink">{brand.name}</span>
-          </li>
+          </a>
         ))
       }
-    </ul>
+    </div>
   </div>
 </section>
 

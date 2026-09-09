@@ -25,16 +25,11 @@ const height = Math.round(
   size * Math.sqrt(REFERENCE_RATIO / ratio) * brand.logoScale,
 );
 const width = Math.round(height * ratio);
-
-const isBadge = brand.logoStyle === "badge";
 ---
 
 <span
   class:list={[
-    "inline-flex shrink-0 items-center",
-    // A badge carries its own ground; on a light page it needs a plate so the
-    // artwork's semi-transparent black does not wash out against the canvas.
-    isBadge && "overflow-hidden rounded-md bg-baseBlack dark:bg-transparent",
+    "inline-flex shrink-0 items-center justify-center",
     className,
   ]}
 >
@@ -45,13 +40,7 @@ const isBadge = brand.logoStyle === "badge";
     height={height * 2}
     densities={[1, 2]}
     loading="lazy"
-    class:list={[
-      "block h-auto w-auto max-w-none object-contain",
-      // Flattening a wordmark to white keeps its silhouette readable on a dark
-      // ground; a badge would lose its own foreground/background contrast, so
-      // it is left exactly as drawn.
-      !isBadge && "dark:brightness-0 dark:invert",
-    ]}
+    class="block h-auto w-auto max-w-none object-contain transition-transform duration-300"
     style={`height:${height}px;width:${width}px`}
   />
 </span>

@@ -5,6 +5,11 @@ import modulWoodsLogo from "@/assets/logos/modul-woods.png";
 import showerWallsLogo from "@/assets/logos/shower-walls.png";
 import vanityTopsLogo from "@/assets/logos/modular-vanity-tops.png";
 
+import kuartzImg from "@/assets/images/kuartz.webp";
+import modulWoodsImg from "@/assets/images/modulWoods.jpeg";
+import showerWallsImg from "@/assets/images/showerWalls.jpeg";
+import vanityTopsImg from "@/assets/images/vanityTops.jpeg";
+
 /**
  * `key` is the palette scope written to `data-brand`; the tokens for each value
  * live in `src/styles/global.css`. `slug` is the URL segment, `assetDir` the
@@ -17,9 +22,8 @@ export type BrandKey =
   | "modularVanityTops";
 
 /**
- * `mark` — artwork on a transparent ground, flattened to white in dark mode.
- * `badge` — artwork that carries its own background and is never recoloured;
- *           on a light page it gets a plate so its own ground stays solid.
+ * `mark` — artwork on a transparent ground.
+ * `badge` — artwork that carries its own background.
  */
 export type LogoStyle = "mark" | "badge";
 
@@ -38,6 +42,10 @@ export interface Brand {
   logoScale: number;
   /** Hex used for the dot/rule that identifies the company on neutral ground. */
   swatch: string;
+  /** Official company website */
+  website: string;
+  /** Featured product image from assets/images */
+  image: ImageMetadata;
   /** Public folder holding this company's downloadable files. */
   assetDir: string;
   /** Where the brand sits in the header: two logos flank the group mark. */
@@ -54,6 +62,8 @@ export const BRANDS: readonly Brand[] = [
     logoStyle: "mark",
     logoScale: 1,
     swatch: "#006da6",
+    website: "https://shower-walls.net/",
+    image: showerWallsImg,
     assetDir: "showerWalls",
     side: "left",
     order: 1,
@@ -66,6 +76,8 @@ export const BRANDS: readonly Brand[] = [
     logoStyle: "mark",
     logoScale: 1.08,
     swatch: "#f48220",
+    website: "https://modul-woods.com/",
+    image: modulWoodsImg,
     assetDir: "modulWoods",
     side: "left",
     order: 2,
@@ -78,6 +90,8 @@ export const BRANDS: readonly Brand[] = [
     logoStyle: "badge",
     logoScale: 0.92,
     swatch: "#2e6b3d",
+    website: "https://kuartzsurfaces.com/",
+    image: kuartzImg,
     assetDir: "kuartzSurfaces",
     side: "right",
     order: 3,
@@ -90,6 +104,8 @@ export const BRANDS: readonly Brand[] = [
     logoStyle: "badge",
     logoScale: 0.92,
     swatch: "#d4af58",
+    website: "https://modular-tops.com/",
+    image: vanityTopsImg,
     assetDir: "modularVanityTops",
     side: "right",
     order: 4,

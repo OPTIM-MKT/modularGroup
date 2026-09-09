@@ -5,7 +5,7 @@ import BrandMark from "@/components/shared/BrandMark.astro";
 import GroupMark from "@/components/shared/GroupMark.astro";
 import LangToggle from "@/components/shared/LangToggle.astro";
 import ThemeToggle from "@/components/shared/ThemeToggle.astro";
-import { brandsOn, BRANDS } from "@/config/brands";
+import { BRANDS } from "@/config/brands";
 import { getI18N, getLang } from "@/i18n/i18n";
 import { localePath, stripLocale } from "@/i18n/utils";
 
@@ -15,9 +15,6 @@ const t = getI18N(Astro.currentLocale);
 const path = stripLocale(Astro.url.pathname);
 const href = (to: string) => localePath(lang, to);
 const isActive = (to: string) => path === to;
-
-const left = brandsOn("left");
-const right = brandsOn("right");
 ---
 
 <a
@@ -29,120 +26,92 @@ const right = brandsOn("right");
 
 <header
   data-header
-  class="glass-chrome sticky top-0 z-50 border-b border-line/80"
+  class="glass-chrome sticky top-0 z-50 border-b border-line/80 shadow-xs"
 >
-  {/* Utility row — collapses on scroll so the companies row becomes the header.
-      Animating grid-template-rows keeps the collapse continuous instead of a
-      jump between two fixed heights. */}
-  <div
-    data-utility-row
-    class="grid grid-rows-[1fr] transition-[grid-template-rows,opacity] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] max-lg:hidden"
-  >
-    <div class="overflow-hidden">
-      <div
-        class="container-x flex h-11 items-center justify-between border-b border-line/70"
+  <div class="container-x flex h-16 items-center justify-between gap-4 lg:h-[4.75rem]">
+    {/* Left: Mobile hamburger (mobile only) & Group Mark (desktop & mobile) */}
+    <div class="flex items-center gap-3">
+      <button
+        type="button"
+        data-menu-toggle
+        data-label-open={t.nav.openMenu}
+        data-label-close={t.nav.closeMenu}
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label={t.nav.openMenu}
+        class="icon-btn lg:hidden"
       >
-        <p class="text-xs text-muted">{t.site.tagline}</p>
+        <FiMenu
+          data-menu-icon
+          className="h-[18px] w-[18px]"
+          aria-hidden="true"
+        />
+        <FiX
+          data-close-icon
+          className="hidden h-[18px] w-[18px]"
+          aria-hidden="true"
+        />
+      </button>
 
-        <div class="flex items-center gap-2">
-          <LangToggle label={t.nav.language} />
-          <ThemeToggle label={t.nav.theme} />
-          <a href={href("/contact")} class="btn btn-primary group ml-1 px-4 py-2 text-xs">
-            {t.nav.contact}
-            <FiArrowRight
-              className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+      <a
+        href={href("/")}
+        aria-label={t.nav.groupHome}
+        aria-current={isActive("/") ? "page" : undefined}
+        class="press flex items-center rounded-xl px-2 py-1.5 hover:bg-panelAlt/80 transition-colors"
+      >
+        <GroupMark size="md" class="lg:hidden" />
+        <GroupMark size="lg" class="max-lg:hidden" />
+      </a>
+    </div>
+
+    {/* Center: The 4 Brand Logos — larger, elegant, crisp */}
+    <nav
+      class="hidden lg:flex items-center justify-center gap-1.5 xl:gap-3"
+      aria-label={t.nav.companies}
+    >
+      {
+        BRANDS.map((brand) => (
+          <a
+            href={href(`/${brand.slug}`)}
+            aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
+            class="press group relative flex items-center gap-2.5 rounded-full px-3.5 py-2 transition-all duration-200 hover:bg-panelAlt/80 aria-[current=page]:bg-panelAlt aria-[current=page]:shadow-xs"
+          >
+            <span
+              class="h-2 w-2 shrink-0 rounded-full opacity-75 transition-transform duration-300 group-hover:scale-125 group-hover:opacity-100 group-aria-[current=page]:opacity-100"
+              style={`background-color:${brand.swatch}`}
               aria-hidden="true"
             />
+            <BrandMark brand={brand} size={32} />
           </a>
-        </div>
+        ))
+      }
+    </nav>
+
+    {/* Right: Controls & Contact CTA button */}
+    <div class="flex items-center gap-2 sm:gap-2.5">
+      <div class="hidden sm:flex items-center gap-2">
+        <LangToggle label={t.nav.language} />
+        <ThemeToggle label={t.nav.theme} />
       </div>
+
+      <div class="sm:hidden">
+        <ThemeToggle label={t.nav.theme} />
+      </div>
+
+      <a
+        href={href("/contact")}
+        class="btn btn-primary group px-4 py-2 text-xs font-semibold"
+      >
+        {t.nav.contact}
+        <FiArrowRight
+          className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+          aria-hidden="true"
+        />
+      </a>
     </div>
   </div>
 
-  {/* Companies row — two marks, the group, two marks. */}
-  <nav
-    class="container-x flex h-16 items-center gap-3 lg:h-[4.5rem]"
-    aria-label={t.nav.companies}
-  >
-    <button
-      type="button"
-      data-menu-toggle
-      data-label-open={t.nav.openMenu}
-      data-label-close={t.nav.closeMenu}
-      aria-expanded="false"
-      aria-controls="mobile-nav"
-      aria-label={t.nav.openMenu}
-      class="icon-btn lg:hidden"
-    >
-      <FiMenu
-        data-menu-icon
-        className="h-[18px] w-[18px]"
-        aria-hidden="true"
-      />
-      <FiX
-        data-close-icon
-        className="hidden h-[18px] w-[18px]"
-        aria-hidden="true"
-      />
-    </button>
-
-    <ul class="hidden flex-1 items-center justify-start gap-1 lg:flex">
-      {
-        left.map((brand) => (
-          <li>
-            <a
-              href={href(`/${brand.slug}`)}
-              aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
-              class="press group relative flex items-center gap-2.5 rounded-full px-3 py-2 hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
-            >
-              <span
-                class="h-1.5 w-1.5 shrink-0 rounded-full opacity-60 transition-opacity duration-300 group-hover:opacity-100 group-aria-[current=page]:opacity-100"
-                style={`background-color:${brand.swatch}`}
-                aria-hidden="true"
-              />
-              <BrandMark brand={brand} size={26} />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-
-    <a
-      href={href("/")}
-      aria-label={t.nav.groupHome}
-      aria-current={isActive("/") ? "page" : undefined}
-      class="press mx-auto shrink-0 rounded-xl px-3 py-1.5 hover:bg-panelAlt lg:mx-0"
-    >
-      <GroupMark size="md" class="lg:hidden" />
-      <GroupMark size="lg" class="max-lg:hidden" />
-    </a>
-
-    <ul class="hidden flex-1 items-center justify-end gap-1 lg:flex">
-      {
-        right.map((brand) => (
-          <li>
-            <a
-              href={href(`/${brand.slug}`)}
-              aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
-              class="press group relative flex items-center gap-2.5 rounded-full px-3 py-2 hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
-            >
-              <span
-                class="h-1.5 w-1.5 shrink-0 rounded-full opacity-60 transition-opacity duration-300 group-hover:opacity-100 group-aria-[current=page]:opacity-100"
-                style={`background-color:${brand.swatch}`}
-                aria-hidden="true"
-              />
-              <BrandMark brand={brand} size={26} />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-
-    <ThemeToggle label={t.nav.theme} class="lg:hidden" />
-  </nav>
-
-  {/* Mobile sheet. It materialises — blur and scale together — from the header
-      it belongs to, and dismisses back along the same path. */}
+  {/* Mobile sheet */}
   <div
     id="mobile-nav"
     data-mobile-nav
@@ -150,7 +119,7 @@ const right = brandsOn("right");
     class="origin-top border-t border-line bg-canvas/95 backdrop-blur-xl lg:hidden"
   >
     <div class="container-x py-6">
-      <ul class="grid gap-1">
+      <ul class="grid gap-1.5">
         <li>
           <a
             href={href("/")}
@@ -167,14 +136,14 @@ const right = brandsOn("right");
               <a
                 href={href(`/${brand.slug}`)}
                 aria-current={isActive(`/${brand.slug}`) ? "page" : undefined}
-                class="press flex items-center gap-3 rounded-2xl px-4 py-3.5 hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
+                class="press flex items-center gap-3.5 rounded-2xl px-4 py-3.5 hover:bg-panelAlt aria-[current=page]:bg-panelAlt"
               >
                 <span
-                  class="h-2 w-2 shrink-0 rounded-full"
+                  class="h-2.5 w-2.5 shrink-0 rounded-full"
                   style={`background-color:${brand.swatch}`}
                   aria-hidden="true"
                 />
-                <BrandMark brand={brand} size={28} />
+                <BrandMark brand={brand} size={30} />
               </a>
             </li>
           ))
@@ -196,46 +165,20 @@ const right = brandsOn("right");
 </header>
 
 <script>
-  const COMPACT_AT = 64;
-
   let cleanup: (() => void) | null = null;
 
   function initHeader() {
     cleanup?.();
 
-    const header = document.querySelector<HTMLElement>("[data-header]");
-    const utility = document.querySelector<HTMLElement>("[data-utility-row]");
     const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
     const panel = document.querySelector<HTMLElement>("[data-mobile-nav]");
-    if (!header) return;
 
-    /* --- compact on scroll --- */
-    let ticking = false;
-    const applyCompact = () => {
-      const compact = window.scrollY > COMPACT_AT;
-      header.toggleAttribute("data-compact", compact);
-      utility?.classList.toggle("grid-rows-[0fr]", compact);
-      utility?.classList.toggle("grid-rows-[1fr]", !compact);
-      utility?.classList.toggle("opacity-0", compact);
-      ticking = false;
-    };
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(applyCompact);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    applyCompact();
-
-    /* --- mobile sheet --- */
     const setOpen = (open: boolean) => {
       if (!toggle || !panel) return;
       toggle.setAttribute("aria-expanded", String(open));
 
       if (open) {
         panel.hidden = false;
-        // Read back a frame before animating so the transition has a start
-        // value to move from rather than snapping to the end state.
         requestAnimationFrame(() => {
           panel.style.opacity = "1";
           panel.style.transform = "none";
@@ -278,7 +221,6 @@ const right = brandsOn("right");
     };
     document.addEventListener("keydown", onKeydown);
 
-    // Navigating away must never leave the sheet — or the scroll lock — behind.
     const onNavigate = () => {
       document.documentElement.classList.remove("overflow-hidden");
       setOpen(false);
@@ -288,7 +230,6 @@ const right = brandsOn("right");
     });
 
     cleanup = () => {
-      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("keydown", onKeydown);
       toggle?.removeEventListener("click", onToggleClick);
       document.documentElement.classList.remove("overflow-hidden");

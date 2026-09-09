@@ -70,18 +70,18 @@
 /* --- Shower Walls · light --- */
 [data-brand="showerWalls"] {
   --c-canvas: #ffffff;
-  --c-canvasAlt: #f2f7fa;
-  --c-panel: #fafcfe;
-  --c-panelAlt: #e8f2f8;
-  --c-ink: #1c1d1a;
-  --c-muted: #5c5f5c;
-  --c-line: #dde6ec;
+  --c-canvasAlt: #f0f7fb;
+  --c-panel: #f8fbfd;
+  --c-panelAlt: #e2f0f8;
+  --c-ink: #0f1c24;
+  --c-muted: #4e616e;
+  --c-line: #cfe0ec;
 
   --c-primary: #006da6;
   --c-primaryDark: #005481;
   --c-onPrimary: #ffffff;
   --c-accent: #006da6;
-  --c-secondary: #7fd8ff;
+  --c-secondary: #0284c7;
   --c-support: #444442;
 
   --c-shadow: 202 60% 14%;
@@ -101,27 +101,27 @@
   --c-primary: #0e86c4;
   --c-primaryDark: #006da6;
   --c-onPrimary: #ffffff;
-  --c-accent: #7fd8ff;
+  --c-accent: #38bdf8;
   --c-secondary: #7fd8ff;
   --c-support: #848080;
 
   --c-shadow: 202 70% 2%;
 }
 
-/* --- Modul Woods · light (cream ground, coffee ink, amber accent) --- */
+/* --- Modul Woods · light (cream ground, vibrant wood orange primary) --- */
 [data-brand="modulWoods"] {
-  --c-canvas: #f8f3ec;
-  --c-canvasAlt: #f1e9dd;
-  --c-panel: #fdfaf5;
-  --c-panelAlt: #ece1d2;
-  --c-ink: #24160f;
-  --c-muted: #6b5647;
-  --c-line: #e2d5c4;
+  --c-canvas: #faf7f2;
+  --c-canvasAlt: #f3ece1;
+  --c-panel: #fffefb;
+  --c-panelAlt: #ebdcc9;
+  --c-ink: #22140c;
+  --c-muted: #6b5749;
+  --c-line: #e3d3c1;
 
-  --c-primary: #24160f;
-  --c-primaryDark: #150b06;
-  --c-onPrimary: #f8f3ec;
-  --c-accent: #b0570a;
+  --c-primary: #d96a0c;
+  --c-primaryDark: #b85404;
+  --c-onPrimary: #ffffff;
+  --c-accent: #d96a0c;
   --c-secondary: #f48220;
   --c-support: #8a6f5c;
 
@@ -142,28 +142,28 @@
   --c-primary: #f48220;
   --c-primaryDark: #d96a0c;
   --c-onPrimary: #1a0f08;
-  --c-accent: #f9a35a;
+  --c-accent: #fb923c;
   --c-secondary: #f48220;
   --c-support: #b8a494;
 
   --c-shadow: 24 60% 2%;
 }
 
-/* --- Küartz Surfaces · light (matte white / matte black / quartz green) --- */
+/* --- Küartz Surfaces · light (matte white ground, quartz emerald green primary) --- */
 [data-brand="kuartzSurfaces"] {
-  --c-canvas: #f7f7f5;
-  --c-canvasAlt: #eeeeeb;
-  --c-panel: #fdfdfc;
-  --c-panelAlt: #e6e7e3;
-  --c-ink: #101110;
-  --c-muted: #5b5f5b;
-  --c-line: #dededa;
+  --c-canvas: #f6f8f6;
+  --c-canvasAlt: #edf3ed;
+  --c-panel: #fcfdfc;
+  --c-panelAlt: #dbe7dc;
+  --c-ink: #0f1711;
+  --c-muted: #4e6151;
+  --c-line: #d0ded1;
 
-  --c-primary: #101110;
-  --c-primaryDark: #000000;
-  --c-onPrimary: #f7f7f5;
-  --c-accent: #2e6b3d;
-  --c-secondary: #6fbe85;
+  --c-primary: #236838;
+  --c-primaryDark: #184f29;
+  --c-onPrimary: #ffffff;
+  --c-accent: #236838;
+  --c-secondary: #2e6b3d;
   --c-support: #2e6b3d;
 
   --c-shadow: 140 20% 12%;
@@ -183,28 +183,28 @@
   --c-primary: #2e6b3d;
   --c-primaryDark: #23542f;
   --c-onPrimary: #ffffff;
-  --c-accent: #6fbe85;
+  --c-accent: #4ade80;
   --c-secondary: #6fbe85;
   --c-support: #6fbe85;
 
   --c-shadow: 140 40% 2%;
 }
 
-/* --- Modular Vanity Tops · light (gold / black / white, green support) --- */
+/* --- Modular Vanity Tops · light (warm ground, refined gold/amber primary) --- */
 [data-brand="modularVanityTops"] {
-  --c-canvas: #fdfcf8;
-  --c-canvasAlt: #f5f2e9;
-  --c-panel: #fffffd;
-  --c-panelAlt: #ede8da;
-  --c-ink: #14150f;
-  --c-muted: #5f5c4e;
-  --c-line: #e5e0d1;
+  --c-canvas: #faf8f2;
+  --c-canvasAlt: #f3eee0;
+  --c-panel: #fefdf9;
+  --c-panelAlt: #e8dfc7;
+  --c-ink: #1a1811;
+  --c-muted: #615c4d;
+  --c-line: #ddd4be;
 
-  --c-primary: #14150f;
-  --c-primaryDark: #000000;
-  --c-onPrimary: #f8f4e8;
-  --c-accent: #8a6b1f;
-  --c-secondary: #d4af58;
+  --c-primary: #9e7a20;
+  --c-primaryDark: #7e5f12;
+  --c-onPrimary: #ffffff;
+  --c-accent: #9e7a20;
+  --c-secondary: #b58c27;
   --c-support: #16511a;
 
   --c-shadow: 45 30% 14%;
@@ -224,7 +224,7 @@
   --c-primary: #d4af58;
   --c-primaryDark: #c09a42;
   --c-onPrimary: #14150f;
-  --c-accent: #dcbd74;
+  --c-accent: #facc15;
   --c-secondary: #d4af58;
   --c-support: #4f8a53;
 
