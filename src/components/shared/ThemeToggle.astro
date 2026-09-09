@@ -1,12 +1,51 @@
 ---
-import { Button } from "@/components/ui/Button";
 import { FiMoon, FiSun } from "react-icons/fi";
+
+interface Props {
+  class?: string;
+  label?: string;
+}
+
+const { class: className = "", label } = Astro.props;
 ---
 
-<Button variant="simple" data-theme-toggle aria-label="Toggle color theme">
-  <span class="shrink-0 text-lg flex items-center justify-center">
-    <FiMoon className="block dark:hidden" />
-    <FiSun className="hidden dark:block" />
+<button
+  type="button"
+  data-theme-toggle
+  aria-label={label ?? "Toggle color theme"}
+  class:list={["icon-btn bg-canvas/60", className]}
+>
+  {/* Both glyphs stay mounted and cross-fade in place: the icon transforms
+      rather than being swapped, which keeps the button visually anchored. */}
+  <span class="relative block h-[18px] w-[18px]" data-motion aria-hidden="true">
+    <FiMoon
+      className="absolute inset-0 h-[18px] w-[18px] rotate-0 scale-100 opacity-100 transition-[opacity,transform] duration-300 ease-out dark:-rotate-90 dark:scale-50 dark:opacity-0"
+    />
+    <FiSun
+      className="absolute inset-0 h-[18px] w-[18px] rotate-90 scale-50 opacity-0 transition-[opacity,transform] duration-300 ease-out dark:rotate-0 dark:scale-100 dark:opacity-100"
+    />
   </span>
-  <span data-theme-label>Dark</span>
-</Button>
+</button>
+
+<script>
+  const STORAGE_KEY = "theme";
+
+  const setPressedState = () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")
+      .forEach((btn) => btn.setAttribute("aria-pressed", String(isDark)));
+  };
+
+  // Delegated so it survives view transitions without re-binding.
+  document.addEventListener("click", (event) => {
+    const trigger = (event.target as Element | null)?.closest("[data-theme-toggle]");
+    if (!trigger) return;
+
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem(STORAGE_KEY, isDark ? "dark" : "light");
+    setPressedState();
+  });
+
+  document.addEventListener("astro:page-load", setPressedState);
+</script>

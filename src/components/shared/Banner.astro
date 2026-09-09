@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: ImageMetadata;
+  imageAlt?: string;
+}
+
+const { title, subtitle, image, imageAlt = "" } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-primary">
+  <Image
+    src={image}
+    alt={imageAlt}
+    widths={[640, 1024, 1600]}
+    sizes="100vw"
+    loading="eager"
+    class="absolute inset-0 -z-10 h-full w-full object-cover"
+  />
+  {/* Two layers instead of one: a directional wash for legibility, then a soft
+      vertical falloff so the banner hands off to the page instead of stopping. */}
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-r from-primaryDark/95 via-primary/85 to-primary/45"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-t from-baseBlack/35 via-transparent to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-x py-20 sm:py-24 lg:py-28">
+    {
+      subtitle && (
+        <p class="type-eyebrow mb-4 text-secondary">{subtitle}</p>
+      )
+    }
+    <h1 class="type-display max-w-3xl text-white">
+      {title}
+    </h1>
+    <span class="mt-6 block h-1 w-20 rounded-full bg-secondary"></span>
+  </div>
+</section>

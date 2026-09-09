@@ -1,0 +1,42 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  stats: readonly Stat[];
+  /** `plain` sits on the page, `panel` gets its own surface. */
+  variant?: "plain" | "panel";
+  class?: string;
+}
+
+const { stats, variant = "plain", class: className = "" } = Astro.props;
+---
+
+<dl
+  class:list={[
+    "grid grid-cols-2 gap-px overflow-hidden lg:grid-cols-4",
+    variant === "panel"
+      ? "rounded-card border border-line bg-line"
+      : "border-y border-line bg-line",
+    className,
+  ]}
+>
+  {
+    stats.map(({ value, label }, i) => (
+      <div
+        class="reveal bg-canvas px-5 py-7 lg:px-7 lg:py-9"
+        style={`transition-delay:${i * 70}ms`}
+      >
+        <dt class="sr-only">{label}</dt>
+        <dd>
+          <span class="type-heading block text-ink">{value}</span>
+          <span class="mt-2 block text-[0.8rem] leading-snug text-muted">
+            {label}
+          </span>
+        </dd>
+      </div>
+    ))
+  }
+</dl>

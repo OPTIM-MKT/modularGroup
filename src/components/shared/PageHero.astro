@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  /** Optional backdrop. Without it the hero sits on the page canvas. */
+  image?: ImageMetadata;
+  imageAlt?: string;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  description,
+  image,
+  imageAlt = "",
+  class: className = "",
+} = Astro.props;
+
+const onImage = Boolean(image);
+---
+
+<section
+  class:list={[
+    "relative isolate overflow-hidden",
+    onImage ? "bg-baseBlack" : "bg-canvas hairline-b",
+    className,
+  ]}
+>
+  {
+    image && (
+      <>
+        <Image
+          src={image}
+          alt={imageAlt}
+          widths={[768, 1280, 1920]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+        <div
+          class="absolute inset-0 -z-10 bg-linear-to-b from-baseBlack/80 via-baseBlack/60 to-baseBlack/85"
+          aria-hidden="true"
+        />
+      </>
+    )
+  }
+
+  <div
+    class:list={[
+      "container-x",
+      onImage ? "py-28 lg:py-36" : "pb-14 pt-12 lg:pb-20 lg:pt-16",
+    ]}
+  >
+    <div class="max-w-3xl">
+      {
+        eyebrow && (
+          <p class="type-eyebrow flex items-center gap-3 text-secondary">
+            <span class="h-px w-8 bg-secondary/60" aria-hidden="true" />
+            {eyebrow}
+          </p>
+        )
+      }
+
+      <h1
+        class:list={[
+          "type-display mt-5",
+          onImage ? "text-white" : "text-ink",
+        ]}
+      >
+        {title}
+      </h1>
+
+      {
+        subtitle && (
+          <p
+            class:list={[
+              "type-subheading mt-5",
+              onImage ? "text-white/85" : "text-ink/85",
+            ]}
+          >
+            {subtitle}
+          </p>
+        )
+      }
+
+      {
+        description && (
+          <p
+            class:list={[
+              "type-body mt-5 max-w-2xl",
+              onImage ? "text-white/70" : "text-muted",
+            ]}
+          >
+            {description}
+          </p>
+        )
+      }
+
+      <slot />
+    </div>
+  </div>
+</section>

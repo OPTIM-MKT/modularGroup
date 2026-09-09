@@ -1,0 +1,82 @@
+---
+import { FiArrowRight } from "react-icons/fi";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  /** External targets open in a new tab (the PDF catalog, for instance). */
+  primaryExternal?: boolean;
+  secondaryExternal?: boolean;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  primaryExternal = false,
+  secondaryExternal = false,
+  class: className = "",
+} = Astro.props;
+
+const external = { target: "_blank", rel: "noopener noreferrer" };
+---
+
+<section class:list={["section-y bg-primary text-onPrimary", className]}>
+  <div class="container-x relative isolate">
+    <div
+      class="pointer-events-none absolute -right-32 -top-40 -z-10 h-80 w-80 rounded-full bg-secondary/12 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div
+      class="reveal flex flex-col items-start gap-10 lg:flex-row lg:items-end lg:justify-between"
+    >
+      <div class="max-w-2xl">
+        {eyebrow && <p class="type-eyebrow text-secondary">{eyebrow}</p>}
+        <h2 class="type-title mt-4">{title}</h2>
+        {
+          description && (
+            <p class="type-body mt-5 text-onPrimary/70">{description}</p>
+          )
+        }
+      </div>
+
+      <div class="flex shrink-0 flex-wrap items-center gap-3">
+        <a
+          href={primaryHref}
+          class="btn btn-primary group"
+          {...primaryExternal ? external : {}}
+        >
+          {primaryLabel}
+          <FiArrowRight
+            className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+            aria-hidden="true"
+          />
+        </a>
+
+        {
+          secondaryLabel && secondaryHref && (
+            <a
+              href={secondaryHref}
+              class="btn btn-glass"
+              {...(secondaryExternal ? external : {})}
+            >
+              {secondaryLabel}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

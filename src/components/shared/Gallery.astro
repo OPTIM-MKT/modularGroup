@@ -1,0 +1,191 @@
+---
+import { Image } from "astro:assets";
+import { FiMaximize2 } from "react-icons/fi";
+
+interface Props {
+  /** Folder name inside `src/assets/` — e.g. `Kitchens`, `closets`. */
+  name: string;
+  /** Accessible label for the group; also rendered when `showTitle`. */
+  title?: string;
+  eyebrow?: string;
+  /** `mosaic` gives the first image a hero cell; `grid` keeps every cell equal. */
+  layout?: "mosaic" | "grid";
+  class?: string;
+}
+
+const {
+  name,
+  title,
+  eyebrow,
+  layout = "mosaic",
+  class: className = "",
+} = Astro.props;
+
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/**/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG}",
+  { eager: true },
+);
+
+/** Turns `misiones-kitchen-wall.jpg.jpeg` into `Misiones kitchen wall`. */
+const toLabel = (path: string) =>
+  path
+    .split("/")
+    .pop()!
+    .replace(/\.(jpe?g|png|webp|avif)/gi, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^./, (c) => c.toUpperCase());
+
+const images = Object.entries(modules)
+  .filter(([path]) => path.includes(`/assets/${name}/`))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, mod]) => ({ src: mod.default, label: toLabel(path) }));
+
+const galleryId = `pswp-${name.toLowerCase()}`;
+
+/**
+ * Mosaic rhythm: the opening frame is wide, then the grid alternates so no two
+ * adjacent rows share the same shape. Anything past the pattern repeats it.
+ */
+const mosaicSpans = [
+  "sm:col-span-4 sm:row-span-2",
+  "sm:col-span-2",
+  "sm:col-span-2",
+  "sm:col-span-3",
+  "sm:col-span-3",
+  "sm:col-span-2",
+  "sm:col-span-4",
+  "sm:col-span-2",
+];
+---
+
+{
+  images.length > 0 && (
+    <figure class:list={["not-prose", className]}>
+      {(eyebrow || title) && (
+        <figcaption class="mb-7">
+          {eyebrow && <p class="type-eyebrow text-secondary">{eyebrow}</p>}
+          {title && <h2 class="type-heading mt-3 text-ink">{title}</h2>}
+        </figcaption>
+      )}
+
+      <div
+        id={galleryId}
+        data-pswp-gallery
+        class:list={[
+          "grid auto-rows-[13rem] grid-cols-2 gap-3 sm:auto-rows-[11rem] sm:gap-4 lg:auto-rows-[13rem]",
+          layout === "mosaic" ? "sm:grid-cols-6" : "sm:grid-cols-3",
+        ]}
+      >
+        {images.map(({ src, label }, i) => (
+          <a
+            href={src.src}
+            data-pswp-width={src.width}
+            data-pswp-height={src.height}
+            data-pswp-caption={label}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={label}
+            class:list={[
+              "press-soft group relative block overflow-hidden rounded-[1.25rem] bg-panelAlt shadow-e1 focus-visible:outline-offset-4",
+              layout === "mosaic"
+                ? mosaicSpans[i % mosaicSpans.length]
+                : "sm:col-span-1",
+              layout === "mosaic" && i === 0 && "col-span-2 row-span-2",
+            ]}
+          >
+            <Image
+              src={src}
+              alt={label}
+              widths={[400, 800, 1200]}
+              sizes="(min-width: 1024px) 40vw, (min-width: 640px) 50vw, 92vw"
+              loading={i < 2 ? "eager" : "lazy"}
+              class="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+            />
+
+            {/* Scrim + affordance only appear on intent, so the photo stays clean */}
+            <span
+              class="pointer-events-none absolute inset-0 bg-linear-to-t from-baseBlack/55 via-baseBlack/0 to-baseBlack/0 opacity-0 transition-opacity duration-400 group-hover:opacity-100 group-focus-visible:opacity-100"
+              aria-hidden="true"
+            />
+            <span
+              class="pointer-events-none absolute bottom-3 left-4 right-4 flex items-center justify-between gap-3 translate-y-2 opacity-0 transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+              aria-hidden="true"
+            >
+              <span class="type-label text-white/90">{label}</span>
+              <FiMaximize2 className="h-4 w-4 shrink-0 text-white/80" />
+            </span>
+          </a>
+        ))}
+      </div>
+    </figure>
+  )
+}
+
+<script>
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+  import "photoswipe/style.css";
+
+  let lightboxes: PhotoSwipeLightbox[] = [];
+
+  function initGalleries() {
+    destroyGalleries();
+
+    document
+      .querySelectorAll<HTMLElement>("[data-pswp-gallery]")
+      .forEach((el) => {
+        const lb = new PhotoSwipeLightbox({
+          gallery: `#${el.id}`,
+          children: "a",
+          bgOpacity: 0.92,
+          pswpModule: () => import("photoswipe"),
+        });
+
+        lb.on("uiRegister", () => {
+          lb.pswp?.ui?.registerElement({
+            name: "caption",
+            order: 9,
+            isButton: false,
+            appendTo: "root",
+            html: "",
+            onInit: (el, pswp) => {
+              el.classList.add("pswp-caption");
+              pswp.on("change", () => {
+                el.textContent =
+                  pswp.currSlide?.data.element?.dataset.pswpCaption ?? "";
+              });
+            },
+          });
+        });
+
+        lb.init();
+        lightboxes.push(lb);
+      });
+  }
+
+  function destroyGalleries() {
+    lightboxes.forEach((lb) => lb.destroy());
+    lightboxes = [];
+  }
+
+  document.addEventListener("astro:page-load", initGalleries);
+  document.addEventListener("astro:before-swap", destroyGalleries);
+</script>
+
+<style is:global>
+  .pswp-caption {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    translate: -50% 0;
+    max-width: min(40rem, 90vw);
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.82);
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.6);
+  }
+</style>

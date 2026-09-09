@@ -1,21 +1,20 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
-import react from '@astrojs/react';
+import react from "@astrojs/react";
 
-import netlify from '@astrojs/netlify';
+import netlify from "@astrojs/netlify";
 
-import sitemap from '@astrojs/sitemap';
+import sitemap from "@astrojs/sitemap";
 
-import robotsTxt from 'astro-robots-txt';
+import robotsTxt from "astro-robots-txt";
 
-import icon from 'astro-icon';
-
+import icon from "astro-icon";
 
 export default defineConfig({
-  site: 'https://basic.com',
+  site: "https://basic.com",
   output: "server",
   adapter: netlify({
     imageCDN: false,
@@ -27,26 +26,24 @@ export default defineConfig({
     robotsTxt(),
     sitemap({
       i18n: {
-        defaultLocale: "es",
+        defaultLocale: "en",
         locales: {
-          es: "es-MX",
           en: "en-US",
+          es: "es-MX",
         },
       },
     }),
   ],
 
-
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
 
   i18n: {
-    defaultLocale: "es",
-    locales: ["es", "en"],
+    defaultLocale: "en",
+    locales: ["en", "es"],
     routing: {
       prefixDefaultLocale: false,
     },
   },
-
 });

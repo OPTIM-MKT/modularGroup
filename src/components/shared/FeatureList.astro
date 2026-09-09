@@ -1,0 +1,47 @@
+---
+import { FiCheck } from "react-icons/fi";
+
+interface Props {
+  items: readonly string[];
+  /** `stack` reads as a spec sheet, `pills` as a quick summary row. */
+  variant?: "stack" | "pills" | "columns";
+  class?: string;
+}
+
+const { items, variant = "stack", class: className = "" } = Astro.props;
+---
+
+{
+  variant === "pills" ? (
+    <ul class:list={["flex flex-wrap gap-2", className]}>
+      {items.map((item) => (
+        <li class="rounded-full border border-line bg-panel px-3.5 py-1.5 text-xs font-medium text-muted">
+          {item}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <ul
+      class:list={[
+        "grid gap-x-8 gap-y-3.5",
+        variant === "columns" && "sm:grid-cols-2",
+        className,
+      ]}
+    >
+      {items.map((item, i) => (
+        <li
+          class="reveal flex items-start gap-3 text-[0.95rem] leading-relaxed text-muted"
+          style={`transition-delay:${Math.min(i * 45, 360)}ms`}
+        >
+          <span
+            class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-secondary/15 text-secondary"
+            aria-hidden="true"
+          >
+            <FiCheck className="h-3 w-3" strokeWidth={3} />
+          </span>
+          {item}
+        </li>
+      ))}
+    </ul>
+  )
+}

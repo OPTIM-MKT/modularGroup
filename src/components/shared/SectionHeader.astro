@@ -1,0 +1,62 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  /** `start` for editorial sections, `center` for full-width breaks. */
+  align?: "start" | "center";
+  /** Renders as `h1` on page heroes, `h2` inside a page. */
+  as?: "h1" | "h2";
+  size?: "display" | "title" | "heading";
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  align = "start",
+  as: Tag = "h2",
+  size = "title",
+  class: className = "",
+} = Astro.props;
+
+const SIZE_CLASS: Record<"display" | "title" | "heading", string> = {
+  display: "type-display",
+  title: "type-title",
+  heading: "type-heading",
+};
+const titleClass = SIZE_CLASS[size as "display" | "title" | "heading"];
+---
+
+<header
+  class:list={[
+    "reveal max-w-2xl",
+    align === "center" && "mx-auto text-center",
+    className,
+  ]}
+>
+  {
+    eyebrow && (
+      <p
+        class:list={[
+          "type-eyebrow flex items-center gap-3 text-secondary",
+          align === "center" && "justify-center",
+        ]}
+      >
+        <span class="h-px w-8 bg-secondary/60" aria-hidden="true" />
+        {eyebrow}
+      </p>
+    )
+  }
+
+  <Tag class:list={[titleClass, "mt-4 text-ink"]}>{title}</Tag>
+
+  {
+    description && (
+      <p class="type-body mt-5 text-muted">{description}</p>
+    )
+  }
+
+  <slot />
+</header>

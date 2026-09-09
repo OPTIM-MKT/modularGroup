@@ -1,51 +1,58 @@
+---
+import { FiArrowUp } from "react-icons/fi";
+
+interface Props {
+  label?: string;
+}
+
+const { label = "Back to top" } = Astro.props;
+---
+
 <button
-  id="scroll-to-top"
-  aria-label="Volver arriba"
-  class="fixed bottom-8 right-8 z-50 flex h-12 w-12 translate-y-20 cursor-pointer items-center justify-center rounded-full bg-ink text-canvas opacity-0 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-strategic focus:outline-none"
+  type="button"
+  data-scroll-top
+  aria-label={label}
+  class="fixed bottom-6 right-6 z-40 flex h-12 w-12 translate-y-4 scale-90 cursor-pointer items-center justify-center rounded-full border border-line bg-panel/85 text-ink opacity-0 shadow-e2 backdrop-blur-lg transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-panel active:scale-[0.92] lg:bottom-8 lg:right-8"
 >
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    class="h-6 w-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    stroke-width="2"
-  >
-    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"
-    ></path>
-  </svg>
+  <FiArrowUp className="h-5 w-5" aria-hidden="true" />
 </button>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    // Escucha scroll a nivel de window y actualiza la clase
-    const handleScroll = () => {
-      const btn = document.getElementById("scroll-to-top");
-      if (!btn) return;
-      if (window.scrollY > 300) {
-        btn.classList.remove(
-          "opacity-0",
-          "translate-y-20",
-          "pointer-events-none",
-        );
-        btn.classList.add("opacity-100", "translate-y-0");
-      } else {
-        btn.classList.add("opacity-0", "translate-y-20", "pointer-events-none");
-        btn.classList.remove("opacity-100", "translate-y-0");
-      }
+  const THRESHOLD = 420;
+
+  function initScrollTop() {
+    const btn = document.querySelector<HTMLElement>("[data-scroll-top]");
+    if (!btn) return;
+
+    let ticking = false;
+
+    const render = () => {
+      const visible = window.scrollY > THRESHOLD;
+      btn.classList.toggle("opacity-0", !visible);
+      btn.classList.toggle("translate-y-4", !visible);
+      btn.classList.toggle("scale-90", !visible);
+      btn.classList.toggle("pointer-events-none", !visible);
+      btn.classList.toggle("opacity-100", visible);
+      ticking = false;
     };
 
-    // Almacenar función p/ poder remover pero en page-load sólo reevaluamos
-    window.removeEventListener("scroll", handleScroll);
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // init state
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(render);
+    };
+
+    window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    render();
+  }
+
+  // Delegated so a single listener survives every view transition.
+  document.addEventListener("click", (event) => {
+    if (!(event.target as Element).closest("[data-scroll-top]")) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
   });
 
-  // Evento delegado a nivel document para sobrevivir a transiciones de vista (si corre 1 vez)
-  document.addEventListener("click", (e) => {
-    const target = e.target as Element;
-    if (target.closest("#scroll-to-top")) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  });
+  document.addEventListener("astro:page-load", initScrollTop);
 </script>
