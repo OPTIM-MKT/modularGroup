@@ -36,7 +36,8 @@ const options = (Object.keys(LANGUAGES) as Lang[]).map((code) => ({
         title={name}
         class:list={[
           "press rounded-full px-2.5 py-1 text-xs font-semibold tracking-[0.12em] uppercase",
-          isActive ? "bg-primary text-white shadow-e1" : "text-muted hover:text-ink",
+          isActive ? "bg-primary text-onPrimary shadow-e1" : "text-muted hover:text-ink",
+
         ]}
       >
         {short}
