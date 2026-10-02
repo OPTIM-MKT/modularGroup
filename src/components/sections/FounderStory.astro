@@ -1,0 +1,134 @@
+---
+import { Image } from "astro:assets";
+
+import kfImage from "@/assets/images/home/kf.webp";
+
+interface Props {
+  eyebrow: string;
+  founderLabel?: string;
+  founderName?: string;
+  title: string;
+  body: string;
+  /** Year the company was founded — drives the floating badge and the attribution pill */
+  since?: string;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  founderLabel,
+  founderName,
+  title,
+  body,
+  since,
+  class: className = "",
+} = Astro.props;
+---
+
+<section
+  aria-labelledby="founder-story-heading"
+  class:list={["section-y bg-canvasAlt hairline-t", className]}
+>
+  <div class="container-x">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+
+      {/* ── Left column: copy ── */}
+      <div class="reveal order-2 lg:order-1">
+
+        {/* Eyebrow */}
+        <p class="type-eyebrow flex items-center gap-3 text-accent">
+          <span class="h-px w-8 bg-accent/45" aria-hidden="true" />
+          {eyebrow}
+        </p>
+
+        {/* Heading */}
+        <h2
+          id="founder-story-heading"
+          class="type-title mt-4 text-ink"
+          style="transition-delay:60ms"
+        >
+          {title}
+        </h2>
+
+        {/* Body text */}
+        <p class="type-body mt-6 max-w-xl leading-relaxed text-muted">
+          {body}
+        </p>
+
+        {/* Founder attribution pill — only rendered when name is provided */}
+        {
+          founderName && (
+            <div class="mt-8 inline-flex items-center gap-3 rounded-full border border-line bg-panel/70 px-4 py-2 backdrop-blur-sm">
+              {/* Initials avatar */}
+              <span
+                class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent"
+                aria-hidden="true"
+              >
+                {founderName
+                  .split(" ")
+                  .map((n: string) => n[0])
+                  .join("")}
+              </span>
+              <div class="flex flex-col leading-tight">
+                {founderLabel && (
+                  <span class="text-[0.65rem] font-semibold uppercase tracking-widest text-muted">
+                    {founderLabel}
+                  </span>
+                )}
+                <span class="text-sm font-semibold text-ink">
+                  {founderName}
+                </span>
+              </div>
+              {since && (
+                <span class="ml-1 rounded-full bg-accent/10 px-2.5 py-0.5 text-[0.7rem] font-semibold text-accent">
+                  {since}
+                </span>
+              )}
+            </div>
+          )
+        }
+      </div>
+
+      {/* ── Right column: photo ── */}
+      <div
+        class="reveal relative order-1 lg:order-2"
+        style="transition-delay:120ms"
+      >
+        {/* Ambient glow */}
+        <div
+          class="pointer-events-none absolute -bottom-8 -right-8 -z-10 h-64 w-64 rounded-full bg-accent/20 blur-3xl"
+          aria-hidden="true"
+        >
+        </div>
+
+        {/* Photo frame */}
+        <div
+          class="overflow-hidden rounded-panel border border-line/60 bg-panelAlt shadow-e2 transition-transform duration-500 hover:scale-[1.01]"
+        >
+          <Image
+            src={kfImage}
+            alt={founderName ? `${founderName} — Founder of Modular Group` : "Modular Group story"}
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 1024px) 46vw, 92vw"
+            loading="lazy"
+            class="aspect-4/3 h-full w-full object-cover object-top"
+          />
+        </div>
+
+        {/* Floating year badge */}
+        {
+          since && (
+            <div class="absolute -bottom-4 -left-4 flex flex-col items-center justify-center rounded-2xl border border-line bg-panel/90 px-5 py-3 shadow-e2 backdrop-blur-md">
+              <span class="text-[0.6rem] font-semibold uppercase tracking-widest text-muted">
+                Est.
+              </span>
+              <span class="text-2xl font-bold tabular-nums text-accent">
+                {since}
+              </span>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

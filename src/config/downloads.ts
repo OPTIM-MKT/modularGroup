@@ -42,7 +42,10 @@ export const DOWNLOADS: Record<BrandKey, readonly DownloadItem[]> = {
   modulWoods: [
     {
       file: "Kitchen-Solutions-Catalog.pdf",
-      label: { en: "Kitchen Solutions catalog", es: "Catálogo Kitchen Solutions" },
+      label: {
+        en: "Kitchen Solutions catalog",
+        es: "Catálogo Kitchen Solutions",
+      },
       description: {
         en: "Frameless cabinetry ranges, door styles and finishes.",
         es: "Líneas de gabinetes sin marco, estilos de puerta y acabados.",
@@ -64,7 +67,7 @@ export const DOWNLOADS: Record<BrandKey, readonly DownloadItem[]> = {
   modularVanityTops: [
     {
       file: "CATALOG-MVT-2025.pdf",
-      label: { en: "Vanity Tops catalog 2025", es: "Catálogo Vanity Tops 2025" },
+      label: { en: "Vanity Tops catalog", es: "Catálogo Vanity Tops" },
       description: {
         en: "Models, bowl options, colours and edge profiles.",
         es: "Modelos, opciones de lavabo, colores y perfiles de canto.",

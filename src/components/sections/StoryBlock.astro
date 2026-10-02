@@ -1,0 +1,175 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  /** Section image — pass an imported asset (ImageMetadata). */
+  image: ImageMetadata;
+  /** Alt text for the image. */
+  imageAlt: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  /** Optional founder / attribution pill */
+  founderLabel?: string;
+  founderName?: string;
+  /** Optional badge text (e.g. "2004"). When present, renders the floating badge AND the pill chip. */
+  badge?: string;
+  badgeLabel?: string;
+  /**
+   * Controls which side the image sits on (desktop).
+   * @default "left"
+   */
+  imagePosition?: "left" | "right";
+  /** `id` for the section's aria-labelledby heading. Must be unique per page. */
+  headingId: string;
+  class?: string;
+}
+
+const {
+  image,
+  imageAlt,
+  eyebrow,
+  title,
+  body,
+  founderLabel,
+  founderName,
+  badge,
+  badgeLabel = "Est.",
+  imagePosition = "left",
+  headingId,
+  class: className = "",
+} = Astro.props;
+
+/* When imagePosition is "left":
+   - Image col → lg:order-1 (left)
+   - Copy col  → lg:order-2 (right)
+   When imagePosition is "right":
+   - Image col → lg:order-2 (right)
+   - Copy col  → lg:order-1 (left) */
+const imageIsLeft = imagePosition === "left";
+
+/* Badge anchor: when image is left the badge floats bottom-right;
+   when image is right it floats bottom-left, so it reads into the copy. */
+const badgeClass = imageIsLeft
+  ? "absolute -bottom-4 -right-4"
+  : "absolute -bottom-4 -left-4";
+
+/* Ambient glow anchor */
+const glowClass = imageIsLeft
+  ? "pointer-events-none absolute -bottom-8 -right-8 -z-10 h-64 w-64 rounded-full bg-accent/20 blur-3xl"
+  : "pointer-events-none absolute -bottom-8 -left-8 -z-10 h-64 w-64 rounded-full bg-accent/20 blur-3xl";
+---
+
+<section
+  aria-labelledby={headingId}
+  class:list={["section-y bg-canvasAlt hairline-t", className]}
+>
+  <div class="container-x">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+
+      {/* ── Image column ── */}
+      <div
+        class:list={[
+          "reveal relative",
+          imageIsLeft ? "lg:order-1" : "lg:order-2",
+        ]}
+        style="transition-delay:120ms"
+      >
+        {/* Ambient glow */}
+        <div class={glowClass} aria-hidden="true"></div>
+
+        {/* Photo frame */}
+        <div class="overflow-hidden rounded-panel border border-line/60 bg-panelAlt shadow-e2 transition-transform duration-500 hover:scale-[1.01]">
+          <Image
+            src={image}
+            alt={imageAlt}
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 1024px) 46vw, 92vw"
+            loading="lazy"
+            class="aspect-4/3 h-full w-full object-cover object-top"
+          />
+        </div>
+
+        {/* Floating badge */}
+        {
+          badge && (
+            <div
+              class:list={[
+                badgeClass,
+                "flex flex-col items-center justify-center rounded-2xl border border-line bg-panel/90 px-5 py-3 shadow-e2 backdrop-blur-md",
+              ]}
+            >
+              <span class="text-[0.6rem] font-semibold uppercase tracking-widest text-muted">
+                {badgeLabel}
+              </span>
+              <span class="text-2xl font-bold tabular-nums text-accent">
+                {badge}
+              </span>
+            </div>
+          )
+        }
+      </div>
+
+      {/* ── Copy column ── */}
+      <div
+        class:list={[
+          "reveal",
+          imageIsLeft ? "lg:order-2" : "lg:order-1",
+        ]}
+      >
+        {/* Eyebrow */}
+        <p class="type-eyebrow flex items-center gap-3 text-accent">
+          <span class="h-px w-8 bg-accent/45" aria-hidden="true"></span>
+          {eyebrow}
+        </p>
+
+        {/* Heading */}
+        <h2
+          id={headingId}
+          class="type-title mt-4 text-ink"
+          style="transition-delay:60ms"
+        >
+          {title}
+        </h2>
+
+        {/* Body */}
+        <p class="type-body mt-6 max-w-xl leading-relaxed text-muted">
+          {body}
+        </p>
+
+        {/* Attribution pill — only when founderName is provided */}
+        {
+          founderName && (
+            <div class="mt-8 inline-flex items-center gap-3 rounded-full border border-line bg-panel/70 px-4 py-2 backdrop-blur-sm">
+              {/* Initials avatar */}
+              <span
+                class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent"
+                aria-hidden="true"
+              >
+                {founderName
+                  .split(" ")
+                  .map((n: string) => n[0])
+                  .join("")}
+              </span>
+              <div class="flex flex-col leading-tight">
+                {founderLabel && (
+                  <span class="text-[0.65rem] font-semibold uppercase tracking-widest text-muted">
+                    {founderLabel}
+                  </span>
+                )}
+                <span class="text-sm font-semibold text-ink">{founderName}</span>
+              </div>
+              {badge && (
+                <span class="ml-1 rounded-full bg-accent/10 px-2.5 py-0.5 text-[0.7rem] font-semibold text-accent">
+                  {badge}
+                </span>
+              )}
+            </div>
+          )
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

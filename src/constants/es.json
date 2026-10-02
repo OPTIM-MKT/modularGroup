@@ -94,6 +94,19 @@
       "title": "Cuéntanos qué estás construyendo.",
       "description": "Envíanos el alcance — unidades, acabados, fechas — y la empresa indicada del grupo te responderá con una propuesta."
     },
+    "founderStory": {
+      "eyebrow": "Nuestra historia",
+      "title": "Veinte años de manufactura — nacidos de una sola visión.",
+      "body": "Desde 2004, nuestra historia ha sido impulsada por la visión y el espíritu emprendedor de nuestro fundador, Karlo Fuentes, quien comenzó con un sueño: construir una empresa manufacturera líder en México especializada en cubiertas de baño a base de resina. Lo que inició como una visión se convirtió en una empresa familiar con más de 20 años de experiencia en la industria manufacturera. Hoy producimos una amplia gama de productos, que incluyen cubiertas de baño en piedra de ingeniería, granito y cuarzo, muros de ducha, bases de ducha, accesorios, cubiertas de cocina, placas de cuarzo, bases de tocador y cocinas. A través de la innovación, la artesanía y el compromiso con la calidad, seguimos construyendo sobre la base que Karlo estableció en 2004, ampliando nuestras capacidades mientras servimos a clientes en México y Estados Unidos.",
+      "founderLabel": "Fundador",
+      "founderName": "Karlo Fuentes",
+      "since": "2004"
+    },
+    "ourGrowth": {
+      "eyebrow": "Nuestro crecimiento",
+      "title": "200+ hectáreas. 700+ personas. Seguimos creciendo.",
+      "body": "Hoy, esa visión se ha convertido en una operación sólida y en constante expansión, con más de 200 hectáreas de terreno y un equipo de más de 700 colaboradores dedicados. Nuestras instalaciones y fuerza laboral nos permiten mantener una capacidad productiva significativa, al mismo tiempo que impulsamos el desarrollo de productos y soluciones innovadoras para los mercados de construcción, hotelero, multifamiliar y residencial. Con una base sólida construida a lo largo de más de dos décadas, seguimos invirtiendo en nuestra gente, infraestructura, tecnología y capacidades de manufactura para responder a las necesidades cambiantes de nuestros clientes y fortalecer nuestra presencia en los mercados de México y Estados Unidos."
+    },
     "cta": {
       "eyebrow": "Modular Group",
       "title": "Especifiquemos juntos tu próximo proyecto.",

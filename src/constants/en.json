@@ -94,6 +94,19 @@
       "title": "Tell us what you are building.",
       "description": "Send us the scope — units, finishes, dates — and the right company in the group will come back to you with a proposal."
     },
+    "founderStory": {
+      "eyebrow": "Our story",
+      "title": "Twenty years of manufacturing — started by one vision.",
+      "body": "Since 2004, our story has been driven by the vision and entrepreneurial spirit of our founder, Karlo Fuentes, who began with a dream: to build a leading manufacturing company in Mexico specializing in resin-based vanity tops. What started as a vision has grown into a family-owned business with more than 20 years of experience in the manufacturing industry. Today, we produce a wide range of products, including engineered stone, granite and quartz vanity tops, shower walls, shower bases, accessories, kitchen countertops, quartz slabs, vanity bases, and kitchens. Through innovation, craftsmanship, and a commitment to quality, we continue to build on the foundation Karlo established in 2004, growing our capabilities while serving customers across Mexico and the United States.",
+      "founderLabel": "Founder",
+      "founderName": "Karlo Fuentes",
+      "since": "2004"
+    },
+    "ourGrowth": {
+      "eyebrow": "Our growth",
+      "title": "200+ hectares. 700+ people. Still growing.",
+      "body": "Today, that vision has grown into a strong and continuously expanding operation, with more than 200 hectares of land and a team of over 700 dedicated staff members. Our facilities and workforce allow us to maintain significant production capabilities while supporting the development of innovative products and solutions for the construction, hospitality, multifamily, and residential markets. With a strong foundation built over more than two decades, we continue to invest in our people, infrastructure, technology, and manufacturing capabilities to meet the evolving needs of our customers and strengthen our presence in both the Mexican and U.S. markets."
+    },
     "cta": {
       "eyebrow": "Modular Group",
       "title": "Let's specify your next project together.",

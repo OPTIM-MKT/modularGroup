@@ -8,7 +8,7 @@ import vanityTopsLogo from "@/assets/logos/modular-vanity-tops.png";
 import kuartzImg from "@/assets/images/kuartz.webp";
 import modulWoodsImg from "@/assets/images/modulWoods.jpeg";
 import showerWallsImg from "@/assets/images/showerWalls.jpeg";
-import vanityTopsImg from "@/assets/images/vanityTops.jpeg";
+import vanityTopsImg from "@/assets/images/vanityTops.webp";
 
 /**
  * `key` is the palette scope written to `data-brand`; the tokens for each value
@@ -16,10 +16,7 @@ import vanityTopsImg from "@/assets/images/vanityTops.jpeg";
  * folder under `public/` where that company's downloadable files are dropped.
  */
 export type BrandKey =
-  | "showerWalls"
-  | "modulWoods"
-  | "kuartzSurfaces"
-  | "modularVanityTops";
+  "showerWalls" | "modulWoods" | "kuartzSurfaces" | "modularVanityTops";
 
 /**
  * `mark` — artwork on a transparent ground.
