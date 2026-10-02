@@ -305,30 +305,35 @@
     },
     "kuartzSurfaces": {
       "name": "Küartz Surfaces",
-      "tagline": "Engineered stone",
+      "tagline": "Quartz surfaces",
+
       "seo": {
         "title": "Küartz Surfaces — The first quartz slab factory in Mexico",
-        "description": "Quartz slabs, vanity tops, kitchen countertops, walls and floors produced in a 75,348 ft² plant in Juárez, Nuevo León. IAPMO and NSF certified."
+        "description": "Quartz slabs, vanity tops, kitchen countertops and surfaces produced in Monterrey, Mexico."
+
       },
       "home": {
-        "summary": "The first and only quartz slab factory in Mexico — slabs, vanity tops, kitchen countertops, quartz walls and floors, produced with specialised machinery.",
+        "summary": "The first and only quartz slab factory in Mexico — slabs, vanity tops and kitchen countertops, produced with specialised machinery.",
         "points": [
           "Quartz slabs made in Mexico",
-          "75,348 ft² plant in Juárez, Nuevo León",
-          "IAPMO · NSF certified"
+          "Located in Monterrey, Mexico",
+          "200+ SKUs"
         ]
+
       },
       "hero": {
-        "eyebrow": "Küartz Surfaces · Engineered stone",
-        "title": "Refresh your space with engineered stone",
+        "eyebrow": "Küartz Surfaces · Quartz",
+        "title": "Refresh your space with quartz",
         "subtitle": "The first and only quartz slab factory in Mexico.",
-        "description": "Kitchen countertops, vanity tops, and surfaces crafted with precision and natural beauty."
+        "description": "Kitchen countertops, vanity tops, and quartz surfaces crafted with precision and natural beauty."
+
       },
       "about": {
         "eyebrow": "About us",
         "title": "The first quartz slab factory in Mexico.",
         "body": [
-          "Founded in 2019, Küartz Surfaces joined the group and became the first and only quartz slab factory in Mexico. Located in Juárez, Nuevo León, our 75,348 ft² plant produces slabs, vanity tops, kitchen countertops, quartz walls and floors with specialized machinery."
+          "Founded in 2019, Küartz Surfaces joined the group and became the first and only quartz slab factory in Mexico. Located in Monterrey, Mexico, our plant produces slabs, vanity tops and kitchen countertops with specialized machinery."
+
         ]
       },
       "stats": [
@@ -337,17 +342,14 @@
           "label": "Founded"
         },
         {
-          "value": "Juárez, N.L.",
-          "label": "Origin"
+          "value": "Monterrey, MX",
+          "label": "Location"
         },
         {
-          "value": "75,348 ft²",
-          "label": "Plant surface"
-        },
-        {
-          "value": "IAPMO · NSF",
-          "label": "Certifications"
+          "value": "200+",
+          "label": "SKUs"
         }
+
       ],
       "products": {
         "eyebrow": "Product line",
@@ -355,9 +357,8 @@
         "items": [
           "Quartz slabs",
           "Kitchen countertops",
-          "Vanity tops",
-          "Quartz walls",
-          "Quartz floors"
+          "Vanity tops"
+
         ]
       },
       "markets": {

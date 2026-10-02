@@ -305,30 +305,35 @@
     },
     "kuartzSurfaces": {
       "name": "Küartz Surfaces",
-      "tagline": "Piedra de ingeniería",
+      "tagline": "Superficies de cuarzo",
+
       "seo": {
         "title": "Küartz Surfaces — La primera fábrica de placas de cuarzo en México",
-        "description": "Placas de cuarzo, cubiertas de baño, cubiertas de cocina, muros y pisos producidos en una planta de 75,348 ft² en Juárez, Nuevo León. Certificaciones IAPMO y NSF."
+        "description": "Placas de cuarzo, cubiertas de baño, cubiertas de cocina y superficies producidas en Monterrey, México."
+
       },
       "home": {
-        "summary": "La primera y única fábrica de placas de cuarzo en México — placas, cubiertas de baño, cubiertas de cocina, muros y pisos de cuarzo, producidos con maquinaria especializada.",
+        "summary": "La primera y única fábrica de placas de cuarzo en México — placas, cubiertas de baño y cubiertas de cocina, producidas con maquinaria especializada.",
         "points": [
           "Placas de cuarzo hechas en México",
-          "Planta de 75,348 ft² en Juárez, Nuevo León",
-          "Certificaciones IAPMO · NSF"
+          "Ubicado en Monterrey, México",
+          "200+ SKUs"
         ]
+
       },
       "hero": {
-        "eyebrow": "Küartz Surfaces · Piedra de ingeniería",
-        "title": "Renueva tu espacio con piedra de ingeniería",
+        "eyebrow": "Küartz Surfaces · Cuarzo",
+        "title": "Renueva tu espacio con cuarzo",
         "subtitle": "La primera y única fábrica de placas de cuarzo en México.",
-        "description": "Cubiertas de cocina, cubiertas de baño y superficies elaboradas con precisión y belleza natural."
+        "description": "Cubiertas de cocina, cubiertas de baño y superficies de cuarzo elaboradas con precisión y belleza natural."
+
       },
       "about": {
         "eyebrow": "Sobre nosotros",
         "title": "La primera fábrica de placas de cuarzo en México.",
         "body": [
-          "Fundada en 2019, Küartz Surfaces se sumó al grupo y se convirtió en la primera y única fábrica de placas de cuarzo en México. Ubicada en Juárez, Nuevo León, nuestra planta de 75,348 ft² produce placas, cubiertas de baño, cubiertas de cocina, muros y pisos de cuarzo con maquinaria especializada."
+          "Fundada en 2019, Küartz Surfaces se sumó al grupo y se convirtió en la primera y única fábrica de placas de cuarzo en México. Ubicada en Monterrey, México, nuestra planta produce placas, cubiertas de baño y cubiertas de cocina con maquinaria especializada."
+
         ]
       },
       "stats": [
@@ -337,17 +342,14 @@
           "label": "Fundación"
         },
         {
-          "value": "Juárez, N.L.",
-          "label": "Origen"
+          "value": "Monterrey, MX",
+          "label": "Ubicación"
         },
         {
-          "value": "75,348 ft²",
-          "label": "Superficie de planta"
-        },
-        {
-          "value": "IAPMO · NSF",
-          "label": "Certificaciones"
+          "value": "200+",
+          "label": "SKUs"
         }
+
       ],
       "products": {
         "eyebrow": "Línea de producto",
@@ -355,9 +357,8 @@
         "items": [
           "Placas de cuarzo",
           "Cubiertas de cocina",
-          "Cubiertas de baño",
-          "Muros de cuarzo",
-          "Pisos de cuarzo"
+          "Cubiertas de baño"
+
         ]
       },
       "markets": {
