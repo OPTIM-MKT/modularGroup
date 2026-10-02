@@ -6,9 +6,12 @@ import showerWallsLogo from "@/assets/logos/shower-walls.png";
 import vanityTopsLogo from "@/assets/logos/modular-vanity-tops.png";
 
 import kuartzImg from "@/assets/images/kuartz.webp";
+import kuartzCtaImg from "@/assets/images/kuartz/kuartz2.webp";
 import modulWoodsImg from "@/assets/images/modulWoods.jpeg";
-import showerWallsImg from "@/assets/images/showerWalls.jpeg";
+import showerWallsImg from "@/assets/images/showerWalls.webp";
+import showerWallsCtaImg from "@/assets/images/showerWalls/showerW2.webp";
 import vanityTopsImg from "@/assets/images/vanityTops.webp";
+import vanityCtaImg from "@/assets/images/vanity/vanity2.webp";
 
 /**
  * `key` is the palette scope written to `data-brand`; the tokens for each value
@@ -41,8 +44,14 @@ export interface Brand {
   swatch: string;
   /** Official company website */
   website: string;
-  /** Featured product image from assets/images */
+  /** Featured product image — used in the About / SplitFeature section. */
   image: ImageMetadata;
+  /**
+   * Optional secondary image for the "Official Website" CTA card at the
+   * bottom of BrandPage. Falls back to `image` when omitted.
+   */
+  ctaImage?: ImageMetadata;
+
   /** Public folder holding this company's downloadable files. */
   assetDir: string;
   /** Where the brand sits in the header: two logos flank the group mark. */
@@ -61,9 +70,25 @@ export const BRANDS: readonly Brand[] = [
     swatch: "#006da6",
     website: "https://shower-walls.net/",
     image: showerWallsImg,
+    ctaImage: showerWallsCtaImg,
     assetDir: "showerWalls",
     side: "left",
     order: 1,
+  },
+  {
+    key: "modularVanityTops",
+    slug: "modular-vanity-tops",
+    name: "Modular Vanity Tops",
+    logo: vanityTopsLogo,
+    logoStyle: "badge",
+    logoScale: 0.92,
+    swatch: "#d4af58",
+    website: "https://modular-tops.com/",
+    image: vanityTopsImg,
+    ctaImage: vanityCtaImg,
+    assetDir: "modularVanityTops",
+    side: "left",
+    order: 2,
   },
   {
     key: "modulWoods",
@@ -76,8 +101,8 @@ export const BRANDS: readonly Brand[] = [
     website: "https://modul-woods.com/",
     image: modulWoodsImg,
     assetDir: "modulWoods",
-    side: "left",
-    order: 2,
+    side: "right",
+    order: 1,
   },
   {
     key: "kuartzSurfaces",
@@ -89,23 +114,10 @@ export const BRANDS: readonly Brand[] = [
     swatch: "#2e6b3d",
     website: "https://kuartzsurfaces.com/",
     image: kuartzImg,
+    ctaImage: kuartzCtaImg,
     assetDir: "kuartzSurfaces",
     side: "right",
-    order: 3,
-  },
-  {
-    key: "modularVanityTops",
-    slug: "modular-vanity-tops",
-    name: "Modular Vanity Tops",
-    logo: vanityTopsLogo,
-    logoStyle: "badge",
-    logoScale: 0.92,
-    swatch: "#d4af58",
-    website: "https://modular-tops.com/",
-    image: vanityTopsImg,
-    assetDir: "modularVanityTops",
-    side: "right",
-    order: 4,
+    order: 2,
   },
 ] as const;
 

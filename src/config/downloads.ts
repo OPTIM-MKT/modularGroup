@@ -55,8 +55,8 @@ export const DOWNLOADS: Record<BrandKey, readonly DownloadItem[]> = {
   ],
   kuartzSurfaces: [
     {
-      file: "Kuartz-Catalog-2025.pdf",
-      label: { en: "Küartz catalog 2025", es: "Catálogo Küartz 2025" },
+      file: "Kuartz-Catalog.pdf",
+      label: { en: "Küartz catalog", es: "Catálogo Küartz" },
       description: {
         en: "The full quartz colour range, slab sizes and finishes.",
         es: "Gama completa de colores de cuarzo, medidas de placa y acabados.",

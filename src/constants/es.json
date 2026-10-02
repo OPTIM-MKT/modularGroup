@@ -57,10 +57,22 @@
       "description": "Modular Group nació en 2004 en Monterrey, México, con cubiertas de baño. Dos décadas después fabrica paneles de muro, gabinetes sin marco y las primeras placas de cuarzo hechas en México — acabados coordinados, un solo contacto, un solo calendario de entrega."
     },
     "stats": [
-      { "value": "2004", "label": "Fabricando desde" },
-      { "value": "4", "label": "Empresas especializadas" },
-      { "value": "Monterrey · Juárez", "label": "Plantas en México" },
-      { "value": "EE. UU. · CA · MX", "label": "Mercados atendidos" }
+      {
+        "value": "2004",
+        "label": "Fabricando desde"
+      },
+      {
+        "value": "4",
+        "label": "Empresas especializadas"
+      },
+      {
+        "value": "Monterrey · Juárez",
+        "label": "Plantas en México"
+      },
+      {
+        "value": "EE. UU. · CA · MX",
+        "label": "Mercados atendidos"
+      }
     ],
     "companies": {
       "eyebrow": "Nuestras empresas",
@@ -222,7 +234,7 @@
         "points": [
           "Gabinetes sin marco para baño y cocina",
           "Residencial, hotelería, multifamiliar, senior living",
-          "Más de 400 SKUs en producción"
+          "Más de 400 SKUs"
         ]
       },
       "hero": {
@@ -241,10 +253,22 @@
         ]
       },
       "stats": [
-        { "value": "2004", "label": "Fundada como Modular Vanity Tops" },
-        { "value": "2018", "label": "Nace la división Modul Woods" },
-        { "value": "400+", "label": "SKUs en producción" },
-        { "value": "Monterrey, MX", "label": "Donde se fabrica todo" }
+        {
+          "value": "2004",
+          "label": "Fundada como Modular Vanity Tops"
+        },
+        {
+          "value": "2018",
+          "label": "Nace la división Modul Woods"
+        },
+        {
+          "value": "400+",
+          "label": "SKUs"
+        },
+        {
+          "value": "Monterrey, MX",
+          "label": "Donde se fabrica todo"
+        }
       ],
       "products": {
         "eyebrow": "Línea de producto",
@@ -308,10 +332,22 @@
         ]
       },
       "stats": [
-        { "value": "2019", "label": "Fundación" },
-        { "value": "Juárez, N.L.", "label": "Origen" },
-        { "value": "75,348 ft²", "label": "Superficie de planta" },
-        { "value": "IAPMO · NSF", "label": "Certificaciones" }
+        {
+          "value": "2019",
+          "label": "Fundación"
+        },
+        {
+          "value": "Juárez, N.L.",
+          "label": "Origen"
+        },
+        {
+          "value": "75,348 ft²",
+          "label": "Superficie de planta"
+        },
+        {
+          "value": "IAPMO · NSF",
+          "label": "Certificaciones"
+        }
       ],
       "products": {
         "eyebrow": "Línea de producto",
@@ -365,21 +401,33 @@
         "eyebrow": "Modular Vanity Tops",
         "title": "Desde 2004, exportando cubiertas de baño de ingeniería",
         "subtitle": "Fabricadas en Monterrey. Distribuidas desde Laredo, Texas.",
-        "description": "Cubiertas de baño de ingeniería de alta calidad para casas, hoteles y moteles, centros de retiro asistido y vivienda multifamiliar."
+        "description": "Cubiertas de baño de ingeniería de alta calidad para casas, hoteles y moteles, centros de retiro asistido y vivienda multifamiliar — con distribución desde Laredo, Texas hacia EE. UU. y Canadá."
       },
       "about": {
         "eyebrow": "Sobre nosotros · Origen",
-        "title": "Desde 2004, exportando cubiertas de baño de ingeniería.",
+        "title": "Desde 2004, exportando cubiertas de baño de ingeniería — con distribución desde Laredo, Texas.",
         "body": [
           "Desde 2004 exportamos con éxito a Estados Unidos y Canadá, distribuyendo a través de fabricantes de mármol cultivado, distribuidores de materiales y plomería, contratistas generales y home centers.",
-          "Nuestra fábrica está en Monterrey, MX, convenientemente cerca de nuestro Centro de Distribución en Laredo, Texas. Nos especializamos en cubiertas de baño de ingeniería de alta calidad, diseñadas específicamente para casas, hoteles y moteles, centros de retiro asistido y vivienda multifamiliar."
+          "Nuestra fábrica está en Monterrey, MX, convenientemente cerca de nuestro Centro de Distribución en Laredo, Texas — garantizando entregas rápidas y confiables en ambos lados de la frontera. Nos especializamos en cubiertas de baño de ingeniería de alta calidad, diseñadas específicamente para casas, hoteles y moteles, centros de retiro asistido y vivienda multifamiliar."
         ]
       },
       "stats": [
-        { "value": "2004", "label": "Exportando desde" },
-        { "value": "Monterrey, MX", "label": "Fábrica" },
-        { "value": "Laredo, TX", "label": "Centro de Distribución" },
-        { "value": "EE. UU. · Canadá", "label": "Mercados atendidos" }
+        {
+          "value": "2004",
+          "label": "Exportando desde"
+        },
+        {
+          "value": "Monterrey, MX",
+          "label": "Fábrica"
+        },
+        {
+          "value": "Laredo, TX",
+          "label": "Centro de Distribución"
+        },
+        {
+          "value": "EE. UU. · Canadá",
+          "label": "Mercados atendidos"
+        }
       ],
       "products": {
         "eyebrow": "Distribución",
@@ -427,19 +475,42 @@
     "info": {
       "title": "Dónde estamos",
       "items": [
-        { "label": "Manufactura", "value": "Monterrey, Nuevo León, México" },
-        { "label": "Planta de cuarzo", "value": "Juárez, Nuevo León, México" },
-        { "label": "Centro de Distribución", "value": "Laredo, Texas, Estados Unidos" }
+        {
+          "label": "Manufactura",
+          "value": "Monterrey, Nuevo León, México"
+        },
+        {
+          "label": "Planta de cuarzo",
+          "value": "Juárez, Nuevo León, México"
+        },
+        {
+          "label": "Centro de Distribución",
+          "value": "Laredo, Texas, Estados Unidos"
+        }
       ],
       "note": "Atendemos en español e inglés."
     },
     "form": {
       "title": "Envíanos un mensaje",
       "description": "Los campos marcados con * son obligatorios.",
-      "name": { "label": "Nombre completo", "placeholder": "Ana Pérez" },
-      "email": { "label": "Correo electrónico", "placeholder": "tu@empresa.com" },
-      "phone": { "label": "Teléfono", "placeholder": "+52 81 0000 0000", "optional": "opcional" },
-      "company": { "label": "Empresa", "placeholder": "Empresa o nombre del proyecto", "optional": "opcional" },
+      "name": {
+        "label": "Nombre completo",
+        "placeholder": "Ana Pérez"
+      },
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "tu@empresa.com"
+      },
+      "phone": {
+        "label": "Teléfono",
+        "placeholder": "+52 81 0000 0000",
+        "optional": "opcional"
+      },
+      "company": {
+        "label": "Empresa",
+        "placeholder": "Empresa o nombre del proyecto",
+        "optional": "opcional"
+      },
       "interest": {
         "label": "¿Sobre qué nos escribes?",
         "placeholder": "Selecciona una empresa",

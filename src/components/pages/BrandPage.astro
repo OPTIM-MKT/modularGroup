@@ -285,7 +285,7 @@ const firstDownload = downloads[0];
         <div class="reveal" style="transition-delay:120ms">
           <div class="overflow-hidden rounded-2xl border border-line/70 bg-panelAlt shadow-e1 transition-transform duration-500 hover:scale-[1.02]">
             <Image
-              src={brand.image}
+              src={brand.ctaImage ?? brand.image}
               alt={brand.name}
               widths={[480, 800]}
               sizes="(min-width: 1024px) 38vw, 88vw"
