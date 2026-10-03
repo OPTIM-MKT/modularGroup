@@ -66,7 +66,7 @@ export const DOWNLOADS: Record<BrandKey, readonly DownloadItem[]> = {
   ],
   modularVanityTops: [
     {
-      file: "CATALOG-MVT-2025.pdf",
+      file: "CATALOG-MVT.pdf",
       label: { en: "Vanity Tops catalog", es: "Catálogo Vanity Tops" },
       description: {
         en: "Models, bowl options, colours and edge profiles.",

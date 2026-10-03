@@ -25,7 +25,7 @@ const href = (to: string) => localePath(lang, to);
 {/* --- Founder story ---------------------------------------------------- */}
 <StoryBlock
   image={kfImage}
-  imageAlt="Karlo Fuentes — Founder of Modular Group"
+  imageAlt="Karlo Fuentes Founder of Modular Group"
   headingId="story-founder"
   eyebrow={t.home.founderStory.eyebrow}
   title={t.home.founderStory.title}
@@ -137,32 +137,22 @@ const href = (to: string) => localePath(lang, to);
             />
 
             <div>
-              {/* Brand Swatch Pill & Name */}
-              <div class="flex items-center justify-between gap-2">
-                <div class="flex items-center gap-2">
-                  <span
-                    class="h-2.5 w-2.5 rounded-full shadow-xs ring-2 ring-white/20"
-                    style={`background-color:${brand.swatch}`}
-                    aria-hidden="true"
-                  />
-                  <span class="text-xs font-bold uppercase tracking-wider text-muted group-hover:text-ink transition-colors">
-                    {brand.name}
-                  </span>
-                </div>
+              {/* Top right Arrow */}
+              <div class="flex items-center justify-end">
                 <FiArrowRight
-                  className="h-3.5 w-3.5 opacity-60 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+                  className="h-4 w-4 opacity-60 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
                   style={{ color: brand.swatch }}
                   aria-hidden="true"
                 />
               </div>
 
               {/* Brand Logo with authentic colors */}
-              <div class="mt-5 flex h-14 items-center">
-                <BrandMark brand={brand} size={38} />
+              <div class="mt-1 flex h-20 items-center justify-center">
+                <BrandMark brand={brand} size={64} />
               </div>
 
               {/* Brand Tagline */}
-              <p class="mt-3 text-xs leading-relaxed text-muted line-clamp-2">
+              <p class="mt-4 text-center text-xs leading-relaxed text-muted line-clamp-2">
                 {t.brands[brand.key].tagline}
               </p>
             </div>

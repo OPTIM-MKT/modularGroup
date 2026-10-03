@@ -151,6 +151,47 @@
 
 /* --- Küartz Surfaces · light (matte white ground, quartz emerald green primary) --- */
 [data-brand="kuartzSurfaces"] {
+  --c-canvas: #f8f9fa;
+  --c-canvasAlt: #f1f3f5;
+  --c-panel: #ffffff;
+  --c-panelAlt: #e9ecef;
+  --c-ink: #212529;
+  --c-muted: #6c757d;
+  --c-line: #dee2e6;
+
+  --c-primary: #71717a;
+  --c-primaryDark: #52525b;
+  --c-onPrimary: #ffffff;
+  --c-accent: #71717a;
+  --c-secondary: #a1a1aa;
+  --c-support: #52525b;
+
+  --c-shadow: 240 5% 15%;
+}
+
+/* --- Küartz Surfaces · dark --- */
+.dark [data-brand="kuartzSurfaces"],
+[data-brand="kuartzSurfaces"].dark {
+  --c-canvas: #09090b;
+  --c-canvasAlt: #18181b;
+  --c-panel: #18181b;
+  --c-panelAlt: #27272a;
+  --c-ink: #f4f4f5;
+  --c-muted: #a1a1aa;
+  --c-line: #27272a;
+
+  --c-primary: #a1a1aa;
+  --c-primaryDark: #71717a;
+  --c-onPrimary: #000000;
+  --c-accent: #d4d4d8;
+  --c-secondary: #a1a1aa;
+  --c-support: #71717a;
+
+  --c-shadow: 240 5% 2%;
+}
+
+/* --- Modular Vanity Tops · light (warm ground, refined gold/amber primary) --- */
+[data-brand="modularVanityTops"] {
   --c-canvas: #f6f8f6;
   --c-canvasAlt: #edf3ed;
   --c-panel: #fcfdfc;
@@ -169,9 +210,9 @@
   --c-shadow: 140 20% 12%;
 }
 
-/* --- Küartz Surfaces · dark --- */
-.dark [data-brand="kuartzSurfaces"],
-[data-brand="kuartzSurfaces"].dark {
+/* --- Modular Vanity Tops · dark --- */
+.dark [data-brand="modularVanityTops"],
+[data-brand="modularVanityTops"].dark {
   --c-canvas: #0a0b0a;
   --c-canvasAlt: #101210;
   --c-panel: #121412;
@@ -188,47 +229,6 @@
   --c-support: #6fbe85;
 
   --c-shadow: 140 40% 2%;
-}
-
-/* --- Modular Vanity Tops · light (warm ground, refined gold/amber primary) --- */
-[data-brand="modularVanityTops"] {
-  --c-canvas: #faf8f2;
-  --c-canvasAlt: #f3eee0;
-  --c-panel: #fefdf9;
-  --c-panelAlt: #e8dfc7;
-  --c-ink: #1a1811;
-  --c-muted: #615c4d;
-  --c-line: #ddd4be;
-
-  --c-primary: #9e7a20;
-  --c-primaryDark: #7e5f12;
-  --c-onPrimary: #ffffff;
-  --c-accent: #9e7a20;
-  --c-secondary: #b58c27;
-  --c-support: #16511a;
-
-  --c-shadow: 45 30% 14%;
-}
-
-/* --- Modular Vanity Tops · dark --- */
-.dark [data-brand="modularVanityTops"],
-[data-brand="modularVanityTops"].dark {
-  --c-canvas: #0b0c08;
-  --c-canvasAlt: #11120c;
-  --c-panel: #131409;
-  --c-panelAlt: #1c1d12;
-  --c-ink: #f4f1e7;
-  --c-muted: #a8a394;
-  --c-line: #262718;
-
-  --c-primary: #d4af58;
-  --c-primaryDark: #c09a42;
-  --c-onPrimary: #14150f;
-  --c-accent: #facc15;
-  --c-secondary: #d4af58;
-  --c-support: #4f8a53;
-
-  --c-shadow: 45 50% 2%;
 }
 
 /* ===========================================================================

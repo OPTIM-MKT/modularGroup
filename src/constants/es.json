@@ -3,7 +3,7 @@
     "name": "Modular Group",
     "shortName": "Modular Group",
     "tagline": "Cuatro fabricantes. Un mismo estándar.",
-    "description": "Modular Group reúne a Shower Walls, Modul Woods, Küartz Surfaces y Modular Vanity Tops — cuatro fabricantes que cubren muros, gabinetes, superficies de cuarzo y cubiertas de baño desde un mismo grupo."
+    "description": "Modular Group reúne a Shower Walls, Modul Woods, Küartz Surfaces y Modular Vanity Tops cuatro fabricantes que cubren muros, gabinetes, superficies de cuarzo y cubiertas de baño desde un mismo grupo."
   },
   "nav": {
     "home": "Inicio",
@@ -11,7 +11,7 @@
     "companies": "Empresas",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
-    "groupHome": "Modular Group — inicio",
+    "groupHome": "Modular Group inicio",
     "theme": "Cambiar entre tema claro y oscuro",
     "language": "Idioma",
     "skipToContent": "Ir al contenido"
@@ -40,13 +40,13 @@
   },
   "home": {
     "seo": {
-      "title": "Modular Group — Muros, gabinetes, cuarzo y cubiertas de baño",
+      "title": "Modular Group Muros, gabinetes, cuarzo y cubiertas de baño",
       "description": "Un grupo, cuatro fabricantes: Shower Walls, Modul Woods, Küartz Surfaces y Modular Vanity Tops. Soluciones completas de baño y cocina para hotelería, multifamiliar, salud y residencial."
     },
     "hero": {
       "eyebrow": "Modular Group",
       "title": "Cuatro fabricantes. Un mismo estándar.",
-      "subtitle": "Muros, gabinetes, superficies de cuarzo y cubiertas de baño — fabricados bajo un mismo techo y entregados en un mismo calendario.",
+      "subtitle": "Muros, gabinetes, superficies de cuarzo y cubiertas de baño fabricados bajo un mismo techo y entregados en un mismo calendario.",
       "description": "Desde el baño de un hotel hasta un desarrollo multifamiliar de mil unidades, Modular Group surte el cuarto completo: sistemas de muro impermeables, gabinetes sin marco, placas de cuarzo y cubiertas de baño.",
       "primaryCta": "Iniciar un proyecto",
       "secondaryCta": "Conoce las empresas"
@@ -54,7 +54,7 @@
     "intro": {
       "eyebrow": "El grupo",
       "title": "Un solo socio en lugar de cuatro proveedores.",
-      "description": "Modular Group nació en 2004 en Monterrey, México, con cubiertas de baño. Dos décadas después fabrica paneles de muro, gabinetes sin marco y las primeras placas de cuarzo hechas en México — acabados coordinados, un solo contacto, un solo calendario de entrega."
+      "description": "Modular Group nació en 2004 en Monterrey, México, con cubiertas de baño. Dos décadas después fabrica paneles de muro, gabinetes sin marco y las primeras placas de cuarzo hechas en México acabados coordinados, un solo contacto, un solo calendario de entrega."
     },
     "stats": [
       {
@@ -66,7 +66,7 @@
         "label": "Empresas especializadas"
       },
       {
-        "value": "Monterrey · Juárez",
+        "value": "Monterrey",
         "label": "Plantas en México"
       },
       {
@@ -77,7 +77,7 @@
     "companies": {
       "eyebrow": "Nuestras empresas",
       "title": "Cada una especialista. Juntas, el cuarto completo.",
-      "description": "Cada empresa conserva su identidad, su planta y su línea de producto. Especifica una o las cuatro — los acabados quedan coordinados igual."
+      "description": "Cada empresa conserva su identidad, su planta y su línea de producto. Especifica una o las cuatro los acabados quedan coordinados igual."
     },
     "advantages": {
       "eyebrow": "Por qué el grupo",
@@ -89,7 +89,7 @@
         },
         {
           "title": "Fabricación propia",
-          "body": "Plantas nuestras en Monterrey y Juárez, Nuevo León — no un catálogo de fábricas ajenas."
+          "body": "Plantas nuestras en Monterrey, Nuevo León no un catálogo de fábricas ajenas."
         },
         {
           "title": "Repetible a gran escala",
@@ -104,11 +104,11 @@
     "contact": {
       "eyebrow": "Escríbenos",
       "title": "Cuéntanos qué estás construyendo.",
-      "description": "Envíanos el alcance — unidades, acabados, fechas — y la empresa indicada del grupo te responderá con una propuesta."
+      "description": "Envíanos el alcance unidades, acabados, fechas y la empresa indicada del grupo te responderá con una propuesta."
     },
     "founderStory": {
       "eyebrow": "Nuestra historia",
-      "title": "Veinte años de manufactura — nacidos de una sola visión.",
+      "title": "Veinte años de manufactura nacidos de una sola visión.",
       "body": "Desde 2004, nuestra historia ha sido impulsada por la visión y el espíritu emprendedor de nuestro fundador, Karlo Fuentes, quien comenzó con un sueño: construir una empresa manufacturera líder en México especializada en cubiertas de baño a base de resina. Lo que inició como una visión se convirtió en una empresa familiar con más de 20 años de experiencia en la industria manufacturera. Hoy producimos una amplia gama de productos, que incluyen cubiertas de baño en piedra de ingeniería, granito y cuarzo, muros de ducha, bases de ducha, accesorios, cubiertas de cocina, placas de cuarzo, bases de tocador y cocinas. A través de la innovación, la artesanía y el compromiso con la calidad, seguimos construyendo sobre la base que Karlo estableció en 2004, ampliando nuestras capacidades mientras servimos a clientes en México y Estados Unidos.",
       "founderLabel": "Fundador",
       "founderName": "Karlo Fuentes",
@@ -132,11 +132,11 @@
       "name": "Shower Walls",
       "tagline": "Sistemas de muro en piedra de ingeniería",
       "seo": {
-        "title": "Shower Walls — Paneles y platos de ducha de alto desempeño",
+        "title": "Shower Walls Paneles y platos de ducha de alto desempeño",
         "description": "Paneles de muro, platos de ducha y accesorios diseñados para hotelería, multifamiliar, vivienda estudiantil y salud. Renueva sin ruido, polvo ni retrasos."
       },
       "home": {
-        "summary": "Paneles de muro, platos de ducha y accesorios de alto desempeño que sustituyen al azulejo — instalados sin el ruido, el polvo ni los retrasos de una remodelación tradicional.",
+        "summary": "Paneles de muro, platos de ducha y accesorios de alto desempeño que sustituyen al azulejo instalados sin el ruido, el polvo ni los retrasos de una remodelación tradicional.",
         "points": [
           "Paneles de muro, platos y accesorios",
           "Hotelería, multifamiliar, vivienda estudiantil, salud",
@@ -147,14 +147,14 @@
         "eyebrow": "Shower Walls",
         "title": "Hecho para los proyectos que el azulejo no pudo seguir",
         "subtitle": "Paneles de muro, platos de ducha y accesorios de alto desempeño.",
-        "description": "Diseño moderno, durabilidad e innovación — un baño renovado sin el ruido, el polvo ni los retrasos de la remodelación tradicional."
+        "description": "Diseño moderno, durabilidad e innovación un baño renovado sin el ruido, el polvo ni los retrasos de la remodelación tradicional."
       },
       "about": {
         "eyebrow": "Sobre nosotros",
         "title": "Sistemas de muro que se comportan como un producto, no como un oficio.",
         "body": [
           "En Shower Walls fabricamos paneles de muro, platos de ducha y accesorios de alto desempeño. Combinamos diseño moderno, durabilidad e innovación para renovar un baño sin el ruido, el polvo ni los retrasos de la remodelación tradicional.",
-          "Nuestros sistemas fueron desarrollados para operadores de hotelería, multifamiliar, vivienda estudiantil y salud que necesitan cientos de baños idénticos e impecables entregados en calendario — y para quienes quieren ese mismo estándar en casa."
+          "Nuestros sistemas fueron desarrollados para operadores de hotelería, multifamiliar, vivienda estudiantil y salud que necesitan cientos de baños idénticos e impecables entregados en calendario y para quienes quieren ese mismo estándar en casa."
         ]
       },
       "pillars": {
@@ -185,7 +185,7 @@
           },
           {
             "title": "Sin retrasos",
-            "body": "Un sistema fabricado llega completo y se instala en una ventana predecible — la misma ventana, unidad tras unidad."
+            "body": "Un sistema fabricado llega completo y se instala en una ventana predecible la misma ventana, unidad tras unidad."
           }
         ]
       },
@@ -217,7 +217,7 @@
       "cta": {
         "eyebrow": "Shower Walls",
         "title": "Renueva el baño sin cerrar el piso.",
-        "description": "Envíanos el número de unidades y el calendario — te respondemos con un sistema y un tiempo de entrega.",
+        "description": "Envíanos el número de unidades y el calendario te respondemos con un sistema y un tiempo de entrega.",
         "primaryLabel": "Solicitar cotización",
         "secondaryLabel": "Descargar el catálogo"
       }
@@ -226,11 +226,11 @@
       "name": "Modul Woods",
       "tagline": "Gabinetes sin marco",
       "seo": {
-        "title": "Modul Woods — Gabinetes sin marco para baño y cocina",
+        "title": "Modul Woods Gabinetes sin marco para baño y cocina",
         "description": "Gabinetes sin marco a medida para baño y cocina: muebles de lavabo, gabinetes bajos y altos, alacenas, islas y soluciones de almacenaje. Fabricados en Monterrey, México desde 2018."
       },
       "home": {
-        "summary": "Gabinetes sin marco para baño y cocina — muebles de lavabo, módulos bajos y de pared, alacenas, islas y almacenaje a medida, hechos en planta propia.",
+        "summary": "Gabinetes sin marco para baño y cocina muebles de lavabo, módulos bajos y de pared, alacenas, islas y almacenaje a medida, hechos en planta propia.",
         "points": [
           "Gabinetes sin marco para baño y cocina",
           "Residencial, hotelería, multifamiliar, senior living",
@@ -241,7 +241,7 @@
         "eyebrow": "Modul Woods",
         "title": "Gabinetes hechos para el espacio, no para el catálogo",
         "subtitle": "Gabinetes sin marco a medida para baño y cocina.",
-        "description": "La división de gabinetes de Modular Group — muebles de lavabo, módulos bajos y de pared, alacenas, islas y almacenaje a medida, fabricados en Monterrey, México."
+        "description": "La división de gabinetes de Modular Group muebles de lavabo, módulos bajos y de pared, alacenas, islas y almacenaje a medida, fabricados en Monterrey, México."
       },
       "about": {
         "eyebrow": "Sobre nosotros",
@@ -298,23 +298,23 @@
       "cta": {
         "eyebrow": "Modul Woods",
         "title": "Un solo socio en gabinetes, de una casa a un desarrollo completo.",
-        "description": "Dinos el layout y el acabado — lo fabricamos así.",
+        "description": "Dinos el layout y el acabado lo fabricamos así.",
         "primaryLabel": "Solicitar cotización",
         "secondaryLabel": "Descargar el catálogo"
       }
     },
     "kuartzSurfaces": {
       "name": "Küartz Surfaces",
-      "tagline": "ktz",
+      "tagline": "Quartz",
 
 
       "seo": {
-        "title": "Küartz Surfaces — La primera fábrica de placas de cuarzo en México",
+        "title": "Küartz Surfaces La primera fábrica de placas de cuarzo en México",
         "description": "Placas de cuarzo, cubiertas de baño, cubiertas de cocina y superficies producidas en Monterrey, México."
 
       },
       "home": {
-        "summary": "La primera y única fábrica de placas de cuarzo en México — placas, cubiertas de baño y cubiertas de cocina, producidas con maquinaria especializada.",
+        "summary": "La primera y única fábrica de placas de cuarzo en México placas, cubiertas de baño y cubiertas de cocina, producidas con maquinaria especializada.",
         "points": [
           "Placas de cuarzo hechas en México",
           "Ubicado en Monterrey, México",
@@ -388,7 +388,7 @@
       "name": "Modular Vanity Tops",
       "tagline": "Cubiertas de baño de ingeniería",
       "seo": {
-        "title": "Modular Vanity Tops — Cubiertas de baño de ingeniería desde 2004",
+        "title": "Modular Vanity Tops Cubiertas de baño de ingeniería desde 2004",
         "description": "Cubiertas de baño de ingeniería fabricadas en Monterrey, México y distribuidas desde Laredo, Texas a Estados Unidos y Canadá. Para casas, hoteles, senior living y multifamiliar."
       },
       "home": {
@@ -403,14 +403,14 @@
         "eyebrow": "Modular Vanity Tops",
         "title": "Desde 2004, exportando cubiertas de baño de ingeniería",
         "subtitle": "Fabricadas en Monterrey. Distribuidas desde Laredo, Texas.",
-        "description": "Cubiertas de baño de ingeniería de alta calidad para casas, hoteles y moteles, centros de retiro asistido y vivienda multifamiliar — con distribución desde Laredo, Texas hacia EE. UU. y Canadá."
+        "description": "Cubiertas de baño de ingeniería de alta calidad para casas, hoteles y moteles, centros de retiro asistido y vivienda multifamiliar con distribución desde Laredo, Texas hacia EE. UU. y Canadá."
       },
       "about": {
         "eyebrow": "Sobre nosotros · Origen",
-        "title": "Desde 2004, exportando cubiertas de baño de ingeniería — con distribución desde Laredo, Texas.",
+        "title": "Desde 2004, exportando cubiertas de baño de ingeniería con distribución desde Laredo, Texas.",
         "body": [
           "Desde 2004 exportamos con éxito a Estados Unidos y Canadá, distribuyendo a través de fabricantes de mármol cultivado, distribuidores de materiales y plomería, contratistas generales y home centers.",
-          "Nuestra fábrica está en Monterrey, MX, convenientemente cerca de nuestro Centro de Distribución en Laredo, Texas — garantizando entregas rápidas y confiables en ambos lados de la frontera. Nos especializamos en cubiertas de baño de ingeniería de alta calidad, diseñadas específicamente para casas, hoteles y moteles, centros de retiro asistido y vivienda multifamiliar."
+          "Nuestra fábrica está en Monterrey, MX, convenientemente cerca de nuestro Centro de Distribución en Laredo, Texas garantizando entregas rápidas y confiables en ambos lados de la frontera. Nos especializamos en cubiertas de baño de ingeniería de alta calidad, diseñadas específicamente para casas, hoteles y moteles, centros de retiro asistido y vivienda multifamiliar."
         ]
       },
       "stats": [
@@ -457,7 +457,7 @@
       "cta": {
         "eyebrow": "Modular Vanity Tops",
         "title": "Dos décadas de cubiertas cruzando la frontera a tiempo.",
-        "description": "Dinos el número de modelos y el acabado — lo cotizamos.",
+        "description": "Dinos el número de modelos y el acabado lo cotizamos.",
         "primaryLabel": "Solicitar cotización",
         "secondaryLabel": "Descargar el catálogo"
       }
@@ -465,14 +465,14 @@
   },
   "contact": {
     "seo": {
-      "title": "Contacto — Modular Group",
+      "title": "Contacto Modular Group",
       "description": "Habla con Modular Group sobre muros, gabinetes, superficies de cuarzo y cubiertas de baño para tu próximo proyecto."
     },
     "hero": {
       "eyebrow": "Contacto",
       "title": "Cuéntanos qué estás construyendo.",
       "subtitle": "Un solo mensaje llega a las cuatro empresas.",
-      "description": "Comparte el alcance — unidades, acabados, fechas — y el equipo indicado te responderá."
+      "description": "Comparte el alcance unidades, acabados, fechas y el equipo indicado te responderá."
     },
     "info": {
       "title": "Dónde estamos",
@@ -483,7 +483,7 @@
         },
         {
           "label": "Planta de cuarzo",
-          "value": "Juárez, Nuevo León, México"
+          "value": "Monterrey, Nuevo León, México"
         },
         {
           "label": "Centro de Distribución",
@@ -517,7 +517,7 @@
         "label": "¿Sobre qué nos escribes?",
         "placeholder": "Selecciona una empresa",
         "options": {
-          "group": "Modular Group — general",
+          "group": "Modular Group general",
           "showerWalls": "Shower Walls",
           "modulWoods": "Modul Woods",
           "kuartzSurfaces": "Küartz Surfaces",
@@ -531,7 +531,7 @@
       "submit": "Enviar mensaje",
       "sending": "Enviando…",
       "successTitle": "Mensaje enviado",
-      "successBody": "Gracias — te responderemos muy pronto.",
+      "successBody": "Gracias te responderemos muy pronto.",
       "errorTitle": "Algo salió mal",
       "errorBody": "No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos por correo.",
       "errors": {
@@ -545,7 +545,7 @@
   },
   "notFound": {
     "seo": {
-      "title": "Página no encontrada — Modular Group",
+      "title": "Página no encontrada Modular Group",
       "description": "La página que buscas no existe."
     },
     "code": "404",
@@ -556,7 +556,7 @@
     "companies": "O ve directo a una empresa"
   },
   "footer": {
-    "tagline": "Muros, gabinetes, superficies de cuarzo y cubiertas de baño — fabricados en México, entregados en toda Norteamérica.",
+    "tagline": "Muros, gabinetes, superficies de cuarzo y cubiertas de baño fabricados en México, entregados en toda Norteamérica.",
     "companies": "Empresas",
     "explore": "Explorar",
     "locations": "Ubicaciones",

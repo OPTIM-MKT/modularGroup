@@ -3,7 +3,7 @@
     "name": "Modular Group",
     "shortName": "Modular Group",
     "tagline": "Four manufacturers. One standard.",
-    "description": "Modular Group brings together Shower Walls, Modul Woods, Küartz Surfaces and Modular Vanity Tops — four manufacturers covering walls, cabinetry, quartz surfaces and vanity tops from a single group."
+    "description": "Modular Group brings together Shower Walls, Modul Woods, Küartz Surfaces and Modular Vanity Tops four manufacturers covering walls, cabinetry, quartz surfaces and vanity tops from a single group."
   },
   "nav": {
     "home": "Home",
@@ -11,7 +11,7 @@
     "companies": "Companies",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "groupHome": "Modular Group — home",
+    "groupHome": "Modular Group home",
     "theme": "Switch between light and dark",
     "language": "Language",
     "skipToContent": "Skip to content"
@@ -40,13 +40,13 @@
   },
   "home": {
     "seo": {
-      "title": "Modular Group — Walls, cabinetry, quartz and vanity tops",
+      "title": "Modular Group Walls, cabinetry, quartz and vanity tops",
       "description": "One group, four manufacturers: Shower Walls, Modul Woods, Küartz Surfaces and Modular Vanity Tops. Complete bathroom and kitchen solutions for hospitality, multifamily, healthcare and residential projects."
     },
     "hero": {
       "eyebrow": "Modular Group",
       "title": "Four manufacturers. One standard.",
-      "subtitle": "Walls, cabinetry, quartz surfaces and vanity tops — engineered under one roof, delivered on one schedule.",
+      "subtitle": "Walls, cabinetry, quartz surfaces and vanity tops engineered under one roof, delivered on one schedule.",
       "description": "From a single hotel bathroom to a thousand-unit multifamily development, Modular Group supplies the whole room: waterproof wall systems, frameless cabinetry, quartz slabs and engineered vanity tops.",
       "primaryCta": "Start a project",
       "secondaryCta": "Meet the companies"
@@ -54,7 +54,7 @@
     "intro": {
       "eyebrow": "The group",
       "title": "One partner instead of four suppliers.",
-      "description": "Modular Group began in 2004 in Monterrey, Mexico with engineered vanity tops. Two decades later it manufactures wall panels, frameless cabinetry and the first quartz slabs made in Mexico — coordinated finishes, one point of contact, one delivery schedule."
+      "description": "Modular Group began in 2004 in Monterrey, Mexico with engineered vanity tops. Two decades later it manufactures wall panels, frameless cabinetry and the first quartz slabs made in Mexico coordinated finishes, one point of contact, one delivery schedule."
     },
     "stats": [
       {
@@ -66,7 +66,7 @@
         "label": "Specialised companies"
       },
       {
-        "value": "Monterrey · Juárez",
+        "value": "Monterrey",
         "label": "Plants in Mexico"
       },
       {
@@ -77,7 +77,7 @@
     "companies": {
       "eyebrow": "Our companies",
       "title": "Each one a specialist. Together, the whole room.",
-      "description": "Every company keeps its own identity, plant and product line. Specify one or specify all four — the finishes are coordinated either way."
+      "description": "Every company keeps its own identity, plant and product line. Specify one or specify all four the finishes are coordinated either way."
     },
     "advantages": {
       "eyebrow": "Why the group",
@@ -89,7 +89,7 @@
         },
         {
           "title": "Manufacturing we control",
-          "body": "Our own plants in Monterrey and Juárez, Nuevo León — not a catalog of other people's factories."
+          "body": "Our own plants in Monterrey, Nuevo León not a catalog of other people's factories."
         },
         {
           "title": "Repeatable at scale",
@@ -104,11 +104,11 @@
     "contact": {
       "eyebrow": "Get in touch",
       "title": "Tell us what you are building.",
-      "description": "Send us the scope — units, finishes, dates — and the right company in the group will come back to you with a proposal."
+      "description": "Send us the scope units, finishes, dates and the right company in the group will come back to you with a proposal."
     },
     "founderStory": {
       "eyebrow": "Our story",
-      "title": "Twenty years of manufacturing — started by one vision.",
+      "title": "Twenty years of manufacturing started by one vision.",
       "body": "Since 2004, our story has been driven by the vision and entrepreneurial spirit of our founder, Karlo Fuentes, who began with a dream: to build a leading manufacturing company in Mexico specializing in resin-based vanity tops. What started as a vision has grown into a family-owned business with more than 20 years of experience in the manufacturing industry. Today, we produce a wide range of products, including engineered stone, granite and quartz vanity tops, shower walls, shower bases, accessories, kitchen countertops, quartz slabs, vanity bases, and kitchens. Through innovation, craftsmanship, and a commitment to quality, we continue to build on the foundation Karlo established in 2004, growing our capabilities while serving customers across Mexico and the United States.",
       "founderLabel": "Founder",
       "founderName": "Karlo Fuentes",
@@ -132,11 +132,11 @@
       "name": "Shower Walls",
       "tagline": "Engineered stone wall systems",
       "seo": {
-        "title": "Shower Walls — High-performance shower wall panels and pans",
+        "title": "Shower Walls High-performance shower wall panels and pans",
         "description": "Shower wall panels, pans and accessories engineered for hospitality, multifamily, student housing and healthcare projects. Renovate without noise, dust or delays."
       },
       "home": {
-        "summary": "High-performance shower wall panels, pans and accessories that replace tile — installed without the noise, dust and delays of traditional remodeling.",
+        "summary": "High-performance shower wall panels, pans and accessories that replace tile installed without the noise, dust and delays of traditional remodeling.",
         "points": [
           "Wall panels, pans and accessories",
           "Hospitality, multifamily, student housing, healthcare",
@@ -147,14 +147,14 @@
         "eyebrow": "Shower Walls",
         "title": "Built for the projects tile could not keep up with",
         "subtitle": "High-performance shower wall panels, pans and accessories.",
-        "description": "Modern design, durability and innovation — a bathroom renovated without the noise, dust and delays of traditional remodeling."
+        "description": "Modern design, durability and innovation a bathroom renovated without the noise, dust and delays of traditional remodeling."
       },
       "about": {
         "eyebrow": "About us",
         "title": "Wall systems that behave like a product, not a trade.",
         "body": [
           "At Shower Walls we manufacture high-performance shower wall panels, pans and accessories. We combine modern design, durability and innovation to renovate a bathroom without the noise, dust and delays of traditional remodeling.",
-          "Our systems were developed for hospitality, multifamily, student housing and healthcare operators who need hundreds of identical, flawless bathrooms delivered on a schedule — and for homeowners who want that same standard at home."
+          "Our systems were developed for hospitality, multifamily, student housing and healthcare operators who need hundreds of identical, flawless bathrooms delivered on a schedule and for homeowners who want that same standard at home."
         ]
       },
       "pillars": {
@@ -185,7 +185,7 @@
           },
           {
             "title": "No delays",
-            "body": "A manufactured system arrives complete and installs in a predictable window — the same window, unit after unit."
+            "body": "A manufactured system arrives complete and installs in a predictable window the same window, unit after unit."
           }
         ]
       },
@@ -217,7 +217,7 @@
       "cta": {
         "eyebrow": "Shower Walls",
         "title": "Renovate the bathroom without closing the floor.",
-        "description": "Send us the unit count and the schedule — we will come back with a system and a timeline.",
+        "description": "Send us the unit count and the schedule we will come back with a system and a timeline.",
         "primaryLabel": "Request a quote",
         "secondaryLabel": "Download the catalog"
       }
@@ -226,11 +226,11 @@
       "name": "Modul Woods",
       "tagline": "Frameless cabinetry",
       "seo": {
-        "title": "Modul Woods — Frameless bathroom and kitchen cabinetry",
+        "title": "Modul Woods Frameless bathroom and kitchen cabinetry",
         "description": "Custom frameless cabinetry for bathrooms and kitchens: vanity cabinets, base and wall cabinets, tall pantry units, islands and custom storage. Manufactured in Monterrey, Mexico since 2018."
       },
       "home": {
-        "summary": "Frameless cabinetry for bathrooms and kitchens — vanity cabinets, base and wall units, tall pantries, islands and custom storage, built in our own plant.",
+        "summary": "Frameless cabinetry for bathrooms and kitchens vanity cabinets, base and wall units, tall pantries, islands and custom storage, built in our own plant.",
         "points": [
           "Frameless bathroom and kitchen cabinetry",
           "Residential, hospitality, multifamily, senior living",
@@ -241,7 +241,7 @@
         "eyebrow": "Modul Woods",
         "title": "Cabinetry built to match the room, not the catalog",
         "subtitle": "Custom frameless cabinets for bathrooms and kitchens.",
-        "description": "The cabinetry division of Modular Group — vanity cabinets, base and wall units, tall pantries, islands and custom storage, manufactured in Monterrey, Mexico."
+        "description": "The cabinetry division of Modular Group vanity cabinets, base and wall units, tall pantries, islands and custom storage, manufactured in Monterrey, Mexico."
       },
       "about": {
         "eyebrow": "About us",
@@ -298,23 +298,23 @@
       "cta": {
         "eyebrow": "Modul Woods",
         "title": "One cabinetry partner, from a single home to a full development.",
-        "description": "Tell us the layout and the finish — we will build to it.",
+        "description": "Tell us the layout and the finish we will build to it.",
         "primaryLabel": "Request a quote",
         "secondaryLabel": "Download the catalog"
       }
     },
     "kuartzSurfaces": {
       "name": "Küartz Surfaces",
-      "tagline": "ktz",
+      "tagline": "Quartz",
 
 
       "seo": {
-        "title": "Küartz Surfaces — The first quartz slab factory in Mexico",
+        "title": "Küartz Surfaces The first quartz slab factory in Mexico",
         "description": "Quartz slabs, vanity tops, kitchen countertops and surfaces produced in Monterrey, Mexico."
 
       },
       "home": {
-        "summary": "The first and only quartz slab factory in Mexico — slabs, vanity tops and kitchen countertops, produced with specialised machinery.",
+        "summary": "The first and only quartz slab factory in Mexico slabs, vanity tops and kitchen countertops, produced with specialised machinery.",
         "points": [
           "Quartz slabs made in Mexico",
           "Located in Monterrey, Mexico",
@@ -388,7 +388,7 @@
       "name": "Modular Vanity Tops",
       "tagline": "Fine engineered vanity tops",
       "seo": {
-        "title": "Modular Vanity Tops — Fine engineered vanity tops since 2004",
+        "title": "Modular Vanity Tops Fine engineered vanity tops since 2004",
         "description": "Engineered vanity tops manufactured in Monterrey, Mexico and distributed from Laredo, Texas to the United States and Canada. For homes, hotels, assisted living and multi-family dwellings."
       },
       "home": {
@@ -403,14 +403,14 @@
         "eyebrow": "Modular Vanity Tops",
         "title": "Since 2004, exporting fine engineered vanity tops",
         "subtitle": "Manufactured in Monterrey. Distributed from Laredo, Texas.",
-        "description": "Fine quality engineered vanity tops for homes, hotels and motels, assisted living retirement centers and multi-family dwellings — with distribution from Laredo, Texas to the U.S. and Canada."
+        "description": "Fine quality engineered vanity tops for homes, hotels and motels, assisted living retirement centers and multi-family dwellings with distribution from Laredo, Texas to the U.S. and Canada."
       },
       "about": {
         "eyebrow": "About us · Beginning",
-        "title": "Since 2004, exporting fine engineered vanity tops — with distribution from Laredo, Texas.",
+        "title": "Since 2004, exporting fine engineered vanity tops with distribution from Laredo, Texas.",
         "body": [
           "Since 2004 we have been successfully exporting to the United States and Canada, distributing through Cultured Marble Manufacturers, Building & Plumbing Suppliers, General Contractors and Home Centers.",
-          "Our factory is located in Monterrey, MX, conveniently close to our Distribution Center in Laredo, Texas — ensuring fast, reliable cross-border delivery. We specialize in fine quality Engineered Vanity Tops, designed specifically for homes, hotels and motels, assisted living retirement centers and multi-family dwellings."
+          "Our factory is located in Monterrey, MX, conveniently close to our Distribution Center in Laredo, Texas ensuring fast, reliable cross-border delivery. We specialize in fine quality Engineered Vanity Tops, designed specifically for homes, hotels and motels, assisted living retirement centers and multi-family dwellings."
         ]
       },
       "stats": [
@@ -457,7 +457,7 @@
       "cta": {
         "eyebrow": "Modular Vanity Tops",
         "title": "Two decades of vanity tops crossing the border on time.",
-        "description": "Tell us the model count and the finish — we will quote it.",
+        "description": "Tell us the model count and the finish we will quote it.",
         "primaryLabel": "Request a quote",
         "secondaryLabel": "Download the catalog"
       }
@@ -465,14 +465,14 @@
   },
   "contact": {
     "seo": {
-      "title": "Contact — Modular Group",
+      "title": "Contact Modular Group",
       "description": "Talk to Modular Group about walls, cabinetry, quartz surfaces and vanity tops for your next project."
     },
     "hero": {
       "eyebrow": "Contact",
       "title": "Tell us what you are building.",
       "subtitle": "One message reaches all four companies.",
-      "description": "Share the scope — units, finishes, dates — and the right team will come back to you."
+      "description": "Share the scope units, finishes, dates and the right team will come back to you."
     },
     "info": {
       "title": "Where we are",
@@ -483,7 +483,7 @@
         },
         {
           "label": "Quartz plant",
-          "value": "Juárez, Nuevo León, Mexico"
+          "value": "Monterrey, Nuevo León, Mexico"
         },
         {
           "label": "Distribution Center",
@@ -517,7 +517,7 @@
         "label": "What is this about?",
         "placeholder": "Select a company",
         "options": {
-          "group": "Modular Group — general",
+          "group": "Modular Group general",
           "showerWalls": "Shower Walls",
           "modulWoods": "Modul Woods",
           "kuartzSurfaces": "Küartz Surfaces",
@@ -531,7 +531,7 @@
       "submit": "Send message",
       "sending": "Sending…",
       "successTitle": "Message sent",
-      "successBody": "Thank you — we will get back to you shortly.",
+      "successBody": "Thank you we will get back to you shortly.",
       "errorTitle": "Something went wrong",
       "errorBody": "Your message could not be sent. Please try again or email us directly.",
       "errors": {
@@ -545,7 +545,7 @@
   },
   "notFound": {
     "seo": {
-      "title": "Page not found — Modular Group",
+      "title": "Page not found Modular Group",
       "description": "The page you are looking for does not exist."
     },
     "code": "404",
@@ -556,7 +556,7 @@
     "companies": "Or go straight to a company"
   },
   "footer": {
-    "tagline": "Walls, cabinetry, quartz surfaces and vanity tops — manufactured in Mexico, delivered across North America.",
+    "tagline": "Walls, cabinetry, quartz surfaces and vanity tops manufactured in Mexico, delivered across North America.",
     "companies": "Companies",
     "explore": "Explore",
     "locations": "Locations",

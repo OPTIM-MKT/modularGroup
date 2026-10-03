@@ -91,7 +91,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const html = `
     <div style="font-family:ui-sans-serif,system-ui,sans-serif;font-size:15px;line-height:1.6;color:#15171c">
-      <h2 style="margin:0 0 16px;font-size:18px">New enquiry — ${escapeHtml(INTEREST_LABEL[data.interest])}</h2>
+      <h2 style="margin:0 0 16px;font-size:18px">New enquiry ${escapeHtml(INTEREST_LABEL[data.interest])}</h2>
       <table style="border-collapse:collapse">
         ${rows
           .map(
@@ -111,7 +111,7 @@ export const POST: APIRoute = async ({ request }) => {
       from,
       to: to.split(",").map((address) => address.trim()),
       replyTo: data.email,
-      subject: `Modular Group — ${INTEREST_LABEL[data.interest]} — ${data.name}`,
+      subject: `Modular Group ${INTEREST_LABEL[data.interest]} ${data.name}`,
       html,
       text: [
         ...rows.map(([label, value]) => `${label}: ${value}`),
