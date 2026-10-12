@@ -3,24 +3,15 @@ import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiArrowRight, FiLoader } from "react-icons/fi";
 import { Toaster, toast } from "sonner";
-import { z } from "zod";
+import { actions } from "astro:actions";
 
 import { useReactI18n } from "@/i18n/useReacti18n";
-
-type InterestKey =
-  | "group"
-  | "showerWalls"
-  | "modulWoods"
-  | "kuartzSurfaces"
-  | "modularVanityTops";
-
-const INTERESTS: InterestKey[] = [
-  "group",
-  "showerWalls",
-  "modulWoods",
-  "kuartzSurfaces",
-  "modularVanityTops",
-];
+import {
+  INTERESTS,
+  type InterestKey,
+  buildContactSchema,
+  type ContactFormData,
+} from "@/components/contact/contact.schema";
 
 interface Props {
   lang?: string;
@@ -36,34 +27,22 @@ export default function ContactForm({ lang, defaultInterest = "group" }: Props) 
   // Rebuilt per locale so validation messages are translated, not just labels.
   const schema = useMemo(
     () =>
-      z.object({
-        name: z.string().trim().min(2, copy.errors.nameMin).max(120, copy.errors.tooLong),
-        email: z.email(copy.errors.emailInvalid).trim().max(160, copy.errors.tooLong),
-        phone: z.string().trim().max(40, copy.errors.tooLong).optional().or(z.literal("")),
-        company: z.string().trim().max(140, copy.errors.tooLong).optional().or(z.literal("")),
-        interest: z.enum(
-          INTERESTS as [InterestKey, ...InterestKey[]],
-          copy.errors.interestRequired,
-        ),
-        message: z
-          .string()
-          .trim()
-          .min(10, copy.errors.messageMin)
-          .max(4000, copy.errors.tooLong),
-        // Honeypot: a real person never fills a field they cannot see.
-        website: z.string().max(0).optional().or(z.literal("")),
+      buildContactSchema({
+        name: copy.errors.nameMin,
+        email: copy.errors.emailInvalid,
+        interest: copy.errors.interestRequired,
+        message: copy.errors.messageMin,
+        tooLong: copy.errors.tooLong,
       }),
     [copy],
   );
-
-  type FormValues = z.infer<typeof schema>;
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({
+  } = useForm<ContactFormData>({
     resolver: zodResolver(schema),
     mode: "onTouched",
     defaultValues: {
@@ -77,22 +56,44 @@ export default function ContactForm({ lang, defaultInterest = "group" }: Props) 
     },
   });
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (values: ContactFormData) => {
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, locale }),
+      const { error } = await actions.send({
+        ...values,
+        locale,
       });
 
-      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+      if (error) {
+        toast.error(copy.errorTitle, {
+          description: error.message || copy.errorBody,
+        });
+        return;
+      }
 
-      toast.success(copy.successTitle, { description: copy.successBody });
+      toast.success(copy.successTitle, {
+        description: copy.successBody,
+      });
       setSent(true);
-      reset();
+      reset({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        interest: defaultInterest,
+        message: "",
+        website: "",
+      });
     } catch {
-      toast.error(copy.errorTitle, { description: copy.errorBody });
+      toast.error(copy.errorTitle, {
+        description: copy.errorBody,
+      });
     }
+  };
+
+  const onInvalid = () => {
+    toast.error(copy.errorTitle, {
+      description: copy.errors.nameMin,
+    });
   };
 
   const field =
@@ -101,13 +102,13 @@ export default function ContactForm({ lang, defaultInterest = "group" }: Props) 
   return (
     <>
       <Toaster
-        position="bottom-center"
+        position="bottom-right"
         richColors
         closeButton
         toastOptions={{ style: { fontFamily: "inherit" } }}
       />
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="grid gap-5">
+      <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field
             id="name"
@@ -214,18 +215,23 @@ export default function ContactForm({ lang, defaultInterest = "group" }: Props) 
           />
         </Field>
 
-        {/* Off-screen rather than display:none, so bots that skip hidden inputs
-            still fill it. Never focusable, never announced. */}
+        {/* Off-screen honeypot: a bot will fill it, while humans cannot see it */}
         <div className="absolute left-[-9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
           <label htmlFor="website">Website</label>
-          <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
+          <input
+            id="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...register("website")}
+          />
         </div>
 
         <div className="mt-1 flex flex-wrap items-center gap-4">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="btn btn-primary group px-6 py-3"
+            className="btn btn-primary group px-6 py-3 cursor-pointer disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <>
